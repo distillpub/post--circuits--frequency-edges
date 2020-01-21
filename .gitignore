@@ -63,3 +63,7 @@ typings/
 # macOS
 
 .DS_Store
+
+# Python helpers
+
+.mypy_cache

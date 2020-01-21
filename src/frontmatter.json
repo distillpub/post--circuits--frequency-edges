@@ -1,15 +1,8 @@
 {
-	"title": "Distill Example",
-	"description": "An example project using Webpack, Babel, and Svelte.",
-	"password": "svgs",
-	"authors": [
-		{
-			"author": "Ludwig Schubert",
-			"authorURL": "https://schubert.io/",
-			"affiliation": "OpenAI",
-			"affiliationURL": "https://openai.com"
-		}
-	],
+	"title": "High/Low frequency detectors",
+	"description": "A family of early-vision filters reacting to contrasts between spatial gratings of different frequency",
+	"password": "hilo",
+	"authors": [],
 	"katex": {
 		"delimiters": [
 			{
