@@ -1,0 +1,10 @@
+{
+	"units": [
+		{ "index": 110, "response": [0, 220] },
+		{ "index": 180, "response": [0, 220] },
+		{ "index": 136, "response": [0, 220] },
+		{ "index": 108, "response": [0, 220] },
+		{ "index": 132, "response": [0, 220] },
+		{ "index": 88, "response": [0, 220] }
+	]
+}

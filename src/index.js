@@ -2,11 +2,11 @@
 import * as _unused from "raw-loader!./index.ejs";
 // TODO: disable before publishing
 
-// import Example from "./diagrams/svelte-example.svelte";
+import TuningCurves from "./diagrams/tuning-curves.svelte";
 
 // lazily initialize any diagram below the fold. E.G:
-// const exampleTag = document.getElementById("svelte-example-dfigure");
-// exampleTag.addEventListener("ready", () => {
-// 	const target = exampleTag.querySelector("#svelte-example-target");
-// 	example = new Example({ target });
-// });
+const tuningCurveTag = document.getElementById("1.4-tuning-curves");
+tuningCurveTag.addEventListener("ready", () => {
+	const target = tuningCurveTag.getElementsByTagName("figure")[0];
+	const tuningCurves = new TuningCurves({ target });
+});

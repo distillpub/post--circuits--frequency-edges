@@ -8,7 +8,11 @@ module.exports = {
 		index: "./src/index.js",
 	},
 	resolve: {
-		extensions: [".js", ".html", ".npy"],
+		alias: {
+			svelte: path.resolve("node_modules", "svelte"),
+		},
+		extensions: [".js", ".html", ".npy", ".svelte"],
+		mainFields: ["svelte", "browser", "module", "main"],
 	},
 	output: {
 		path: __dirname + "/public",
@@ -30,9 +34,14 @@ module.exports = {
 				use: ["to-string-loader", "css-loader"],
 			},
 			{
-				test: /\.(html|svelte)$/,
+				test: /\.(svelte)$/,
 				exclude: /node_modules/,
-				loader: "svelte-loader",
+				use: {
+					loader: "svelte-loader",
+					options: {
+						hotReload: true,
+					},
+				},
 			},
 			{
 				test: /\.(npy|npc)$/,

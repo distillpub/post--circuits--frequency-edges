@@ -20,7 +20,7 @@
   <d-title>
     <h1><span style="display: inline; color: gray; margin-right: 0.25em">2.4</span>High/Low Frequency Detectors</h1>
     <p>A family of early-vision filters reacting to contrasts between spatial gratings of different frequency</p>
-    <figure class="l-body todo">I'm just a figure who's a hero for fun.</figure>
+    <figure id="hero" class="l-body todo">I'm just a figure who's a hero for fun.</figure>
   </d-title>
 
   <d-article>
@@ -75,10 +75,12 @@
     <figure class="l-screen base-grid" id="1.1-feature-vis">
       <ul class="gallery l-page">
         <% for (const unit of require("../static/diagrams/1.1-feature-vis/units.json").units) {%>
-        <img src=<%= `diagrams/1.1-feature-vis/neuron-${unit}.png` %> />
+        <img src="<%= `diagrams/1.1-feature-vis/neuron-${unit}.png` %>" title="<%= "Unit " + unit %>" />
         <% } %>
       </ul>
-      <figcaption class="figcaption l-body">A variety of detectors from InceptionV1's <code>mixed3a</code> layer.
+      <figcaption class="figcaption l-body">
+        <a href="#1.1-feature-vis" class="figure-number">1</a>:
+        A variety of detectors from InceptionV1's <code>mixed3a</code> layer.
       </figcaption>
     </figure>
 
@@ -87,9 +89,11 @@
       To ensure we're not misreading those feature visualizations it's good practice to check what such filters
       maximally activate on over a natural data distribution, say the training set.
     </p>
+
     <figure id="1.2-dataset-examples">
       <img src="diagrams/1.2-dataset-examples/placeholder.png" />
       <figcaption class="figcaption">
+        <a href="#1.2-dataset-examples" class="figure-number">2</a>:
         Crops taken from training dataset, Imagenet, on which a High-Low Frequency detector activated maximally;
         argmaxed over spatial locations.
       </figcaption>
@@ -106,29 +110,57 @@
       In the curve detector chapter we saw an example of a tuning curve: it plots filter response over rotation angle,
       where the input is a natural image that we know has curvature in it. We can repeat this experiment for high/low
       frequency detectors: since their response is also specific to an angle, we expect to see a similar pattern of
-      sensitivity. (And we do.)
+      angle-specific activation. To measure this, we create artificial stimuli: images that contain a high-low frequency
+      edge at a known orientation:
     </p>
 
-    <figure id="1.3-1D-tuning-curve">
-      <img src="diagrams/1.3-1D-tuning-curve/placeholder.png" />
+    <figure id="1.4-tuning-curves-space-axis-1">
+      <img src="diagrams/1.4-tuning-curves/orientation.png"
+        style="width: 100%; max-width: 636px; image-rendering: pixelated;" />
       <figcaption class="figcaption">
-        TODO: replace with 1D tuning curve over angles
+        The first axis of variation of our artificial stimuli is <em>orientation</em>.
       </figcaption>
     </figure>
 
     <p>
+      The curve detector tuning curve also varied a second parameter, arc length. For
+      high-low frequency detectors, we will instead vary the ratio between the two frequencies:
+    </p>
+
+    <figure id="1.4-tuning-curves-space-axis-2">
+      <img src="diagrams/1.4-tuning-curves/ratio.png"
+        style="width: 100%; max-width: 636px; image-rendering: pixelated;" />
+      <figcaption class="figcaption">
+        The second axis of variation of our artificial stimuli is the <em>ratio between frequencies</em>.
+        <!--  on the two sides of the high-low frequency edge. -->
+      </figcaption>
+    </figure>
+
+    <p>These two axes define a space from which we can sample image stimuli: every 2D point corresponds to a combination
+      of
+      the two varied attributes. In the tuning curve diagram below, each unit is associated with a 60 by 360 plot of
+      activation strength. In those plots, each pixel corresponds to one of the artificial stimuli.</p>
+
+    <!-- <figure id="1.4-tuning-curves-samples">
+      <img src="diagrams/1.4-tuning-curves/samples.png"
+        style="width: 100%; max-width: 636px; image-rendering: pixelated;" />
+      <figcaption class="figcaption">
+        TODO:
+      </figcaption>
+    </figure> -->
+
+    <!-- <p>
       But high/low frequency detectors seem to have more knobs to turn than just angle: the frequencies of the two
       gratings that make up the frequency edge should also affect the filters' responses. Let's measure activations over
       a space that varies both of those, as well as orientation: Angle by frequency 1 by frequency 2. We will then have
       to visualize this volume in various ways to show it on this 2D screen.
-    </p>
+    </p> -->
 
-    <figure id="1.4-tuning-curves">
-      <img src="diagrams/1.4-tuning-curves/placeholder.png" />
-      <figcaption class="figcaption">
-        TODO: replace with slices of 3D tuning curve over angles, frequency 1, frequency 2?
-      </figcaption>
-    </figure>
+    <p class="todo">Legend @shan; smarter ideas? No responsiveness? etc.</p>
+
+    <d-figure id="1.4-tuning-curves">
+      <figure></figure>
+    </d-figure>
 
     <p>
       By argmaxing over the two frequencies we recover the angle-response curve from the previous section:
@@ -141,7 +173,7 @@
 
     <h4>Circuit diagram</h4>
 
-    <p class="todo">Has linearization been explained before?</p>
+    <p class="todo done">Has linearization been explained before?</p>
 
     <p>To understand how these detectors are implemented in terms of even earlier features, we can look at which
       features feed into a given high/low frequency detector, and even at the spatial structure of the weights
@@ -155,7 +187,7 @@
     </figure>
 
     <h4>Joint NMF of weights</h4>
-    <p>Separately?</p>
+    <p>NMFing the weights into 2 factors recovers low/high frequency neuron clusters.</p>
 
     <figure id="2.2-upstream-nmf">
       <img src="diagrams/2.2-upstream-nmf/placeholder.png" />
@@ -178,6 +210,7 @@
 
     <p>Object boundary detectors, and how they're dissimilar from edge detectors/their invariances</p>
     <p>Show how opposing high/low frequency detectors are used to make boundary detectors invariant to orientiation</p>
+    <p>Show cosine similarity of forward weights as compared to incoming weights; expect -1 incoming; 1 outgoing.</p>
 
     <figure id="3.2-downstream-nmf">
       <img src="diagrams/3.2-downstream-nmf/placeholder.png" />
@@ -196,21 +229,20 @@
     <p>Always good to ask if what you see is the rule or an interesting exception. high/low frequency detectors seem to
       be the rule.</p>
 
-    <h4>Expressability in other models' filter basis</h4>
+    <h4>High/Low frequency detectors in other models</h4>
 
     <figure id="4.1-similar-directions">
       <img src="diagrams/4.1-similar-directions/placeholder.jpg" />
       <figcaption class="figcaption">
-        Linear approximations of similar filters in other models
+        Table of similar neurons; found by their artificial stimuli response
       </figcaption>
     </figure>
 
-    <h4>High/Low frequency detectors in other models</h4>
-    <p>Show grid of similar directions in other models.</p>
+    <h4>Tuning curves in other models</h4>
+    <p>Show tuning curves!</p>
 
     <figure id="4.2-similar-detectors">
       <img src="diagrams/4.2-similar-detectors/placeholder-1.jpg" />
-      <img src="diagrams/4.2-similar-detectors/placeholder-2.jpg" />
       <figcaption class="figcaption">
         Top k filters responding to stimuli from earlier section
       </figcaption>
@@ -222,7 +254,8 @@
     <figure id="4.3-higher-layers">
       <img src="diagrams/4.3-higher-layers/placeholder.png" />
       <figcaption class="figcaption">
-        Top k filters responding to stimuli from earlier section
+        Top k filters responding to stimuli from earlier section. Compare their response to earlier layer hilo
+        detectors; ideally show frequency gap / non-huge-overlap in response 2D tuning curve.
       </figcaption>
     </figure>
 
