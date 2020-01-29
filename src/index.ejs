@@ -156,7 +156,7 @@
       to visualize this volume in various ways to show it on this 2D screen.
     </p> -->
 
-    <p class="todo">Legend @shan; smarter ideas? No responsiveness? etc.</p>
+    <p class="todo done">Legend @shan; smarter ideas? No responsiveness? etc.</p>
 
     <d-figure id="1.4-tuning-curves">
       <figure></figure>
@@ -171,12 +171,26 @@
     <h2>Upstream Circuits</h2>
     <p>How are High-Low frequency detectors constructed from lower-level features?</p>
 
+    <p>A natural guess would be to assume these filters combine low frequency detectors and high frequency detectors.
+      Let us factorize the connections<d-footnote>Between two adjacent layers, "connections" reduces to the weights
+        between the two layers. Sometimes we are interested in observing connectivity between layers that may not be
+        directly adjacent. Because our model, a deep convnet, is non-linear, we will neeed to approximate the
+        connections. A simple approach that we take is to linearize the model by removing the non-linearities. While
+        this is not a great approximation of the model's behavior, it does give a reasonable intuition for
+        counterfactual influence: had the neurons in the intermediate layer fired, how would it have affected neurons in
+        the downstream layers. We treat positive and negative influences separately.</d-footnote> between lower level
+      features and the High-Low frequency detectors we already found:</p>
+
+    <p>NMFing the weights into 2 factors recovers low/high frequency neuron clusters.</p>
+
+    <%= require('./diagrams/upstream-nmf.ejs')({data: 42}) %>
+
     <h4>Circuit diagram</h4>
 
-    <p class="todo done">Has linearization been explained before?</p>
+
 
     <p>To understand how these detectors are implemented in terms of even earlier features, we can look at which
-      features feed into a given high/low frequency detector, and even at the spatial structure of the weights
+      features feed into a given high/low frequency detectoer, and even at the spatial structure of the weights
       connecting those features to the detector in question.</p>
 
     <figure id="2.1-upstream-circuit">
@@ -187,14 +201,7 @@
     </figure>
 
     <h4>Joint NMF of weights</h4>
-    <p>NMFing the weights into 2 factors recovers low/high frequency neuron clusters.</p>
 
-    <figure id="2.2-upstream-nmf">
-      <img src="diagrams/2.2-upstream-nmf/placeholder.png" />
-      <figcaption class="figcaption">
-        TODO: how to slice, how to present?
-      </figcaption>
-    </figure>
 
 
     <!--Downstream Circuits-->

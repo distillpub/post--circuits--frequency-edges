@@ -34,6 +34,10 @@ module.exports = {
 				use: ["to-string-loader", "css-loader"],
 			},
 			{
+				test: /\.ejs$/i,
+				use: ["ejs-loader"],
+			},
+			{
 				test: /\.(svelte)$/,
 				exclude: /node_modules/,
 				use: {

@@ -73,25 +73,41 @@ a.section-number:hover {
 }
 
 .todo::before {
+	display: inline-block;
 	content: "⚠️";
+	vertical-align: baseline;
 	position: relative;
 	font-size: 135%;
 	top: 4px;
-	margin-right: 0.5em;
-}
+	margin: 0 0.25em;
 
-.todo.done {
-	background-color: hsla(50, 0%, 50%, 0.25);
-	border: 1px solid hsla(50, 0%, 50%, 0.5);
-	color: hsl(45, 0%, 20%);
-	text-decoration: line-through;
+	text-decoration: none !important;
 }
 
 .todo.done::before {
 	content: "✅";
-	position: relative;
-	font-size: 135%;
-	top: 4px;
-	margin-right: 0.5em;
-	text-decoration: none !important;
+}
+
+.todo.done {
+	background-color: hsla(120, 20%, 60%, 0.25);
+	border: 1px solid hsla(120, 20%, 60%, 0.5);
+	color: hsl(45, 0%, 20%);
+	text-decoration: line-through;
+	text-decoration-color: hsla(45, 0%, 20%, 50%);
+}
+
+.color-legend {
+	display: inline-block;
+	width: 64px;
+	height: 1ex;
+	vertical-align: baseline;
+}
+.viridis {
+	display: inline-block;
+	width: 64px;
+	height: 1ex;
+	vertical-align: baseline;
+
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAA7ElEQVQ4T4WRi23EMAxDSXu1jtD9R4kPIiVbTosWh0Ci+PRJjl/8XuAAB9EjpAmOoYgdCXKg/MsLTmzGN9e8pRzm83nXulZO8yv7VuqoF1tceY7QTZW/vR9a82Nm7ssZd3/5uXvzvbczeUfjFn6p1b3/zDv3xZCzp9f3u3Ptd7/6tCu9vMU9K7913Wfdvfg7Lg5mmL0nmgvtv/lw/rzHGzs3W3rgpZML394Sez34q/aY3cyDubW9KS9zeVWv2qP+KebZfPXNxospFt5lP/pqd0TrYjVLfs13n3f4RudwBDCVM/OITE1Mho5f5M4+UeiJCh70oMIAAAAASUVORK5CYII=");
+	background-size: contain;
 }

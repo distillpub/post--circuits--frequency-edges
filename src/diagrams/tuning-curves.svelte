@@ -98,7 +98,7 @@
         marker-end="url(#t2)"
         marker-start="url(#t2)" />
       <text transform="rotate(-90)" class="axis-label" x="-68" y="14">
-        ƒ-ratio 
+        ƒ-ratio
       </text>
     </g>
   </svg>
@@ -106,7 +106,7 @@
 </div>
 
 <div class="legend">
-  <span/>
+  <span />
 
   <svg width="100%" height="20px">
     <defs>
@@ -131,15 +131,14 @@
         y2="50%"
         marker-end="url(#t)"
         marker-start="url(#t)" />
-      <text class="axis-label" x="35%" y="70%">
-        Orientation (Angle, 0° to 360°)
-      </text>
+      <text class="axis-label" x="44%" y="70%">Orientation</text>
     </g>
   </svg>
 </div>
 
 <div>
-<b/><b/>
+  <b />
+  <b />
 </div>
 
 {#each units as unit, index}
@@ -151,7 +150,7 @@
       title={`Feature visualization of unit ${unit.index}.`} />
     <img
       class="response"
-      src={`diagrams/1.4-tuning-curves/response-${index}--${layer}-${unit.index}.png`}
+      src={`diagrams/1.4-tuning-curves/response-${layer}-${unit.index}.png`}
       alt={`Responses of unit ${unit.index}.`}
       title={`Responses of unit ${unit.index}.`} />
     <!-- <span class="figcaption unit">
@@ -169,7 +168,11 @@
 {/each}
 
 <figcaption class="figcaption">
-  <a href="#1.4-tuning-curves" class="figure-number">3</a>:
-  Responses of six high-low frequency detectors to artifical stimuli. The stimuli vary over two axes:
-  orientation, ranging from 0° to 360°, and ratio of frequency, ranging from 1 to ⅒.
+  <a href="#1.4-tuning-curves" class="figure-number">3</a>
+  : Responses of six high-low frequency detectors to artifical stimuli. The
+  stimuli vary over two axes: orientation, ranging from 0 to 2π, and ratio of
+  frequency, ranging from 1:1 to 1:10. Activation values are normalized across
+  all units shown, ranging from: 0
+  <span class="viridis" />
+  to 1.
 </figcaption>

@@ -1,10 +1,10 @@
 {
 	"units": [
-		{ "index": 110, "response": [0, 220] },
-		{ "index": 180, "response": [0, 220] },
-		{ "index": 136, "response": [0, 220] },
-		{ "index": 108, "response": [0, 220] },
-		{ "index": 132, "response": [0, 220] },
-		{ "index": 88, "response": [0, 220] }
+		{ "layer": "mixed3a", "index": 136 },
+		{ "layer": "mixed3a", "index": 108 },
+		{ "layer": "mixed3a", "index": 132 },
+		{ "layer": "mixed3a", "index": 88 },
+		{ "layer": "mixed3a", "index": 110 },
+		{ "layer": "mixed3a", "index": 180 }
 	]
 }
