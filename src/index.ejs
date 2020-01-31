@@ -183,11 +183,17 @@
 
     <p>NMFing the weights into 2 factors recovers low/high frequency neuron clusters.</p>
 
-    <%= require('./diagrams/upstream-nmf.ejs')({data: 42}) %>
+    <%= require('./diagrams/upstream-nmf.ejs')() %>
+
+    <p class="todo"> talk more explicitly about above diagram</p>
+
+    <h4>Underlying Neurons title tbd</h4>
+    
+    <p>Let's inspect which lower-level neurons primarily contribute to those NMF factors:</p>
+
+    <%= require('./diagrams/upstream-neurons.ejs')() %>
 
     <h4>Circuit diagram</h4>
-
-
 
     <p>To understand how these detectors are implemented in terms of even earlier features, we can look at which
       features feed into a given high/low frequency detectoer, and even at the spatial structure of the weights

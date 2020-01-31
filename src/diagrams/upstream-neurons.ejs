@@ -1,0 +1,125 @@
+<% units = require("../../static/diagrams/2.2-upstream-neurons/component_neurons.json")%>
+
+<style>
+    .upstream-neurons {
+        display: grid;
+        grid-gap: 1em;
+        margin-bottom: 2em;
+    }
+
+    .upstream-neurons .row {
+        display: grid;
+        grid-template-columns: 1fr min-content 1fr min-content 1fr min-content 1fr min-content 1fr min-content 1fr min-content min-content;
+        grid-gap: .5em;
+        /* align-items: center; */
+        /* justify-items: start; */
+    }
+
+    .units,
+    .weights {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-gap: 0.5rem;
+        grid-column-start: 3;
+    }
+
+    img.fv {
+        max-width: 100%;
+        border-radius: 0.25rem;
+    }
+
+    img.full {
+        width: unset;
+        object-fit: none;
+        object-position: center;
+        image-rendering: optimizeQuality;
+    }
+
+    img.weight {
+        width: 100%;
+        image-rendering: pixelated;
+        align-self: center;
+        border: 1px solid #ccc;
+    }
+
+    .layer-label {
+        grid-row-start: span 2;
+    }
+
+    .layer-label label {
+        display: inline-block;
+        /* transform: rotate(-90deg); */
+    }
+
+    .legend-label {
+        padding: .125rem .25rem;
+        border-radius: 2px;
+        color: rgba(0, 0, 0, 0.8);
+    }
+
+    .legend-label.support {
+        background-color: #EE880088;
+    }
+
+    .legend-label.inhibit {
+        background-color: #0088EE88;
+    }
+
+    .annotation {
+        font-size: 1.5em;
+        font-weight: 200;
+        color: #666;
+        margin-top: 1em;
+    }
+
+    .equal-sign {
+        padding: 0 0.5em;
+    }
+
+    .unit {
+        display: block;
+    }
+
+    .unit .bar {
+        display: block;
+        /* background-color: #EE880088; */
+        background-color: #CCC;
+        height: 4px;
+    }
+
+    .row h4 {
+        border-bottom: 1px solid #ccc;
+    }
+</style>
+
+<figure>
+
+
+    <% for (const fv_layer of ["conv2d2", "conv2d1"]) {%>
+    <div class="upstream-neurons">
+        <% for (const [factor, hilo] of [[0, "hi"], [1, "lo"]]) {%>
+        <div class="row">
+            <div class="unit">
+                <img class="fv full" src="<%= `diagrams/2.1-upstream-nmf/${fv_layer}-${hilo}.png` %>" />
+                <span class="figcaption"><%= factor == 0 ? "HF" : "LF" %>-Factor</span>
+            </div>
+            <span class="annotation equal-sign">=</span>
+            <% for (const unit of units[fv_layer][factor].reverse()) {%>
+            <div class="unit">
+                <img class="fv full"
+                    src="<%= `diagrams/2.2-upstream-neurons/layer_name=${fv_layer}-component=${factor}-channel_index=${unit.index}.png` %>" />
+                <div class="bar" style="width: <%= (unit.coeff*100).toFixed(3) %>%"></div>
+                <span class="magnitude figcaption"><%= unit.coeff.toFixed(2).toString().slice(1) %></span>
+            </div>
+            <span class="annotation">+</span>
+            <% } %>
+            <span class="annotation">…</span>
+        </div>
+        <% } %>
+    </div>
+    <% } %>
+
+    <figcaption>
+        TODO here
+    </figcaption>
+</figure>

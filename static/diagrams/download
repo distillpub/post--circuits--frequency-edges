@@ -1,0 +1,1 @@
+gsutil -m rsync --recursive --dry-run gs://fls/schubert/circuits--hilo/ .

@@ -36,17 +36,19 @@
   .legend {
     margin-bottom: 0;
   }
-  img.feature-vis,
+
   img.response {
-    border-radius: 2px;
+    /* border-radius: 2px; */
   }
   img.feature-vis {
     object-fit: none;
     object-position: center;
+    border-radius: 0.25rem;
   }
   img.response {
     width: 100%;
     height: 100%;
+    /* border: 1px solid #000; */
   }
 
   .unit {

@@ -39,6 +39,7 @@
         width: 100%;
         image-rendering: pixelated;
         align-self: center;
+        border: 1px solid #ccc;
     }
 
     .layer-label {
@@ -49,12 +50,27 @@
         display: inline-block;
         /* transform: rotate(-90deg); */
     }
+
+    .legend-label {
+        padding: .125rem .25rem;
+        border-radius: 2px;
+        color: rgba(0, 0, 0, 0.8);
+    }
+
+    .legend-label.support {
+        background-color: #EE880088;
+    }
+
+    .legend-label.inhibit {
+        background-color: #0088EE88;
+    }
 </style>
 
 <figure>
     <div class="upstream-nmf">
 
         <div class="row">
+            <div class="layer-label"><label class="figcaption">mixed3a</label></div>
             <div class="units">
                 <% for (const unit of units) {%>
                 <img class="fv full" src="<%= `diagrams/1.1-feature-vis/neuron-${unit.index}.png` %>"
@@ -67,7 +83,7 @@
         <% for (const [factor_layer, fv_layer] of [["maxpool1", "conv2d2"], ["conv2d1", "conv2d1"]]) {%>
         <div class="row">
             <div class="layer-label"><label class="figcaption"><%= fv_layer %></label></div>
-            <% for (const [factor, hilo] of [[0, "lo"], [1, "hi"]]) {%>
+            <% for (const [factor, hilo] of [[1, "hi"], [0, "lo"]]) {%>
             <img class="fv full" src="<%= `diagrams/2.1-upstream-nmf/${fv_layer}-${hilo}.png` %>" />
             <div class="weights">
                 <% for (const unit of units) {%>
@@ -82,6 +98,14 @@
 
 
     </div>
-    <figcaption>Hello compile-time ejs world! Here's a legend from -1 <img class="color-legend"
-            src="diagrams/2.1-upstream-nmf/pn-legend.png" /> to 1.</figcaption>
+    <figcaption>
+        <p>Using NMF factorization on the weights connecting six High-Low frequency detectors to the two directly
+            preceding convolutional layers, <code>conv2d2</code> and <code>conv2d1</code>. The two factors correspond to
+            high and low frequencies, as becomes apparent in their feature visualizations. (Left column).</p>
+        <p>Their spatial arrangement is also very clear, with LF factors <span class="legend-label support">supporting
+                areas</span> in which High-Low frequency detectors expect low frequencies, and <span
+                class="legend-label inhibit">inhibiting areas</span> in which they expect HF factors. The two factors
+            are very close to symmetric. Weight magnitudes normalized between -1 <img class="color-legend"
+                src="diagrams/2.1-upstream-nmf/pn-legend.png" /> and 1.</p>
+    </figcaption>
 </figure>
