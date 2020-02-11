@@ -3,15 +3,15 @@
 <style>
     .upstream-nmf {
         display: grid;
-        grid-gap: 2rem;
+        grid-row-gap: 2rem;
         margin-bottom: 2rem;
     }
 
     .upstream-nmf .row {
         display: grid;
-        grid-template-columns: 1fr 1fr 6fr;
-        grid-gap: inherit;
-        grid-row-gap: 0.5rem;
+        grid-template-columns: min-content 1fr 6fr;
+        grid-column-gap: 1rem;
+        grid-row-gap: .5rem;
 
     }
 
@@ -42,13 +42,29 @@
         border: 1px solid #ccc;
     }
 
+    img.factor {
+        /* padding-right: 0.75rem; */
+    }
+
+    .annotated-image {
+        display: grid;
+        grid-auto-flow: column;
+    }
+
+    .annotated-image span {
+        writing-mode: vertical-lr;
+    }
+
     .layer-label {
         grid-row-start: span 2;
+        border-right: 1px solid #aaa;
+        text-align: end;
     }
 
     .layer-label label {
         display: inline-block;
-        /* transform: rotate(-90deg); */
+        margin-right: .5em;
+        writing-mode: vertical-lr;
     }
 
     .legend-label {
@@ -70,7 +86,7 @@
     <div class="upstream-nmf">
 
         <div class="row">
-            <div class="layer-label"><label class="figcaption">mixed3a</label></div>
+            <!-- <div class="layer-label"><label class="figcaption">mixed3a</label></div> -->
             <div class="units">
                 <% for (const unit of units) {%>
                 <img class="fv full" src="<%= `diagrams/1.1-feature-vis/neuron-${unit.index}.png` %>"
@@ -79,12 +95,14 @@
             </div>
         </div>
 
-
         <% for (const [factor_layer, fv_layer] of [["maxpool1", "conv2d2"], ["conv2d1", "conv2d1"]]) {%>
         <div class="row">
-            <div class="layer-label"><label class="figcaption"><%= fv_layer %></label></div>
+            <div class="layer-label"><label class="figcaption">mixed3a -> <%= fv_layer %></label></div>
             <% for (const [factor, hilo] of [[1, "hi"], [0, "lo"]]) {%>
-            <img class="fv full" src="<%= `diagrams/2.1-upstream-nmf/${fv_layer}-${hilo}.png` %>" />
+            <div class="annotated-image">
+                <span class="figcaption"><%= hilo == "hi" ? "HF-factor" : "LF-factor" %></span>
+                <img class="fv full factor" src="<%= `diagrams/2.1-upstream-nmf/${fv_layer}-${hilo}.png` %>" />
+            </div>
             <div class="weights">
                 <% for (const unit of units) {%>
                 <img class="weight"
@@ -94,8 +112,6 @@
             <% } %>
         </div>
         <% } %>
-
-
 
     </div>
     <figcaption>

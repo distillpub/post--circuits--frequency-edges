@@ -3,20 +3,52 @@
 <style>
     figure.columns {
         display: grid;
-        grid-gap: 1em;
+        grid-gap: 0.5em;
         grid-template-columns: repeat(4, 1fr);
+        overflow: hidden;
     }
 
     .columns .model {
         display: grid;
-        grid-gap: inherit;
+        position: relative;
+        grid-row-gap: 1em;
         grid-auto-flow: row;
         align-content: start;
         grid-template-rows: min-content;
     }
 
+    .model picture {
+        position: relative;
+    }
+
     .model img {
-        /* object-fit: none; */
+        box-sizing: content-box;
+        position: relative;
+        width: unset;
+        object-fit: none;
+        z-index: 1;
+        border: 6px solid white;
+        margin: -6px;
+        border-radius: 10px;
+    }
+
+    .model figcaption>* {
+        display: block;
+    }
+
+    /*
+    HAAAACKY
+    */
+    .model:first-of-type picture::before {
+        content: "";
+        display: block;
+        position: absolute;
+        height: 1px;
+        width: 350%;
+        left: 0;
+        top: 48px;
+        background-color: #aaa;
+        z-index: 0;
     }
 
     .columns>figcaption {
@@ -29,13 +61,11 @@
     <%= require('./similar-directions-model.ejs')({model}) %>
     <%}%>
     <figcaption>
-        <p>Using NMF factorization on the weights connecting six High-Low frequency detectors to the two directly
-            preceding convolutional layers, <code>conv2d2</code> and <code>conv2d1</code>. The two factors correspond to
-            high and low frequencies, as becomes apparent in their feature visualizations. (Left column).</p>
-        <p>Their spatial arrangement is also very clear, with LF factors <span class="legend-label support">supporting
-                areas</span> in which High-Low frequency detectors expect low frequencies, and <span
-                class="legend-label inhibit">inhibiting areas</span> in which they expect HF factors. The two factors
-            are very close to symmetric. Weight magnitudes normalized between -1 <img class="color-legend"
-                src="diagrams/2.1-upstream-nmf/pn-legend.png" /> and 1.</p>
+        <p>
+            High-Low frequency detectors similar to ones in InceptionV1 can be found in a variety of architectures; AlexNet, InceptionV4, and ResnetV2-50 shown here. Note these are actual channels, not linear combinations approximating the detectors in InceptionV1.
+        </p>
+        <p>
+            We also note that these detectors are found at very similar depths within the different networks.
+        </p>
     </figcaption>
 </figure>

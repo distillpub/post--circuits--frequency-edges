@@ -1,11 +1,14 @@
 <% let depth = model.depthRatio[0]/model.depthRatio[1] %>
 <div class="model">
     <% for (const unit of model.units.slice(0,40)) { %>
-    <img src="<%= model.url.replace("{}", unit) %>">
+    <picture>
+        <img class="fv" width="96" height="96" src="<%= model.url.replace("{}", unit) %>"
+            title="<%= model.name%>'s layer <%=model.layerName%>, Unit <%= unit %>">
+    </picture>
     <%}%>
     <figcaption>
-        <span class="name"><%=model.name%></span>
-    <span class="depth-ratio"><%= (depth*100).toFixed(1) %>%</span>
-    <span class="depth-quotient">(<%= model.depthRatio[0] %>/<%= model.depthRatio[1] %>)</span>
+        <strong class="name"><%=model.name%></strong>
+    <span>Layer <code class="layer-name"><%=model.layerName%></code> </span>
+    <span class="depth-ratio">At ~<%= (depth*100).toFixed(0) %>% network depth</span>
     </figcaption>
 </div>

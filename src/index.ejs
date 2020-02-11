@@ -183,12 +183,14 @@
 
     <p>NMFing the weights into 2 factors recovers low/high frequency neuron clusters.</p>
 
+    <p class="todo"> Either fix with subgrid, or rethink layout!</p>
+
     <%= require('./diagrams/upstream-nmf.ejs')() %>
 
     <p class="todo"> talk more explicitly about above diagram</p>
 
     <h4>Underlying Neurons title tbd</h4>
-    
+
     <p>Let's inspect which lower-level neurons primarily contribute to those NMF factors:</p>
 
     <%= require('./diagrams/upstream-neurons.ejs')() %>
