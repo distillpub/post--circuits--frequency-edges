@@ -1,0 +1,39 @@
+{
+	"models": [
+		{
+			"name": "AlexNet",
+			"folderName": "alexnet",
+			"layerName": "Conv2D_2",
+			"url": "/diagrams/4.1-similar-directions/alexnet/Conv2D_2-{}.png",
+			"depthRatio": [2, 7],
+			"units": [205, 215, 230, 161, 175, 183]
+		},
+		{
+			"name": "InceptionV1",
+			"folderName": "inceptionv1",
+			"layerName": "mixed3a",
+			"url": "/diagrams/1.1-feature-vis/neuron-{}.png",
+			"depthRatio": [4, 12],
+			"un": [136, 108, 132, 88, 110, 180, 153, 186, 86, 117, 112, 70, 106, 113],
+			"units": [108, 180, 132, 112, 110, 106]
+		},
+		{
+			"name": "InceptionV4",
+			"folderName": "inceptionv4",
+			"layerName": "Mixed_5a",
+			"url": "https://openai-clarity.storage.googleapis.com/encyclopedia/modelzoo/2019-12-13/inceptionv4_slim/lucid.feature_vis/feature_vis/alpha%3DFalse%26negative%3DFalse%26objective%3Dneuron%26op%3DInceptionV4%252FInceptionV4%252FMixed_5a%252FBranch_0%252FConv2d_1a_3x3%252FRelu%253A0%26steps%3D1024/channel-{}.png",
+			"depthRatio": [5, 15],
+			"un": [52, 76, 77, 82],
+			"units": [76, 82, 77, 52]
+		},
+		{
+			"name": "ResNetV2-50",
+			"folderName": "resnetv2-50",
+			"layerName": "Block2_Unit1_conv2",
+			"url": "https://openai-clarity.storage.googleapis.com/encyclopedia/modelzoo/2019-12-13/resnetv2_50_slim/lucid.feature_vis/feature_vis/alpha%3DFalse%26negative%3DFalse%26objective%3Dneuron%26op%3Dresnet_v2_50%252Fblock2%252Funit_1%252Fbottleneck_v2%252Fconv2%252FRelu%253A0%26steps%3D1024/channel-{}.png",
+			"depthRatio": [5, 17],
+			"un": [41, 45, 50, 51, 53, 58, 67, 95, 118],
+			"units": [53, 58, 50, 45, 41, 118]
+		}
+	]
+}

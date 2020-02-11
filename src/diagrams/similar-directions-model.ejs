@@ -1,0 +1,11 @@
+<% let depth = model.depthRatio[0]/model.depthRatio[1] %>
+<div class="model">
+    <% for (const unit of model.units.slice(0,40)) { %>
+    <img src="<%= model.url.replace("{}", unit) %>">
+    <%}%>
+    <figcaption>
+        <span class="name"><%=model.name%></span>
+    <span class="depth-ratio"><%= (depth*100).toFixed(1) %>%</span>
+    <span class="depth-quotient">(<%= model.depthRatio[0] %>/<%= model.depthRatio[1] %>)</span>
+    </figcaption>
+</div>

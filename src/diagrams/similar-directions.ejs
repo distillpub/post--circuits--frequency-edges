@@ -1,0 +1,41 @@
+<% models = require("../../static/diagrams/4.1-similar-directions/similar-directions.json").models%>
+
+<style>
+    figure.columns {
+        display: grid;
+        grid-gap: 1em;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .columns .model {
+        display: grid;
+        grid-gap: inherit;
+        grid-auto-flow: row;
+        align-content: start;
+        grid-template-rows: min-content;
+    }
+
+    .model img {
+        /* object-fit: none; */
+    }
+
+    .columns>figcaption {
+        grid-column: 1 / span 4;
+    }
+</style>
+
+<figure id="4.1-similar-directions" class="columns">
+    <% for (const model of models) { %>
+    <%= require('./similar-directions-model.ejs')({model}) %>
+    <%}%>
+    <figcaption>
+        <p>Using NMF factorization on the weights connecting six High-Low frequency detectors to the two directly
+            preceding convolutional layers, <code>conv2d2</code> and <code>conv2d1</code>. The two factors correspond to
+            high and low frequencies, as becomes apparent in their feature visualizations. (Left column).</p>
+        <p>Their spatial arrangement is also very clear, with LF factors <span class="legend-label support">supporting
+                areas</span> in which High-Low frequency detectors expect low frequencies, and <span
+                class="legend-label inhibit">inhibiting areas</span> in which they expect HF factors. The two factors
+            are very close to symmetric. Weight magnitudes normalized between -1 <img class="color-legend"
+                src="diagrams/2.1-upstream-nmf/pn-legend.png" /> and 1.</p>
+    </figcaption>
+</figure>

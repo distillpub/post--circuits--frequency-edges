@@ -1,6 +1,7 @@
 // Hot reloading
 import * as _unused from "raw-loader!./index.ejs";
-import * as _unused2 from "raw-loader!./diagrams/upstream-neurons.ejs";
+import * as _unused2 from "raw-loader!./diagrams/similar-directions.ejs";
+import * as _unused3 from "raw-loader!./diagrams/similar-directions-model.ejs";
 // TODO: disable before publishing
 
 import TuningCurves from "./diagrams/tuning-curves.svelte";
