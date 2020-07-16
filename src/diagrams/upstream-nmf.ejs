@@ -60,11 +60,17 @@
         border-right: 1px solid #aaa;
         text-align: end;
     }
-
     .layer-label label {
         display: inline-block;
         margin-right: .5em;
         writing-mode: vertical-lr;
+    }
+
+    .layer-label.hidden {
+        border-color: transparent;
+    }
+    .layer-label.hidden label {
+        visibility: hidden;
     }
 
     .legend-label {
@@ -86,7 +92,7 @@
     <div class="upstream-nmf">
 
         <div class="row">
-            <!-- <div class="layer-label"><label class="figcaption">mixed3a</label></div> -->
+            <div class="layer-label hidden"><label class="figcaption">mixed3a</label></div>
             <div class="units">
                 <% for (const unit of units) {%>
                 <img class="fv full" src="<%= `diagrams/1.1-feature-vis/neuron-${unit.index}.png` %>"
