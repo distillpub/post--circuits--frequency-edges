@@ -106,7 +106,7 @@
 
         <% for (const [factor_layer, fv_layer] of [["maxpool1", "conv2d2"], ["conv2d1", "conv2d1"]]) {%>
         <div class="row">
-            <div class="layer-label"><label class="figcaption">mixed3a -> <%= fv_layer %></label></div>
+            <div class="layer-label"><label class="figcaption">mixed3a &rightarrow; <%= fv_layer %></label></div>
             <% for (const [factor, hilo] of [[1, "hi"], [0, "lo"]]) {%>
             <div class="annotated-image">
                 <span class="figcaption"><%= hilo == "hi" ? "HF-factor" : "LF-factor" %></span>
