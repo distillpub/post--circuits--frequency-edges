@@ -28,6 +28,9 @@
         border-radius: 0.25rem;
     }
 
+    div.units img.full {
+        margin-left: 1px;
+    }
     img.full {
         width: unset;
         object-fit: none;
@@ -60,11 +63,17 @@
         border-right: 1px solid #aaa;
         text-align: end;
     }
-
     .layer-label label {
         display: inline-block;
         margin-right: .5em;
         writing-mode: vertical-lr;
+    }
+
+    .layer-label.hidden {
+        border-color: transparent;
+    }
+    .layer-label.hidden label {
+        visibility: hidden;
     }
 
     .legend-label {
@@ -86,7 +95,7 @@
     <div class="upstream-nmf">
 
         <div class="row">
-            <!-- <div class="layer-label"><label class="figcaption">mixed3a</label></div> -->
+            <div class="layer-label hidden"><label class="figcaption">mixed3a</label></div>
             <div class="units">
                 <% for (const unit of units) {%>
                 <img class="fv full" src="<%= `diagrams/1.1-feature-vis/neuron-${unit.index}.png` %>"
@@ -97,7 +106,7 @@
 
         <% for (const [factor_layer, fv_layer] of [["maxpool1", "conv2d2"], ["conv2d1", "conv2d1"]]) {%>
         <div class="row">
-            <div class="layer-label"><label class="figcaption">mixed3a -> <%= fv_layer %></label></div>
+            <div class="layer-label"><label class="figcaption">mixed3a &rightarrow; <%= fv_layer %></label></div>
             <% for (const [factor, hilo] of [[1, "hi"], [0, "lo"]]) {%>
             <div class="annotated-image">
                 <span class="figcaption"><%= hilo == "hi" ? "HF-factor" : "LF-factor" %></span>
