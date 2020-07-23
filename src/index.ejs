@@ -94,7 +94,7 @@
       <img src="diagrams/1.2-dataset-examples/placeholder.png" />
       <figcaption class="figcaption">
         <a href="#1.2-dataset-examples" class="figure-number">2</a>:
-        Crops taken from training dataset, Imagenet, on which a High-Low Frequency detector activated maximally;
+        Crops taken from training dataset, Imagenet, on which a high-low frequency detector activated maximally;
         argmaxed over spatial locations.
       </figcaption>
     </figure>
@@ -102,12 +102,12 @@
     <p>
       The dataset examples show that a wide range of real-world objects can cause these detectors to fire: deep 3D
       textures, such as on the microphone against a blurred background, but also surface textures such as the MP3
-      player's metal finish against it's shiny screen.
+      player's metal finish against its shiny screen.
     </p>
 
     <h4>Tuning Curves</h4>
     <p>
-      In the curve detector chapter we saw an example of a tuning curve: it plots filter response over rotation angle,
+      In the curve detector chapter we saw an example of a <a href="https://distill.pub/2020/circuits/curve-detectors/#radial-tuning-curve">tuning curve</a>: it plots filter response over rotation angle,
       where the input is a natural image that we know has curvature in it. We can repeat this experiment for high-low
       frequency detectors: since their response is also specific to an angle, we expect to see a similar pattern of
       angle-specific activation. To measure this, we create artificial stimuli: images that contain a high-low frequency
@@ -166,6 +166,8 @@
       By argmaxing over the two frequencies we recover the angle-response curve from the previous section:
     </p>
 
+    <span class="todo">Radial tuning curve for HLF detectors here?</span>
+
     <!--Upstream Circuits-->
     <h2>Upstream Circuits</h2>
     <p>How are high-low frequency detectors constructed from lower-level features?</p>
@@ -178,9 +180,11 @@
         this is not a great approximation of the model's behavior, it does give a reasonable intuition for
         counterfactual influence: had the neurons in the intermediate layer fired, how it would have affected neurons in
         the downstream layers. We treat positive and negative influences separately.</d-footnote> between lower level
-      features and the High-Low frequency detectors we already found:</p>
+      features and the high-low frequency detectors we already found:</p>
 
     <p>NMFing the weights into 2 factors recovers low/high frequency neuron clusters.</p>
+
+    <p class="todo">Fix alignment of leftmost column?</p>
 
     <%= require('./diagrams/upstream-nmf.ejs')() %>
 
@@ -260,11 +264,11 @@
 
     <!--Universality-->
     <h2>Universality</h2>
-    <p>How common are High-Low frequency detectors in convolutional neural networks?</p>
+    <p>How common are high-low frequency detectors in convolutional neural networks?</p>
     <p>Always good to ask if what you see is the rule or an interesting exception. high-low frequency detectors seem to
       be the rule.</p>
 
-    <h4>High-low frequency detectors in other models</h4>
+    <h4>High-Low Frequency Detectors in Other Models</h4>
 
     <span class="todo">Hyperlink these</span>
 
