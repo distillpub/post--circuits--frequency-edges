@@ -229,16 +229,16 @@
 
     <p>Object boundary detectors are not the same as edge detectors or curve detectors. Although they are sensitive to edges (indeed, edge detectors form some of their input weights!), object boundary detectors are also sensitive to other indicators that one object has ended and another has begun. Object boundary detectors therefore detect a more general feature than edges alone.
 
-    <p>Object boundary detectors have a number of invariances. For one thing, object boundary detectors are invariant to the sidedness of high-low frequency detectors, instead being activated by both possible polarities. For example, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_345.html"><code>mixed3b</code> 345</a> is activated by high-low frequency detectors with dividing lines in a similar vertical orientation.</p>
+    <p>These detectors have a number of <i>invariances</i>. For one example, object boundary detectors are invariant to the sidedness of high-low frequency detectors, instead being activated by both possible polarities. Consider how <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_345.html"><code>mixed3b</code> 345</a>, a vertical boundary detector, is activated by high-low frequency detectors separated by a similarly-oriented vertical line.</p>
 
     <p>Similarly, object boundary detectors are invariant to the color on either side of the boundary of the color contrast detectors that activate them, instead being sensitive only to the directionality of the color contrast detectors.</p>
 
-    <p>These detectors are therefore most activated by strong differences between the sides of a boundary line whose specific rotational direction they are sensitive to.</p>
+    <p>These detectors are therefore most activated by strong differences between the sides of a boundary whose <i>specific orientation</i> they are sensitive to, while being invariant to the implementation details of those strong differences.</p>
 
-    <p>Show how opposing high-low frequency detectors are used to make boundary detectors invariant to orientiation</p>
-    <p>Show cosine similarity of forward weights as compared to incoming weights; expect -1 incoming; 1 outgoing.</p>
+    <p>Although <code>mixed3b</code> 345 detects an object boundary along a straight vertical line, the boundary detected need not be strictly a line. Below we give examples of 8 neurons from (TODO is this right) (TODO how were these neurons even chosen?) <code>mixed4a</code> where high-low frequency detectors play a role in detecting object continuity and object boundaries.
+    </p>
 
-    <span class="todo">TODO(csvoss) What is the below diagram? Are these boundary detectors?</span>
+    <p class="todo">Label the neurons of the top row here?</p>
 
     <figure id="3.2-downstream-nmf">
       <img src="diagrams/3.2-downstream-nmf/placeholder.png" />
@@ -246,6 +246,11 @@
         TODO: Maybe have better ideas after doing 2.2 NMF diagram
       </figcaption>
     </figure>
+
+    <p><i>Chelsea's notes on interpretation: Wherever we see a blue spot here, it's inhibition, and we can use that to infer that the downstream feature has a contiguous object in that spot along that vector. Wherever we see an orange spot here, it's excitation, and we can use that to infer that the downstream feature has a strong boundary along that vector.</i></p>
+
+    <p class="todo">Show cosine similarity of forward weights as compared to incoming weights; expect -1 incoming; 1 outgoing.</p>
+
 
     <p class="todo">Maybe use cosine similarity overlay to show how object boundaries get detected by such detectors.
     </p>
