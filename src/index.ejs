@@ -18,7 +18,7 @@
   </d-front-matter>
 
   <d-title>
-    <h1><span style="display: inline; color: gray; margin-right: 0.25em">2.4</span>High/Low Frequency Detectors</h1>
+    <h1><span style="display: inline; color: gray; margin-right: 0.25em">2.4</span>High-Low Frequency Detectors</h1>
     <p>A family of early-vision filters reacting to contrasts between spatial gratings of different frequency</p>
     <figure id="hero" class="l-body todo">I'm just a figure who's a hero for fun.</figure>
   </d-title>
@@ -27,10 +27,10 @@
 
     <h2 style="display: none;">Introduction</h2>
     <p>
-      Why should we study the awkwardly-named "high/low frequency detectors" when we've just walked you through curve
+      Why should we study the awkwardly-named "high-low frequency detectors" when we've just walked you through curve
       detectors in detail? There's a strategic argument from the author's side: everybody® would guess that vision
       networks contain curve detectors. It's easy to imagine how they are built up from earlier edge detectors, and
-      they're common enough that neuroscientists routinely find them in animal visual cortices. "High/low frequency
+      they're common enough that neuroscientists routinely find them in animal visual cortices. "High-low frequency
       detectors", on the other hand, form a family of features we did not expect to find. Still, they have many of the
       hallmarks of important features: their existence feels natural in retrospect, they're an important part of later,
       higher-level features, and they're common across network architectures.
@@ -41,7 +41,7 @@
     <h2>Empirical Observation</h2>
 
     <h4>Feature Visualization</h4>
-    <p>We originally found high/low frequency detectors by studying models' neurons' <a
+    <p>We originally found high-low frequency detectors by studying models' neurons' <a
         href="//distill.pub/2017/feature-visualization">feature visualizations</a>: synthetic inputs
       optimized to elicit maximal activation of a single, specific neuron.</p>
     <style>
@@ -108,7 +108,7 @@
     <h4>Tuning Curves</h4>
     <p>
       In the curve detector chapter we saw an example of a tuning curve: it plots filter response over rotation angle,
-      where the input is a natural image that we know has curvature in it. We can repeat this experiment for high/low
+      where the input is a natural image that we know has curvature in it. We can repeat this experiment for high-low
       frequency detectors: since their response is also specific to an angle, we expect to see a similar pattern of
       angle-specific activation. To measure this, we create artificial stimuli: images that contain a high-low frequency
       edge at a known orientation:
@@ -150,7 +150,7 @@
     </figure> -->
 
     <!-- <p>
-      But high/low frequency detectors seem to have more knobs to turn than just angle: the frequencies of the two
+      But high-low frequency detectors seem to have more knobs to turn than just angle: the frequencies of the two
       gratings that make up the frequency edge should also affect the filters' responses. Let's measure activations over
       a space that varies both of those, as well as orientation: Angle by frequency 1 by frequency 2. We will then have
       to visualize this volume in various ways to show it on this 2D screen.
@@ -169,7 +169,7 @@
 
     <!--Upstream Circuits-->
     <h2>Upstream Circuits</h2>
-    <p>How are High-Low frequency detectors constructed from lower-level features?</p>
+    <p>How are high-low frequency detectors constructed from lower-level features?</p>
 
     <p>A natural guess would be to assume these filters combine low frequency detectors and high frequency detectors.
       Let us factorize the connections<d-footnote>Between two adjacent layers, "connections" reduces to the weights
@@ -198,7 +198,7 @@
     <h4>Circuit diagram</h4>
 
     <p>To understand how these detectors are implemented in terms of even earlier features, we can look at which
-      features feed into a given high/low frequency detectoer, and even at the spatial structure of the weights
+      features feed into a given high-low frequency detector, and even at the spatial structure of the weights
       connecting those features to the detector in question.</p>
 
     <figure id="2.1-upstream-circuit">
@@ -224,7 +224,7 @@
     </figure>
 
     <p>Object boundary detectors, and how they're dissimilar from edge detectors/their invariances</p>
-    <p>Show how opposing high/low frequency detectors are used to make boundary detectors invariant to orientiation</p>
+    <p>Show how opposing high-low frequency detectors are used to make boundary detectors invariant to orientiation</p>
     <p>Show cosine similarity of forward weights as compared to incoming weights; expect -1 incoming; 1 outgoing.</p>
 
     <figure id="3.2-downstream-nmf">
@@ -241,10 +241,10 @@
     <!--Universality-->
     <h2>Universality</h2>
     <p>How common are High-Low frequency detectors in convolutional neural networks?</p>
-    <p>Always good to ask if what you see is the rule or an interesting exception. high/low frequency detectors seem to
+    <p>Always good to ask if what you see is the rule or an interesting exception. high-low frequency detectors seem to
       be the rule.</p>
 
-    <h4>High/Low frequency detectors in other models</h4>
+    <h4>High-low frequency detectors in other models</h4>
 
     <%= require('./diagrams/similar-directions.ejs')() %>
 
@@ -272,7 +272,7 @@
 
     <h2>Conclusion</h2>
     <p>?</p>
-    <p class="todo">Maybe devote a paragraph to concretizing the "their existence feels natural in retrospect" aspect of high/low frequency detectors – in particular, pointing out that high/low frequency is one way to infer the distance of objects? IIRC @colah has described this to me as such before.</p>
+    <p class="todo">Maybe devote a paragraph to concretizing the "their existence feels natural in retrospect" aspect of high-low frequency detectors – in particular, pointing out that high-low frequency is one way to infer the distance of objects? IIRC @colah has described this to me as such before.</p>
 
   </d-article>
 
