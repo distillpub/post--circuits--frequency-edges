@@ -214,18 +214,31 @@
 
     <!--Downstream Circuits-->
     <h2>Downstream Circuits</h2>
-    <p>How are High-Low frequency detectors used in the construction of higher-level features?</p>
+    <p>How are high-low frequency detectors used in the construction of higher-level features?</p>
 
-    <figure id="3.1-downstream-circuit">
-      <img src="diagrams/3.1-downstream-circuit/placeholder.png" />
-      <figcaption class="figcaption">
-        TODO: replace with Nick's interactive version on integration?
-      </figcaption>
+    <h3>Object boundary detectors</h3>
+
+    <p>In past discussion of <a href="https://distill.pub/2020/circuits/early-vision/#mixed3b">mixed3b</a>, we discussed <i><a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_boundary">object boundary detectors</a></i>, neurons which detect boundaries between objects. These detectors combine multiple different cues from lower layers, including high-low frequency detectors, edge detectors, color contrast detectors, and end of line detectors.
+    </p>
+
+    <span class="todo">TODO(csvoss) Include JS snippet to autolink these neurons.</span>
+
+    <figure style='image-rendering: pixelated;'>
+      <img src="images/Boundary.svg" />
     </figure>
 
-    <p>Object boundary detectors, and how they're dissimilar from edge detectors/their invariances</p>
+    <p>Object boundary detectors are not the same as edge detectors or curve detectors. Although they are sensitive to edges (indeed, edge detectors form some of their input weights!), object boundary detectors are also sensitive to other indicators that one object has ended and another has begun. Object boundary detectors therefore detect a more general feature than edges alone.
+
+    <p>Object boundary detectors have a number of invariances. For one thing, object boundary detectors are invariant to the sidedness of high-low frequency detectors, instead being activated by both possible polarities. For example, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_345.html"><code>mixed3b</code> 345</a> is activated by high-low frequency detectors with dividing lines in a similar vertical orientation.</p>
+
+    <p>Similarly, object boundary detectors are invariant to the color on either side of the boundary of the color contrast detectors that activate them, instead being sensitive only to the directionality of the color contrast detectors.</p>
+
+    <p>These detectors are therefore most activated by strong differences between the sides of a boundary line whose specific rotational direction they are sensitive to.</p>
+
     <p>Show how opposing high-low frequency detectors are used to make boundary detectors invariant to orientiation</p>
     <p>Show cosine similarity of forward weights as compared to incoming weights; expect -1 incoming; 1 outgoing.</p>
+
+    <span class="todo">TODO(csvoss) What is the below diagram? Are these boundary detectors?</span>
 
     <figure id="3.2-downstream-nmf">
       <img src="diagrams/3.2-downstream-nmf/placeholder.png" />
@@ -275,8 +288,6 @@
     <p class="todo">Maybe devote a paragraph to concretizing the "their existence feels natural in retrospect" aspect of high-low frequency detectors – in particular, pointing out that high-low frequency is one way to infer the distance of objects? IIRC @colah has described this to me as such before.</p>
 
   </d-article>
-
-
 
   <d-appendix>
     <h3>Author Contributions</h3>
