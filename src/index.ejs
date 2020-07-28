@@ -180,12 +180,7 @@
         the downstream layers. We treat positive and negative influences separately.</d-footnote> between lower level
       features and the High-Low frequency detectors we already found:</p>
 
-    <p>
-
-
-      NMFing the weights into 2 factors recovers low/high frequency neuron clusters.</p>
-
-    <p class="todo done"> Either fix with subgrid, or rethink layout!</p>
+    <p>NMFing the weights into 2 factors recovers low/high frequency neuron clusters.</p>
 
     <%= require('./diagrams/upstream-nmf.ejs')() %>
 
@@ -248,9 +243,6 @@
 
     <p class="todo">Show cosine similarity of forward weights as compared to incoming weights; expect -1 incoming; 1 outgoing. Can put this in a table?</p>
 
-    <p class="todo">Maybe use cosine similarity overlay to show how object boundaries get detected by such detectors.
-    </p>
-
     <h3>In mixed4a</h3>
 
     <p>
@@ -260,7 +252,7 @@
     <figure id="3.2-downstream-nmf">
       <img src="diagrams/3.2-downstream-nmf/placeholder.png" />
       <figcaption class="figcaption">
-        <p>8 neurons from <code>mixed4a</code> with the highest L2 norm of weights on the given 8 boundary detectors from <code>mixed3a</code>.</p>
+        <p>8 neurons from <code>mixed4a</code> (top row) with the highest L2 norm of weights on the given 9 boundary detectors (left column) from <code>mixed3a</code>.</p>
         <p>Orange indicates activation. Where a neuron is activated by a high-low frequency detector in some direction, the object typically has a <i>boundary</i> orthogonal to that direction.</p>
         <p>Blue indicates inhibition. Where a neuron is inhibited by a high-low frequency detector in some direction, the object typically has <i>contiguity</i> in that direction.</p>
       </figcaption>
@@ -273,6 +265,10 @@
       be the rule.</p>
 
     <h4>High-low frequency detectors in other models</h4>
+
+    <span class="todo">Hyperlink these</span>
+
+    <span class="todo">4 diagrams mimicking upstream-nmf.ejs?</span>
 
     <%= require('./diagrams/similar-directions.ejs')() %>
 
