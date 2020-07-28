@@ -84,7 +84,7 @@
       </figcaption>
     </figure>
 
-    <h4>Dataset Examples</h4>
+    <h4 id="dataset-examples">Dataset Examples</h4>
     <p>
       To ensure we're not misreading those feature visualizations it's good practice to check what such filters
       maximally activate on over a natural data distribution, say the training set.
@@ -166,7 +166,6 @@
       By argmaxing over the two frequencies we recover the angle-response curve from the previous section:
     </p>
 
-
     <!--Upstream Circuits-->
     <h2>Upstream Circuits</h2>
     <p>How are high-low frequency detectors constructed from lower-level features?</p>
@@ -219,50 +218,53 @@
     <h2>Downstream Circuits</h2>
     <p>How are high-low frequency detectors used in the construction of higher-level features?</p>
 
-    <span class="todo">Are there other classes of downstream features that these features contribute to?</span>
-    <h3>Object boundary detection</h3>
 
-    <p>In past discussion of <a href="https://distill.pub/2020/circuits/early-vision/#mixed3b">mixed3b</a>, we discussed <i><a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_boundary">object boundary detectors</a></i>, neurons which detect boundaries between objects. These detectors combine multiple different cues from lower layers, including high-low frequency detectors, edge detectors, color contrast detectors, and end of line detectors.
+    <h3>In mixed3b</h3>
+    <%= require('./diagrams/downstream-neurons.ejs')() %>
+
+    <p>
+      As shown above, in <a href="https://distill.pub/2020/circuits/early-vision/#mixed3b">mixed3b</a> high-low frequency detectors contribute to a variety of features: <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_bumps">bumps</a> and <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_divots">divots</a>, <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_bar_line_like">line-like</a> and <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_curves_misc.">curve-like</a> shapes,
+      and at least one each of <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_281.html">center-surrounds</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_372.html">patterns</a>, and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_276.html">textures</a>.
     </p>
 
-    <p>Object boundary detectors are not the same as edge detectors or curve detectors. Although they are sensitive to edges (indeed, edge detectors contribute some of their input weights!), object boundary detectors are also sensitive to other indicators that one object has ended and another has begun. Object boundary detectors therefore detect a more general feature than edges alone.</p>
+    <p>However, by far the primary downstream contribution of high-low frequency detectors is to <i>boundary detectors</i>: to some extent to <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_double_boundary">double boundary detectors</a> and <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_boundary_misc">miscellaneous boundary detectors</a>, but especially to <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_boundary">object boundary detectors</a>.</p>
 
-    <p>High-low frequency detectors contribute to object boundary detectors' ability to detect boundaries by providing another type of cue that an object has ended and its background has begun. As seen in Dataset Examples, above, a high-low frequency change can indicate the border between a foreground object and its more blurry background.</a>
 
-    <p>Object boundary detectors are sensitive to the rotation of the high-low frequency detectors that activate them. Consider how <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_345.html"><code>mixed3b</code> 345</a>, a vertical boundary detector, is activated by high-low frequency detectors separated by a vertical line, and along a roughly vertical line of positive weights.</p>
+    <h4>Role in boundary detection</h4>
 
-    <p>These detectors are, however, invariant to the "sidedness" of the high-low frequency detectors that activate them, instead being activated by both possible polarities. Notice that among the high-low frequency detectors that activate <code>mixed3b</code> 345, the high-frequency side may either be on the left or on the right.</p>
+    <p><a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_boundary">Object boundary detectors</a></i> are neurons which detect boundaries between objects, whether that means the boundary between one object and another or the transition from foreground to background. These detectors are not the same as edge detectors or curve detectors: although they are sensitive to edges (indeed, some of their strongest weights are from lower-level edge detectors!), object boundary detectors are also sensitive to other indicators such as color contrast or high-low frequency, combining together multiple such cues from lower layers.</p>
 
     <span class="todo">TODO(csvoss) Include JS snippet to autolink these neurons.</span>
-    <span class="todo">Also TODO(csvoss): Lighten the 'Edges', 'Color Contrasts', and 'End of Line' components to de-emphasize them without removing them wholesale.</span>
 
     <figure style='image-rendering: pixelated;'>
       <img src="images/Boundary.svg" />
     </figure>
 
-    <p>
-      Downstream of <code>mixed3b</code>, high-low frequency layers ultimately play a role in detecting more sophisticated object shapes in <code>mixed4a</code> by contributing to the detection of boundaries and contiguity.
+    <p> High-low frequency detectors contribute to these object boundary detectors by providing another type of cue that an object has ended and something else has begun: as seen in <a href="#dataset-examples">the dataset examples</a>, a high-low frequency change can indicate the border between an in-focus foreground object and its more blurry background (or between an in-focus background and the more blurry foreground, or even between two objects at different focuses).</a>
 
-      Below we give the 8 neurons from <code>mixed4a</code> with the strongest expanded weights on our 8 boundary detectors.
-    </p>
+    <p>Object boundary detectors are sensitive to the rotation of the high-low frequency detectors that activate them. Consider how <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_345.html"><code>mixed3b</code> 345</a>, a vertical boundary detector, is activated by only high-low frequency detectors that detect change across a vertically-oriented line.</p>
 
-    <p class="todo">Label the neurons of the top row here?</p>
+    <p>These detectors are, however, invariant to the <i>&ldquo;sidedness&rdquo;</i> of the high-low frequency detectors that activate them. Among the high-low frequency detectors that activate <code>mixed3b</code> 345, the high-frequency side may either be on the left (as with <code>mixed3a</code> <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_110.html">110</a>) or on the right (as with <code>mixed3a</code> <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_112.html">112</a>). However, in each case the weights are approximately the same.</p>
 
-    <figure id="3.2-downstream-nmf">
-      <img src="diagrams/3.2-downstream-nmf/placeholder.png" />
-      <figcaption class="figcaption">
-        TODO: Maybe have better ideas after doing 2.2 NMF diagram
-      </figcaption>
-    </figure>
-
-    <p><i>Chelsea's notes on interpretation: Wherever we see a blue spot here, it's inhibition, and we can use that to infer that the downstream feature has a contiguous object in that spot along that vector. Wherever we see an orange spot here, it's excitation, and we can use that to infer that the downstream feature has a strong boundary along that vector.</i></p>
-
-    <p class="todo">Show cosine similarity of forward weights as compared to incoming weights; expect -1 incoming; 1 outgoing.</p>
-
+    <p class="todo">Show cosine similarity of forward weights as compared to incoming weights; expect -1 incoming; 1 outgoing. Can put this in a table?</p>
 
     <p class="todo">Maybe use cosine similarity overlay to show how object boundaries get detected by such detectors.
     </p>
 
+    <h3>In mixed4a</h3>
+
+    <p>
+      High-low frequency detectors ultimately play a role in detecting more sophisticated object shapes in <code>mixed4a</code> and beyond by contributing to the detection of boundaries and contiguity.
+    </p>
+
+    <figure id="3.2-downstream-nmf">
+      <img src="diagrams/3.2-downstream-nmf/placeholder.png" />
+      <figcaption class="figcaption">
+        <p>8 neurons from <code>mixed4a</code> with the highest L2 norm of weights on the given 8 boundary detectors from <code>mixed3a</code>.</p>
+        <p>Orange indicates activation. Where a neuron is activated by a high-low frequency detector in some direction, the object typically has a <i>boundary</i> orthogonal to that direction.</p>
+        <p>Blue indicates inhibition. Where a neuron is inhibited by a high-low frequency detector in some direction, the object typically has <i>contiguity</i> in that direction.</p>
+      </figcaption>
+    </figure>
 
     <!--Universality-->
     <h2>Universality</h2>
