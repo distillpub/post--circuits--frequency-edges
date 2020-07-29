@@ -1,15 +1,21 @@
 <% units = {
   "AlexNet": {
-    "layer": "Conv2D_2",
-    "prev_layer": "conv1_1",
+    "layer": "<a href='https://microscope.openai.com/models/alexnet/Conv2D_2_0?models.op.feature_vis.type=channel&models.op.technique=feature_vis'>Conv2D_2</a>",
+    "prev_layer": "<a href='https://microscope.openai.com/models/alexnet/conv1_1_0?models.op.feature_vis.type=channel&models.op.technique=feature_vis'>conv1_1</a>",
+    "units": [55, 47, 87, 33, 77, 102],
+    "microscope_link": "https://microscope.openai.com/models/alexnet/Conv2D_2_0/",
   },
   "InceptionV3_slim": {
     "layer": "Conv2d_4a",
     "prev_layer": "Conv2d_3b",
+    "units": [82, 83, 137, 139, 155, 159],
+    "microscope_link": "",
   },
   "ResnetV2_50_slim": {
-    "layer": "B2_U1_conv2",
-    "prev_layer": "B2_U1_conv1",
+    "layer": "<a href='https://microscope.openai.com/models/resnetv2_50_slim/resnet_v2_50_block2_unit_1_bottleneck_v2_conv2_Relu_0?models.op.feature_vis.type=channel&models.op.technique=feature_vis'>B2_U1_conv2</a>",
+    "prev_layer": "<a href='https://microscope.openai.com/models/resnetv2_50_slim/resnet_v2_50_block2_unit_2_bottleneck_v2_conv1_Relu_0?models.op.feature_vis.type=channel&models.op.technique=feature_vis'>B2_U1_conv1</a>",
+    "units": [118, 41, 53, 44, 25, 50],
+    "microscope_link": "https://microscope.openai.com/models/resnetv2_50_slim/resnet_v2_50_block2_unit_1_bottleneck_v2_conv2_Relu_0/",
   },
 }
 %>
@@ -81,6 +87,7 @@
         display: inline-block;
         margin-right: .5em;
         writing-mode: vertical-lr;
+
     }
 
     .layer-label.hidden {
@@ -112,10 +119,12 @@
         <div class="row">
             <div class="layer-label hidden"><label class="figcaption">layer</label></div>
             <div class="units">
-                <% for (const unit of [0, 1, 2, 3, 4, 5]) {%>
-                <img class="fv full" src="<%= `diagrams/6.0-universality/${network_name}-${unit}.png` %>"
-                    title="<%= "Unit " + unit %>" />
+                <% for (const index of [0, 1, 2, 3, 4, 5]) {%>
+                <a href="<%= units[network_name].microscope_link + units[network_name].units[index]%>">
+                <img class="fv full" src="<%= `diagrams/6.0-universality/${network_name}-${index}.png` %>"
+                    title="<%= "Unit " + units[network_name].units[index] %>" />
                 <% } %>
+                </a>
             </div>
         </div>
         <div class="row">
@@ -126,9 +135,9 @@
                 <img class="fv full factor" src="<%= `diagrams/6.0-universality/${network_name}-${hilo}.png` %>" />
             </div>
             <div class="weights">
-                <% for (const unit of [0, 1, 2, 3, 4, 5]) {%>
+                <% for (const index of [0, 1, 2, 3, 4, 5]) {%>
                 <img class="weight"
-                    src="<%= `diagrams/6.0-universality/${network_name}-${unit}-${hilo}.png` %>" />
+                    src="<%= `diagrams/6.0-universality/${network_name}-${index}-${hilo}.png` %>" title="<%= "Unit " + units[network_name].units[index] %>" />
                 <% } %>
             </div>
             <% } %>
