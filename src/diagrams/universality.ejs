@@ -1,0 +1,144 @@
+<% units = {
+  "AlexNet": {
+    "layer": "Conv2D_2",
+    "prev_layer": "conv1_1",
+  },
+  "InceptionV3_slim": {
+    "layer": "Conv2d_4a",
+    "prev_layer": "Conv2d_3b",
+  },
+  "ResnetV2_50_slim": {
+    "layer": "B2_U1_conv2",
+    "prev_layer": "B2_U1_conv1",
+  },
+}
+%>
+
+<style>
+    .upstream-nmf {
+        display: grid;
+        grid-row-gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .upstream-nmf .row {
+        display: grid;
+        grid-template-columns: min-content 1fr 6fr;
+        grid-column-gap: 1rem;
+        grid-row-gap: .5rem;
+
+    }
+
+    .units,
+    .weights {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-gap: 0.5rem;
+        grid-column-start: 3;
+    }
+
+    img.fv {
+        max-width: 100%;
+        border-radius: 0.25rem;
+    }
+
+    div.units img.full {
+        margin-left: 1px;
+    }
+    img.full {
+        width: unset;
+        object-fit: none;
+        object-position: center;
+        image-rendering: optimizeQuality;
+    }
+
+    img.weight {
+        width: 100%;
+        image-rendering: pixelated;
+        align-self: center;
+        border: 1px solid #ccc;
+    }
+
+    img.factor {
+        /* padding-right: 0.75rem; */
+    }
+
+    .annotated-image {
+        display: grid;
+        grid-auto-flow: column;
+    }
+
+    .annotated-image span {
+        writing-mode: vertical-lr;
+    }
+
+    .layer-label {
+        grid-row-start: span 2;
+        border-right: 1px solid #aaa;
+        text-align: end;
+    }
+    .layer-label label {
+        display: inline-block;
+        margin-right: .5em;
+        writing-mode: vertical-lr;
+    }
+
+    .layer-label.hidden {
+        border-color: transparent;
+    }
+    .layer-label.hidden label {
+        visibility: hidden;
+    }
+
+    .legend-label {
+        padding: .125rem .25rem;
+        border-radius: 2px;
+        color: rgba(0, 0, 0, 0.8);
+    }
+
+    .legend-label.support {
+        background-color: #EE880088;
+    }
+
+    .legend-label.inhibit {
+        background-color: #0088EE88;
+    }
+</style>
+
+<figure>
+    <% for (const network_name of ["AlexNet", "InceptionV3_slim", "ResnetV2_50_slim"]) {%>
+    <h5> <%= network_name %> </h5>
+    <div class="upstream-nmf">
+        <div class="row">
+            <div class="layer-label hidden"><label class="figcaption">layer</label></div>
+            <div class="units">
+                <% for (const unit of [0, 1, 2, 3, 4, 5]) {%>
+                <img class="fv full" src="<%= `diagrams/6.0-universality/${network_name}-${unit}.png` %>"
+                    title="<%= "Unit " + unit %>" />
+                <% } %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="layer-label"><label class="figcaption"><%= units[network_name].layer + " &rightarrow; " + units[network_name].prev_layer %></label></div>
+            <% for (const hilo of ["hi", "lo"]) {%>
+            <div class="annotated-image">
+                <span class="figcaption"><%= hilo == "hi" ? "HF-factor" : "LF-factor" %></span>
+                <img class="fv full factor" src="<%= `diagrams/6.0-universality/${network_name}-${hilo}.png` %>" />
+            </div>
+            <div class="weights">
+                <% for (const unit of [0, 1, 2, 3, 4, 5]) {%>
+                <img class="weight"
+                    src="<%= `diagrams/6.0-universality/${network_name}-${unit}-${hilo}.png` %>" />
+                <% } %>
+            </div>
+            <% } %>
+        </div>
+    </div>
+    <% } %>
+    <figcaption>
+        <p>Using NMF factorization on the weights connecting six high-low frequency detectors in the given layer to their weights in the given lower layer, across three models.</p>
+        <p>Once again, the <span class="legend-label support">activations</span> and <span
+        class="legend-label inhibit">inhibitions</span> of the two factors
+            are very close to symmetric.</p>
+    </figcaption>
+</figure>

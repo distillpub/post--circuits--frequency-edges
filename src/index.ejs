@@ -264,16 +264,21 @@
     <!--Universality-->
     <h2>Universality</h2>
     <p>How common are high-low frequency detectors in convolutional neural networks?</p>
-    <p>Always good to ask if what you see is the rule or an interesting exception. high-low frequency detectors seem to
-      be the rule.</p>
+
+    <p>It's always good to ask if what you see is the rule or an interesting exception, and high-low frequency detectors seem to be the rule.
+          High-low frequency detectors similar to ones in InceptionV1 can be found in a variety of architectures; those in AlexNet, InceptionV4, and ResnetV2-50 are shown below.
+      </p>
 
     <h4>High-Low Frequency Detectors in Other Models</h4>
 
     <span class="todo">Hyperlink these</span>
-
-    <span class="todo">4 diagrams mimicking upstream-nmf.ejs?</span>
-
     <%= require('./diagrams/similar-directions.ejs')() %>
+
+    <p>
+      As with InceptionV1, we can perform NMF on the weights of these neurons and find that we recover two clusters – one high-frequency and one low-frequency – that each contribute in predictable ways to the construction of the model's high-low frequency detector.
+    </p>
+
+    <%= require('./diagrams/universality.ejs')() %>
 
     <h4>Tuning curves in other models</h4>
     <p>Show tuning curves!</p>
