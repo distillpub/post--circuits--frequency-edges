@@ -95,11 +95,12 @@
 <figure>
     <% for (const fv_layer of ["conv2d2", "conv2d1"]) {%>
     <div class="upstream-neurons">
+      <h5> <%= fv_layer %> </h5>
         <% for (const [factor, hilo] of [[0, "hi"], [1, "lo"]]) {%>
         <div class="row">
             <div class="unit">
                 <img class="fv full" src="<%= `diagrams/2.1-upstream-nmf/${fv_layer}-${hilo}.png` %>" />
-                <span class="figcaption"><%= factor == 0 ? "HF" : "LF" %>-Factor</span>
+                <span class="figcaption"><%= factor == 0 ? "HF" : "LF" %>-factor</span>
             </div>
             <span class="annotation equal-sign">=</span>
             <% for (const unit of units[fv_layer][factor].reverse()) {%>
@@ -118,6 +119,6 @@
     <% } %>
 
     <figcaption>
-        TODO here
+        For each layer, the underlying lower-level neurons of <code>conv2d2</code> (and, more deeply, <code>conv2d1</code>) that contribute to the two NMF factors in that layer.
     </figcaption>
 </figure>

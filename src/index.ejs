@@ -170,7 +170,13 @@
     <h2>Upstream Circuits</h2>
     <p>How are high-low frequency detectors constructed from lower-level features?</p>
 
-    <p>A natural guess would be to assume these filters combine low frequency detectors and high frequency detectors.
+    <p>A natural guess would be to assume these filters combine together low frequency detectors and high frequency detectors and that, furthermore, they do so in a way that's sensitive to their spatial arrangement.
+
+    </p>
+
+    <h4>Underlying Neurons</h4>
+
+    <p>
       Factorizing the connections<d-footnote>Between two adjacent layers, "connections" reduces to the weights
         between the two layers. Sometimes we are interested in observing connectivity between layers that may not be
         directly adjacent. Because our model, a deep convnet, is non-linear, we will need to approximate the
@@ -178,17 +184,15 @@
         this is not a great approximation of the model's behavior, it does give a reasonable intuition for
         counterfactual influence: had the neurons in the intermediate layer fired, how it would have affected neurons in
         the downstream layers. We treat positive and negative influences separately.</d-footnote> between lower level
-      features and the high-low frequency detectors we already found confirms this guess: NMFing the weights into two factors recovers a cluster of low frequency neurons and a cluster of high frequency neurons.</p>
-
-    <%= require('./diagrams/upstream-nmf.ejs')() %>
-
-    <p class="todo"> talk more explicitly about above diagram</p>
-
-    <h4>Underlying Neurons title tbd</h4>
-
-    <p>Let's inspect which lower-level neurons primarily contribute to those NMF factors:</p>
+      features and the high-low frequency detectors confirms the first half of this guess. Performing non-negative matrix factorization in each layer to separate the weights into two factors recovers a cluster of low frequency neurons (&ldquo;LF-factor&rdquo;) and a cluster of high frequency neurons (&ldquo;HF-factor&rdquo;).</p>
 
     <%= require('./diagrams/upstream-neurons.ejs')() %>
+
+    <h4>Construction of high-low frequency detectors</h4>
+
+    Inspecting how the HF-factor and LF-factor are used by high-low frequency detectors confirms the second half of this guess: high-low frequency detectors are activated by high frequency (and inhibited by low frequency) on one side, and inhibited by high frequency (and activated by low frequency) on the other.
+
+    <%= require('./diagrams/upstream-nmf.ejs')() %>
 
     <h4>Circuit diagram</h4>
 
