@@ -1,21 +1,27 @@
 <% units = {
   "AlexNet": {
-    "layer": "<a href='https://microscope.openai.com/models/alexnet/Conv2D_2_0?models.op.feature_vis.type=channel&models.op.technique=feature_vis'>Conv2D_2</a>",
-    "prev_layer": "<a href='https://microscope.openai.com/models/alexnet/conv1_1_0?models.op.feature_vis.type=channel&models.op.technique=feature_vis'>conv1_1</a>",
+    "layer_link": "https://microscope.openai.com/models/alexnet/Conv2D_2_0?models.op.feature_vis.type=channel&models.op.technique=feature_vis",
+    "layer": "Conv2D_2",
+    "prev_layer_link": "https://microscope.openai.com/models/alexnet/conv1_1_0?models.op.feature_vis.type=channel&models.op.technique=feature_vis",
+    "prev_layer": "conv1_1",
     "units": [55, 47, 87, 33, 77, 102],
-    "microscope_link": "https://microscope.openai.com/models/alexnet/Conv2D_2_0/",
+    "neurons_link": "https://microscope.openai.com/models/alexnet/Conv2D_2_0/",
   },
   "InceptionV3_slim": {
-    "layer": "<a href='https://microscope.openai.com/models/inceptionv3_slim/InceptionV3_InceptionV3_Conv2d_4a_3x3_Relu_0?models.op.feature_vis.type=channel&models.op.technique=feature_vis'>Conv2d_4a</a>",
-    "prev_layer": "<a href='https://microscope.openai.com/models/inceptionv3_slim/InceptionV3_InceptionV3_Conv2d_3b_1x1_Relu_0?models.op.feature_vis.type=channel&models.op.technique=feature_vis'>Conv2d_3b</a>",
+    "layer_link": "https://microscope.openai.com/models/inceptionv3_slim/InceptionV3_InceptionV3_Conv2d_4a_3x3_Relu_0?models.op.feature_vis.type=channel&models.op.technique=feature_vis",
+    "layer": "Conv2d_4a",
+    "prev_layer_link": "https://microscope.openai.com/models/inceptionv3_slim/InceptionV3_InceptionV3_Conv2d_3b_1x1_Relu_0?models.op.feature_vis.type=channel&models.op.technique=feature_vis",
+    "prev_layer": "Conv2d_3b",
     "units": [82, 83, 137, 139, 155, 159],
-    "microscope_link": "https://microscope.openai.com/models/inceptionv3_slim/InceptionV3_InceptionV3_Conv2d_4a_3x3_Relu_0/",
+    "neurons_link": "https://microscope.openai.com/models/inceptionv3_slim/InceptionV3_InceptionV3_Conv2d_4a_3x3_Relu_0/",
   },
   "ResnetV2_50_slim": {
-    "layer": "<a href='https://microscope.openai.com/models/resnetv2_50_slim/resnet_v2_50_block2_unit_1_bottleneck_v2_conv2_Relu_0?models.op.feature_vis.type=channel&models.op.technique=feature_vis'>B2_U1_conv2</a>",
-    "prev_layer": "<a href='https://microscope.openai.com/models/resnetv2_50_slim/resnet_v2_50_block2_unit_2_bottleneck_v2_conv1_Relu_0?models.op.feature_vis.type=channel&models.op.technique=feature_vis'>B2_U1_conv1</a>",
+    "layer_link": "https://microscope.openai.com/models/resnetv2_50_slim/resnet_v2_50_block2_unit_1_bottleneck_v2_conv2_Relu_0?models.op.feature_vis.type=channel&models.op.technique=feature_vis",
+    "layer": "B2_U1_conv2",
+    "prev_layer_link": "https://microscope.openai.com/models/resnetv2_50_slim/resnet_v2_50_block2_unit_2_bottleneck_v2_conv1_Relu_0?models.op.feature_vis.type=channel&models.op.technique=feature_vis",
+    "prev_layer": "B2_U1_conv1",
     "units": [118, 41, 53, 44, 25, 50],
-    "microscope_link": "https://microscope.openai.com/models/resnetv2_50_slim/resnet_v2_50_block2_unit_1_bottleneck_v2_conv2_Relu_0/",
+    "neurons_link": "https://microscope.openai.com/models/resnetv2_50_slim/resnet_v2_50_block2_unit_1_bottleneck_v2_conv2_Relu_0/",
   },
 }
 %>
@@ -120,7 +126,7 @@
             <div class="layer-label hidden"><label class="figcaption">layer</label></div>
             <div class="units">
                 <% for (const index of [0, 1, 2, 3, 4, 5]) {%>
-                <a href="<%= units[network_name].microscope_link + units[network_name].units[index]%>">
+                <a href="<%= units[network_name].neurons_link + units[network_name].units[index]%>">
                 <img class="fv full" src="<%= `diagrams/6.0-universality/${network_name}-${index}.png` %>"
                     title="<%= "Unit " + units[network_name].units[index] %>" />
                 <% } %>
@@ -143,7 +149,12 @@
             <% } %>
         </div>
     </div>
-    <figcaption><p>NMF of high-low frequency detectors in <%= network_name %>'s <%= units[network_name].layer %> reveals an HF-factor and an LF-factor comprised of neurons from <%= units[network_name].prev_layer %>.</p></figcaption>
+    <figcaption><p>NMF of high-low frequency detectors in <a href="<%= units[network_name].layer_link %>"><%= units[network_name].layer %></a> with respect to <a href="<%= units[network_name].prev_layer_link %>"><%= units[network_name].prev_layer %></a>.</p></figcaption>
     <br />
     <% } %>
+    <figcaption>
+      <p>Each model's factorization reveals two factors: one HF-factor and one LF-factor.</p>
+      <p>As with InceptionV1, the <span class="legend-label support">activations</span> and <span
+      class="legend-label inhibit">inhibitions</span> of the two factors
+          are very close to symmetric.</p>
 </figure>
