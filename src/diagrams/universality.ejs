@@ -6,10 +6,10 @@
     "microscope_link": "https://microscope.openai.com/models/alexnet/Conv2D_2_0/",
   },
   "InceptionV3_slim": {
-    "layer": "Conv2d_4a",
-    "prev_layer": "Conv2d_3b",
+    "layer": "<a href='https://microscope.openai.com/models/inceptionv3_slim/InceptionV3_InceptionV3_Conv2d_4a_3x3_Relu_0?models.op.feature_vis.type=channel&models.op.technique=feature_vis'>Conv2d_4a</a>",
+    "prev_layer": "<a href='https://microscope.openai.com/models/inceptionv3_slim/InceptionV3_InceptionV3_Conv2d_3b_1x1_Relu_0?models.op.feature_vis.type=channel&models.op.technique=feature_vis'>Conv2d_3b</a>",
     "units": [82, 83, 137, 139, 155, 159],
-    "microscope_link": "",
+    "microscope_link": "https://microscope.openai.com/models/inceptionv3_slim/InceptionV3_InceptionV3_Conv2d_4a_3x3_Relu_0/",
   },
   "ResnetV2_50_slim": {
     "layer": "<a href='https://microscope.openai.com/models/resnetv2_50_slim/resnet_v2_50_block2_unit_1_bottleneck_v2_conv2_Relu_0?models.op.feature_vis.type=channel&models.op.technique=feature_vis'>B2_U1_conv2</a>",
@@ -143,11 +143,7 @@
             <% } %>
         </div>
     </div>
+    <figcaption><p>NMF of high-low frequency detectors in <%= network_name %>'s <%= units[network_name].layer %> reveals an HF-factor and an LF-factor comprised of neurons from <%= units[network_name].prev_layer %>.</p></figcaption>
+    <br />
     <% } %>
-    <figcaption>
-        <p>Using NMF factorization on the weights connecting six high-low frequency detectors in the given layer to their weights in the given lower layer, across three models.</p>
-        <p>Once again, the <span class="legend-label support">activations</span> and <span
-        class="legend-label inhibit">inhibitions</span> of the two factors
-            are very close to symmetric.</p>
-    </figcaption>
 </figure>
