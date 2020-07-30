@@ -171,8 +171,16 @@
     <p>How are high-low frequency detectors constructed from lower-level features?</p>
 
     <p>A natural guess would be to assume these filters combine together low frequency detectors and high frequency detectors and that, furthermore, they do so in a way that's sensitive to their spatial arrangement.
-
     </p>
+
+    <p>In fact, when we inspect the weights of an individual high-low frequency detector such as <code>mixed3a</code> <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_110.html"> 110</a>, we find that its weights can be roughly divided into two groups: those that inhibit on the right and activate on the left, and those that inhibit on the left and activate on the right.
+
+    <figure style=''>
+      <img src="images/Underlying-Weights.png" />
+      <figcaption>
+        The strongest weights on high-low frequency detectors <code>mixed3a</code> <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_110.html">110</a>, <code>mixed3a</code> <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_136.html">136</a>, <code>mixed3a</code> <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_112.html">112</a>, and <code>mixed3a</code> <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_88.html">88</a> can be divided into roughly two groups.
+      </figcaption>
+    </figure>
 
     <h4>Underlying Neurons</h4>
 
@@ -184,13 +192,13 @@
         this is not a great approximation of the model's behavior, it does give a reasonable intuition for
         counterfactual influence: had the neurons in the intermediate layer fired, how it would have affected neurons in
         the downstream layers. We treat positive and negative influences separately.</d-footnote> between lower level
-      features and the high-low frequency detectors confirms the first half of this guess. Performing non-negative matrix factorization in each layer to separate the weights into two factors recovers a cluster of low frequency neurons (&ldquo;LF-factor&rdquo;) and a cluster of high frequency neurons (&ldquo;HF-factor&rdquo;).</p>
+      features and the high-low frequency detectors confirms the first half of the guess. Performing non-negative matrix factorization (NMF) in each layer to separate the weights into two factors recovers a cluster of low frequency neurons (&ldquo;LF-factor&rdquo;) and a cluster of high frequency neurons (&ldquo;HF-factor&rdquo;).</p>
 
     <%= require('./diagrams/upstream-neurons.ejs')() %>
 
     <h4>Construction of high-low frequency detectors</h4>
 
-    Inspecting how the HF-factor and LF-factor are used by high-low frequency detectors confirms the second half of this guess: high-low frequency detectors are activated by high frequency (and inhibited by low frequency) on one side, and inhibited by high frequency (and activated by low frequency) on the other.
+    Inspecting how the HF-factor and LF-factor are used by high-low frequency detectors confirms the second half of the guess: high-low frequency detectors are activated by high frequency (and inhibited by low frequency) on one side, and inhibited by high frequency (and activated by low frequency) on the other.
 
     <%= require('./diagrams/upstream-nmf.ejs')() %>
 
