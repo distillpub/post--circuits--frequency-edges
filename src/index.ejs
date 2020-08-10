@@ -27,11 +27,11 @@
 
     <h2 style="display: none;">Introduction</h2>
     <p>
-      Why should we study the awkwardly-named "high-low frequency detectors" when we've just walked you through <a href="https://distill.pub/2020/circuits/curve-detectors/">curve
+      Why should we study the awkwardly-named &ldquo;high-low frequency detectors&rdquo; when we've just walked you through <a href="https://distill.pub/2020/circuits/curve-detectors/">curve
       detectors</a> in detail? There's a strategic argument from the author's side: anyone would guess that vision
-      networks contain curve detectors. It's easy to imagine how they are built up from earlier edge detectors, and
-      they're common enough that neuroscientists routinely find them in animal visual cortices. "High-low frequency
-      detectors", on the other hand, form a family of features we did not expect to find. Still, they have many of the
+      networks contain curve detectors. It's easy to imagine how curve detectors are built up from earlier edge detectors, and
+      they're common enough that neuroscientists routinely find them in animal visual cortices. High-low frequency
+      detectors, on the other hand, form a family of features we did not expect to find. Still, they have many of the
       hallmarks of important features: their existence feels natural in retrospect, they're an important part of later,
       higher-level features, and they're common across network architectures.
     </p>
@@ -41,9 +41,16 @@
     <h2>Empirical Observation</h2>
 
     <h4>Feature Visualization</h4>
-    <p>We originally found high-low frequency detectors by studying <a
+    <p>We originally find high-low frequency detectors by studying <a
         href="//distill.pub/2017/feature-visualization">feature visualizations</a>: synthetic inputs
-      optimized to elicit maximal activation of a single, specific neuron.</p>
+      optimized to elicit maximal activation of a single, specific neuron.
+    </p>
+    <p>
+      Having <a href="https://distill.pub/2020/circuits/early-vision/">systematically grouped</a> the neurons in the first five layers of InceptionV1, we discover <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3a_high_low_frequency">a group of 15 similar neurons</a> in <code>mixed3a</code> whose feature visualizations all show a clear separation between a <i>high-frequency</i> region and a <i>low-frequency</i> region.
+    </p>
+    <p>
+      We have dubbed this group the <i>high-low frequency detectors</i>.
+    </p>
     <style>
       .gallery {
         display: grid;
@@ -80,9 +87,16 @@
       </ul>
       <figcaption class="figcaption l-body">
         <a href="#1.1-feature-vis" class="figure-number">1</a>:
-        A variety of detectors from InceptionV1's <a href="https://microscope.openai.com/models/inceptionv1/mixed3a_0?models.op.feature_vis.type=neuron&models.op.technique=feature_vis"><code>mixed3a</code></a> layer.
+        A variety of high-low frequency detectors from InceptionV1's <a href="https://microscope.openai.com/models/inceptionv1/mixed3a_0?models.op.feature_vis.type=neuron&models.op.technique=feature_vis"><code>mixed3a</code></a> layer.
       </figcaption>
     </figure>
+
+    <p>By &ldquo;high frequency&rdquo; and &ldquo;low frequency&rdquo; here, we mean &ldquo;frequency&rdquo; in the same way as is used when discussing Fourier transforms of images.
+    </p>
+
+    <p>
+      Based on these feature visualizations, we first hypothesize that high-low frequency detectors appear to sense where and how an image has changed from a high-frequency regime to a lower-frequency regime. While feature visualization does directly establish a <a href="https://distill.pub/2020/circuits/zoom-in#claim-1">causal link</a> with the stimuli that most activate a neuron, we also have a <a href="https://distill.pub/2020/circuits/zoom-in#claim-1">few other tools</a> in our toolkit in order to investigate the purpose of these neurons more thoroughly. Among those tools are dataset examples, synthetic examples, feature implementation, and feature use.
+    </p>
 
     <h4 id="dataset-examples">Dataset Examples</h4>
     <p>
