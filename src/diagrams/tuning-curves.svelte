@@ -37,6 +37,11 @@
     margin-bottom: 0;
   }
 
+  a.feature-link {
+    border-bottom: none;
+    display: flex;
+  }
+
   img.response {
     /* border-radius: 2px; */
   }
@@ -145,11 +150,13 @@
 
 {#each units as unit, index}
   <div>
-    <img
-      class="feature-vis"
-      src={`diagrams/1.1-feature-vis/neuron-${unit.index}.png`}
-      alt={`Feature visualization of unit ${unit.index}.`}
-      title={`Feature visualization of unit ${unit.index}.`} />
+    <a class="feature-link" href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_{unit.index}.html">
+      <img
+        class="feature-vis"
+        src={`diagrams/1.1-feature-vis/neuron-${unit.index}.png`}
+        alt={`Feature visualization of unit ${unit.index}.`}
+        title={`Feature visualization of unit ${unit.index}.`} />
+    </a>
     <img
       class="response"
       src={`diagrams/1.4-tuning-curves/response-${layer}-${unit.index}.png`}
