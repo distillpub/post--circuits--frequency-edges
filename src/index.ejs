@@ -282,29 +282,61 @@
       and at least one each of <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_281.html">center-surrounds</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_372.html">patterns</a>, and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_276.html">textures</a>.
     </p>
 
-    <span class="todo">Detail some of the individual rows here in as much precision as you show mixed3b 345?</span>
+    <d-figure>
+      <figure>
+        <img src="diagrams/downstream-circuits.svg" style="margin-bottom: 20px"/>
+      <figcaption>
+          <p>
+            Examples of neurons that high-low frequency detectors contribute to: <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_365.html"><code>mixed3b</code> 365</a> (an hourglass shape detector), <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_276.html"><code>mixed3b</code> 276</a> (a center-surround texture detector), and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a> (a double boundary detector).
+          </p>
+      </figcaption>
+      </figure>
+    </d-figure>
 
-    <%= require('./diagrams/downstream-neurons.ejs')() %>
+    <p>
+      In those examples, notice how the weights are used. Oftentimes, downstream features also ignore the &ldquo;sidedness&rdquo; of a high-low frequency detector, responding roughly the same way to both possible polarities of a given direction. This can then used to detect the presence or absence of boundaries or discontinuities along the direction the two detectors share.
+    </p>
 
+    <!-- <%= require('./diagrams/downstream-neurons.ejs')() %> -->
 
-    <p>However, by far the primary downstream contribution of high-low frequency detectors is to <i>boundary detectors</i>: to some extent to <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_double_boundary">double boundary detectors</a> and <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_boundary_misc">miscellaneous boundary detectors</a>, but especially to <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_boundary">object boundary detectors</a>.</p>
+    <d-figure>
+      <figure>
+        <img src="diagrams/downstream-interpretation.svg" style="margin-bottom: 20px; display: block;"/>
+      <figcaption>
+          <p>Some of <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a>'s high-low frequency detector weights in more explicit detail.</p>
+          <p>One of the functions of high-low frequency detectors appears to be to indicate discontinuities between different objects or regions, as well as an object's continuity with itself.
+          </p>
+      </figcaption>
+      </figure>
+    </d-figure>
 
+    <p>Given their usefulness for detecting continuity and discontinuity, by far the primary downstream contribution of high-low frequency detectors is to <i>boundary detectors</i>. Of the top 20 neurons in <code>mixed3b</code> with the highest L2-norm of weights across all high-low frequency detectors, eight of those 20 neurons participate in boundary detection of some sort: <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_double_boundary">double boundary detectors</a>, <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_boundary_misc">miscellaneous boundary detectors</a>, and especially <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_boundary">object boundary detectors</a>. </p>
 
-    <h4>Role in boundary detection</h4>
+    <h4>Role in object boundary detection</h4>
 
     <p><a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_boundary">Object boundary detectors</a></i> are neurons which detect boundaries between objects, whether that means the boundary between one object and another or the transition from foreground to background. These detectors are not the same as edge detectors or curve detectors: although they are sensitive to edges (indeed, some of their strongest weights are from lower-level edge detectors!), object boundary detectors are also sensitive to other indicators such as color contrast or high-low frequency, combining together multiple such cues from lower layers.</p>
+
 
     <figure style='image-rendering: pixelated;'>
       <img src="images/Boundary.svg" />
     </figure>
 
-    <p> High-low frequency detectors contribute to these object boundary detectors by providing another type of cue that an object has ended and something else has begun: as seen in <a href="#dataset-examples">the dataset examples</a>, a high-low frequency change can indicate the border between an in-focus foreground object and its more blurry background (or between an in-focus background and the more blurry foreground, or even between two objects at different focuses).</a>
+    <p> High-low frequency detectors contribute to these object boundary detectors by providing one type of cue that an object has ended and something else has begun. An additional three examples of object boundary detectors are given below; notice how both the shape of the weights and the orientation of the high-low frequency detector each contribute to the object boundary detector's shape.</p>
 
-    <p>Object boundary detectors are sensitive to the rotation of the high-low frequency detectors that activate them. Consider how <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_345.html"><code>mixed3b</code> 345</a>, a vertical boundary detector, is activated by only high-low frequency detectors that detect change across a vertically-oriented line.</p>
+    <d-figure>
+      <figure>
+        <img src="diagrams/downstream-boundary-detectors.svg" style="margin-bottom: 20px;"/>
+      <figcaption>
+        <p>Four examples of object boundary detectors that high-low frequency detectors contribute to: <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_345.html"><code>mixed3b</code> 345</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_376.html"><code>mixed3b</code> 376</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_368.html"><code>mixed3b</code> 368</a>, and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_151.html"><code>mixed3b</code> 151</a>.
+      </figcaption>
+      </figure>
+    </d-figure>
 
-    <p>These detectors are, however, invariant to the <i>&ldquo;sidedness&rdquo;</i> of the high-low frequency detectors that activate them. Among the high-low frequency detectors that activate <code>mixed3b</code> 345, the high-frequency side may either be on the left (as with <code>mixed3a</code> <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_110.html">110</a>) or on the right (as with <code>mixed3a</code> <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_112.html">112</a>). However, in each case the weights are approximately the same.</p>
+    <p>Object boundary detectors are sensitive to the rotation of the high-low frequency detectors that activate them. Consider how <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_345.html"><code>mixed3b</code> 345</a>, the top example above, has its strongest activations from high-low frequency detectors that detect change across a vertically-oriented line.</p>
 
-    <p class="todo">Show cosine similarity of forward weights as compared to incoming weights; expect -1 incoming; 1 outgoing. Can put this in a table?</p>
+    <p>However, much the other examples we've seen, object boundary detectors are also invariant to the &ldquo;sidedness&rdquo; of the high-low frequency detectors that activate them. Among the high-low frequency detectors that activate <code>mixed3b</code> 345, the high-frequency side may either be on the left (as with <code>mixed3a</code> <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_110.html">110</a>) or on the right (as with <code>mixed3a</code> <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_112.html">112</a>); in each case, the weights are approximately the same.</p>
+
+    <!-- <p class="todo">Show cosine similarity of forward weights as compared to incoming weights; expect -1 incoming; 1 outgoing. Can put this in a table?</p> -->
 
     <h3>In mixed4a</h3>
 
