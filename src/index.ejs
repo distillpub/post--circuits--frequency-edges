@@ -97,7 +97,7 @@
     </p>
 
     <p>
-      Based on these feature visualizations, we first hypothesize that high-low frequency detectors appear to sense where and how an image has changed from a high-frequency regime to a lower-frequency regime. While feature visualization does directly establish a <a href="https://distill.pub/2020/circuits/zoom-in#claim-1">causal link</a> with the stimuli that most activate a neuron, we also have a <a href="https://distill.pub/2020/circuits/zoom-in#claim-1">few other tools</a> in our toolkit in order to investigate the purpose of these neurons more thoroughly. Among those tools are dataset examples, tuning curves, feature implementation, and feature use.
+      Based on these feature visualizations, we first hypothesize that high-low frequency detectors appear to sense where and how an image has changed from a high-frequency regime to a lower-frequency regime. While feature visualization does directly establish a <a href="https://distill.pub/2020/circuits/zoom-in#claim-1">causal link</a> with the stimuli that most activate a neuron, we also have a <a href="https://distill.pub/2020/circuits/zoom-in#claim-1">few other tools</a> in our toolkit in order to investigate the purpose of these neurons more thoroughly, including analyzing <a href="#dataset-examples">dataset examples</a>, <a href="#tuning-curves">tuning curves</a>, <a href="feature-implementation">feature implementation</a>, and <a href="feature-use">feature use</a>.
     </p>
 
     <h4 id="dataset-examples">Dataset Examples</h4>
@@ -121,7 +121,7 @@
       player's metal finish against its shiny screen.
     </p>
 
-    <h4>Tuning Curves</h4>
+    <h4 id="tuning-curves">Tuning Curves</h4>
     <p>
       In the <a href="https://distill.pub/2020/circuits/curve-detectors">Curve Detectors</a> we give an example of a <a href="https://distill.pub/2020/circuits/curve-detectors/#radial-tuning-curve">tuning curve</a>, plotting filter response over rotation angle,
       where the input is a natural image that we know has curvature in it. We can repeat this experiment for high-low
@@ -166,7 +166,7 @@
     </p>
 
     <!--Upstream Circuits-->
-    <h2>Upstream Circuits</h2>
+    <h2 id="feature-implementation">How high-low frequency detectors are implemented</h2>
     <p>How are high-low frequency detectors constructed from lower-level features?</p>
 
     <p>A natural guess would be to assume these filters combine together low frequency detectors and high frequency detectors and that, furthermore, they do so in a way that's sensitive to their spatial arrangement.
@@ -218,7 +218,7 @@
 
 
     <!--Downstream Circuits-->
-    <h2>Downstream Circuits</h2>
+    <h2 id="feature-use">How high-low frequency detectors are used</h2>
     <p>How are high-low frequency detectors used in the construction of higher-level features?</p>
 
     <span class="todo">Detail some of the individual rows here in as much precision as you show mixed3b 345?</span>
