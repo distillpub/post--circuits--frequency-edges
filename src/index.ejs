@@ -82,7 +82,9 @@
     <figure class="l-screen base-grid" id="1.1-feature-vis">
       <ul class="gallery l-page">
         <% for (const unit of require("../static/diagrams/1.1-feature-vis/units.json").units) {%>
-        <img src="<%= `diagrams/1.1-feature-vis/neuron-${unit}.png` %>" title="<%= "Unit " + unit %>" />
+        <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_${unit}.html" style="border-bottom: none; display: flex;">
+          <img src="<%= `diagrams/1.1-feature-vis/neuron-${unit}.png` %>" title="<%= "Unit " + unit %>" />
+        </a>
         <% } %>
       </ul>
       <figcaption class="figcaption l-body">
