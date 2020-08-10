@@ -177,8 +177,8 @@
 {/each}
 
 <figcaption class="figcaption">
-  <a href="#1.4-tuning-curves" class="figure-number">3</a>
-  : Responses of six high-low frequency detectors to artifical stimuli. The
+  <a href="#1.4-tuning-curves" class="figure-number">3</a>:
+  Responses of six high-low frequency detectors to artifical stimuli. The
   stimuli vary over two axes: orientation, ranging from 0 to 2π, and frequency ratio, ranging from 1:1 to 1:10. Activation values are normalized across
   all units shown, ranging from 0
   <span class="viridis" />

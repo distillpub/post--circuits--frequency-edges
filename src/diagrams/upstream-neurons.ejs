@@ -7,6 +7,10 @@
         margin-bottom: 2em;
     }
 
+    h5 {
+      margin-bottom: 0px;
+    }
+
     .upstream-neurons .row {
         display: grid;
         grid-template-columns: 1fr min-content 1fr min-content 1fr min-content 1fr min-content 1fr min-content 1fr min-content min-content;
@@ -69,7 +73,7 @@
         font-size: 1.5em;
         font-weight: 200;
         color: #666;
-        margin-top: 1em;
+        margin-top: 0.3em;
     }
 
     .equal-sign {
@@ -78,6 +82,9 @@
 
     .unit {
         display: block;
+    }
+    .unit.factor {
+      width: 60px;
     }
 
     .unit .bar {
@@ -98,7 +105,7 @@
       <h5> <%= fv_layer %> </h5>
         <% for (const [factor, hilo] of [[0, "hi"], [1, "lo"]]) {%>
         <div class="row">
-            <div class="unit">
+            <div class="unit factor">
                 <img class="fv full" src="<%= `diagrams/2.1-upstream-nmf/${fv_layer}-${hilo}.png` %>" />
                 <span class="figcaption"><%= factor == 0 ? "HF" : "LF" %>-factor</span>
             </div>
@@ -119,6 +126,12 @@
     <% } %>
 
     <figcaption>
-        For each layer, the underlying lower-level neurons of <code>conv2d2</code> (and, more deeply, <code>conv2d1</code>) that contribute to the two NMF factors in that layer.
+        <p><a href="#2.2-upstream-neurons" class="figure-number">5</a>:
+        For each of the underlying layers <code>conv2d2</code> and, more deeply, <code>conv2d1</code>, NMF recovers the neurons that contribute to the two NMF factors and the weighted amount they contribute to each factor, shown above.
+        </p>
+        <p>
+            The two NMF factors correspond to
+            high and low frequencies, as becomes apparent in their feature visualizations. (Left column).
+        </p>
     </figcaption>
 </figure>

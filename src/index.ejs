@@ -167,59 +167,113 @@
       Just as we saw <a href="https://distill.pub/2020/circuits/curve-detectors/#synthetic-curves">when investigating curve detectors</a>, the synthetic stimuli that cause the strongest activations are the ones that are most similar to the feature visualization – in this case, the ones that are similar along our two axes of orientation and ratio between frequencies!
     </p>
 
-    <!--Upstream Circuits-->
+    <!-- Alternate title: Upstream Circuits -->
+    <!-- Alternate alternate title: Feature Implementation -->
     <h2 id="feature-implementation">How high-low frequency detectors are implemented</h2>
-    <p>How are high-low frequency detectors constructed from lower-level features?</p>
+    <p>How are these specialized high-low frequency detectors constructed from upstream neurons?</p>
 
-    <p>A natural guess would be to assume these filters combine together low frequency detectors and high frequency detectors and that, furthermore, they do so in a way that's sensitive to their spatial arrangement.
+    <p>One natural guess (Hypothesis 1) might be to assume these detectors combine together low frequency detection and high frequency detection, placing these two subfeatures in a specific spatial arrangement in order to produce high-low frequency detection. This would be comparable to how InceptionV1 <a href="https://distill.pub/2020/circuits/zoom-in/#claim-2-superposition">constructs a car detector</a> by looking for windows on top, a car body in the middle, and wheels on the bottom.
     </p>
 
-    <p>In fact, when we inspect the weights of an individual high-low frequency detector such as <code>mixed3a</code> <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_110.html"> 110</a>, we find that its weights can be roughly divided into two groups: those that inhibit on the right and activate on the left, and those that inhibit on the left and activate on the right.
+    <p>An alternative guess (Hypothesis 2) might be that these detectors are built up from lower-level features that are roughly similar to high-low frequency detectors, but are more primitive and less reliable. An analogy would be how edge detection is built up from simple <a href="https://distill.pub/2020/circuits/early-vision/#group_conv2d0_gabor_filters">Gabor filters</a>.
 
-    <figure style=''>
-      <img src="images/Underlying-Weights.png" />
-      <figcaption>
-        <p>
-          The strongest weights on any high-low frequency detector (here shown: <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_110.html"><code>mixed3a</code> 10</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_136.html"><code>mixed3a</code> 36</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_112.html"><code>mixed3a</code> 12</a>, and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_88.html"><code>mixed3a</code> 88</a>) can be divided into roughly two groups.
-        </p>
-        <p>
-          To illustrate this, we give the weights from neurons <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_119.html"><code>conv2d2</code> 119</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_102.html"><code>conv2d2</code> 102</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_123.html"><code>conv2d2</code> 123</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_90.html"><code>conv2d2</code> 90</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_89.html"><code>conv2d2</code> 89</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_163.html"><code>conv2d2</code> 163</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_98.html"><code>conv2d2</code> 98</a>, and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_188.html"><code>conv2d2</code> 188</a>.
-        </p>
-      </figcaption>
-    </figure>
+    <p>When we inspect the weights of an individual high-low frequency detector such as <code>mixed3a</code> 110, we find that the truth is more in line with Hypothesis 1 than Hypothesis 2. The <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_110.html">weights</a> of <code>mixed3a</code> 110 can be roughly divided into two categories: those that inhibit on the right and activate on the left, and those that do the opposite. (See top row of <a href="#2.1-underlying-weights">Figure 4</a>.)
+    </p>
 
-    <h4>Underlying Neurons</h4>
+    <p>A similar observation seems to hold for the other high-low frequency detectors as well, though with different spatial orientations: each detector's weights can be divided into roughly two categories. Furthermore, across the high-low frequency detectors, these two categories seem to be comprised of the same neurons. We postulate that one cluster consists of low frequency detecting units, and the other cluster consists of high frequency detecting units.</p>
 
-    <p>
-      Factorizing the connections<d-footnote>Between two adjacent layers, "connections" reduces to the weights
+    <d-figure id="2.1-underlying-weights">
+      <figure style=''>
+        <img src="images/Underlying-Weights.png" />
+        <figcaption>
+          <p>
+            <a href="#2.1-underlying-weights" class="figure-number">4</a>:
+            The strongest weights on any high-low frequency detector (here shown: <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_110.html"><code>mixed3a</code> 10</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_136.html"><code>mixed3a</code> 36</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_112.html"><code>mixed3a</code> 12</a>, and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_88.html"><code>mixed3a</code> 88</a>) can be divided into roughly two categorical groups.
+          </p>
+          <p>
+            Shown: the weights from neurons <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_119.html"><code>conv2d2</code> 119</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_102.html"><code>conv2d2</code> 102</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_123.html"><code>conv2d2</code> 123</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_90.html"><code>conv2d2</code> 90</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_89.html"><code>conv2d2</code> 89</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_163.html"><code>conv2d2</code> 163</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_98.html"><code>conv2d2</code> 98</a>, and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_188.html"><code>conv2d2</code> 188</a>.
+          </p>
+        </figcaption>
+      </figure>
+    </d-figure>
+
+    <p>Let's investigate both parts of Hypothesis 1 in more detail: first, the claim that high-low frequency detectors are built from high frequency detection and low frequency detection as subfeatures, and second, that those two subfeatures are combined in a spatially-specific way in order to produce high-low frequency detectors.</p>
+
+    <h4>Underlying Factors</h4>
+
+    <p>We have observed two distinct categories of neurons that contribute to the weights of high-low frequency detectors, and speculated that the two categories represent high frequency detection and low frequency detection. It would be nice if we could both confirm this subjective observation mathematically and create a simpler way to represent the two categories for our analyses.</p>
+
+    <p>Factorizing the connections<d-footnote>Between two adjacent layers, "connections" reduces to the weights
         between the two layers. Sometimes we are interested in observing connectivity between layers that may not be
         directly adjacent. Because our model, a deep convnet, is non-linear, we will need to approximate the
         connections. A simple approach that we take is to linearize the model by removing the non-linearities. While
         this is not a great approximation of the model's behavior, it does give a reasonable intuition for
         counterfactual influence: had the neurons in the intermediate layer fired, how it would have affected neurons in
-        the downstream layers. We treat positive and negative influences separately.</d-footnote> between lower level
-      features and the high-low frequency detectors confirms the first half of the guess. Performing non-negative matrix factorization (NMF) in each layer to separate the weights into two factors recovers a cluster of low frequency neurons (&ldquo;LF-factor&rdquo;) and a cluster of high frequency neurons (&ldquo;HF-factor&rdquo;).</p>
+        the downstream layers. We treat positive and negative influences separately.</d-footnote> between lower layers and the high-low frequency detectors is one way that we can check whether these two categories are meaningful and investigate their significance. Performing non-negative matrix factorization (NMF) in each layer to separate the weights into two factors yields the results shown below.</p>
 
-    <%= require('./diagrams/upstream-neurons.ejs')() %>
+    <d-figure id="2.2-upstream-neurons">
+      <%= require('./diagrams/upstream-neurons.ejs')() %>
+    </d-figure>
+
+    <p>Strikingly, the feature visualizations for each factor confirm our guess about the functionality of the two categories: one (here named the <i>HF-factor</i>) clearly displays a high-frequency image, whereas the other (here named the <i>LF-factor</i>) clearly displays a low-frequency image. This confirms the first half of Hypothesis 1: these are meaningful categories.</p>
+
+    <p>To further corroborate our guess about the function of these factors, we can again create <i>synthetic stimuli</i>, this time targeted at the two NMF factors. We construct a grid that varies both the frequency of a sinusoidal checkerboard input as well as its angle of orientation, and measure how much the synthetic image activates each factor.</p>
+
+    <d-figure>
+      <figure>
+        <img src="/diagrams/hf-lf-stimuli.svg" style="width: 70%; margin: auto; display: block; margin-bottom: 20px"/>
+      <figcaption>
+          <p>
+            Frequency and angle orientation were varied to construct a grid of synthetic stimuli. Next to each factor is a heatmap of its activations in response to each stimulus image, ranging from 0 to 1.
+          </p>
+      </figcaption>
+      </figure>
+    </d-figure>
+
+
+    <p>The activations are relatively independent of the image's angle, but highly specific to its frequency. Averaging the results over all angles produces a line plot of each factor's magnitude of activation by frequency, demonstrating each factor's approximate specificity to a particular range of frequencies.
+
+    <d-figure>
+      <figure>
+        <img src="/diagrams/hf-lf-responses.svg"/>
+      <figcaption>
+          <p>
+            Tuning curve for the HF-factor and LF-factor from <code>conv2d2</code> against synthetic high or low frequency images.
+
+            Activations were averaged over angle to produce this plot.
+          </p>
+      </figcaption>
+      </figure>
+    </d-figure>
+
+
+    <p>For future analyses, instead of dealing with two sets of neurons, we can now deal with two <i>vectors</i> over the neurons in <code>conv2d2</code> or <code>conv2d1</code>. Thus equipped with the HF-factor and the LF-factor, we can ask: how are these two factors used to produce high-low frequency detectors?</p>
 
     <h4>Construction of high-low frequency detectors</h4>
 
-    Inspecting how the HF-factor and LF-factor are used by high-low frequency detectors confirms the second half of the guess: high-low frequency detectors are activated by high frequency (and inhibited by low frequency) on one side, and inhibited by high frequency (and activated by low frequency) on the other.
+    <p>NMF also recovers the weights between each factor and the high-low frequency detectors, demonstrating how those detectors use the HF-factor and the LF-factor.
+    Each high-low frequency detector has a region where the HF-factor activates and the LF-factor inhibits, and an opposite region where the LF-factor activates and the HF-factor inhibits.</p>
 
     <%= require('./diagrams/upstream-nmf.ejs')() %>
 
-    <h4>Circuit diagram</h4>
+    <p>Inspecting these weights shows that high-low frequency detectors are built up by spatial arrangement of high and low frequency detection, confirming the second half of Hypothesis 1.</p>
 
-    <p>To understand how these detectors are implemented in terms of even earlier features, we can look at which
-      features feed into a given high-low frequency detector, and even at the spatial structure of the weights
-      connecting those features to the detector in question.</p>
+    <p>Against Hypothesis 2, even texture contrast detectors such as <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_181.html"><code>conv2d2</code> 181</a> seem to fall on one side or the other of this dichotomy. Although <code>conv2d2</code> 181 is most strongly connected to the high-low frequency detector <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_70.html"><code>mixed3a</code> 70</a>, the structure of its weights indicates that it contributes more generically to high-frequency detection as a component of the HF-factor rather than contributing any of the existing spatial structure of its texture contrast detection directly.</p>
+
+    <d-figure>
+      <figure>
+        <img src="/images/texture-contrast-detector.svg" style="width: 50%; margin: auto; margin-bottom: 20px; display: block"/>
+      <figcaption>
+          <p>
+            The weights from <code>conv2d2</code> 181 to <code>mixed3a</code> 70 are consistent with <code>conv2d2</code> 181 contributing through the HF-factor, losing the spatial structure of <code>conv2d2</code> 181's texture contrast detection.
+          </p>
+      </figcaption>
+      </figure>
+    </d-figure>
 
 
-    <h4>Synthetic stimuli for HF-factor and LF-factor</h4>
-    <span class="todo">Synthetic stimuli for just for HF and LF here?</span>
-
-
-    <!--Downstream Circuits-->
+    <!-- Alternate title: Downstream Circuits -->
+    <!-- Alternate alternate title: Feature Usage -->
     <h2 id="feature-use">How high-low frequency detectors are used</h2>
     <p>How are high-low frequency detectors used in the construction of higher-level features?</p>
 
