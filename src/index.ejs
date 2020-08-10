@@ -97,13 +97,13 @@
     </p>
 
     <p>
-      Based on these feature visualizations, we first hypothesize that high-low frequency detectors appear to sense where and how an image has changed from a high-frequency regime to a lower-frequency regime. While feature visualization does directly establish a <a href="https://distill.pub/2020/circuits/zoom-in#claim-1">causal link</a> with the stimuli that most activate a neuron, we also have a <a href="https://distill.pub/2020/circuits/zoom-in#claim-1">few other tools</a> in our toolkit in order to investigate the purpose of these neurons more thoroughly. Among those tools are dataset examples, synthetic examples, feature implementation, and feature use.
+      Based on these feature visualizations, we first hypothesize that high-low frequency detectors appear to sense where and how an image has changed from a high-frequency regime to a lower-frequency regime. While feature visualization does directly establish a <a href="https://distill.pub/2020/circuits/zoom-in#claim-1">causal link</a> with the stimuli that most activate a neuron, we also have a <a href="https://distill.pub/2020/circuits/zoom-in#claim-1">few other tools</a> in our toolkit in order to investigate the purpose of these neurons more thoroughly. Among those tools are dataset examples, tuning curves, feature implementation, and feature use.
     </p>
 
     <h4 id="dataset-examples">Dataset Examples</h4>
     <p>
-      To ensure we're not misreading those feature visualizations it's good practice to check what such filters
-      maximally activate on over a natural data distribution, say the training set.
+      Which images from a natural data distribution – say, perhaps, the training set – cause those neurons to maximally activate?
+      Checking against dataset examples such as these helps ensure we're not misreading the feature visualizations.
     </p>
 
     <figure id="1.2-dataset-examples">
@@ -116,18 +116,18 @@
     </figure>
 
     <p>
-      The dataset examples show that a wide range of real-world objects can cause these detectors to fire: deep 3D
+      As the dataset examples demonstrate, a wide range of real-world objects can cause these detectors to fire: deep 3-D
       textures, such as on the microphone against a blurred background, but also surface textures such as the MP3
       player's metal finish against its shiny screen.
     </p>
 
     <h4>Tuning Curves</h4>
     <p>
-      In the curve detector chapter we saw an example of a <a href="https://distill.pub/2020/circuits/curve-detectors/#radial-tuning-curve">tuning curve</a>: it plots filter response over rotation angle,
+      In the <a href="https://distill.pub/2020/circuits/curve-detectors">Curve Detectors</a> we give an example of a <a href="https://distill.pub/2020/circuits/curve-detectors/#radial-tuning-curve">tuning curve</a>, plotting filter response over rotation angle,
       where the input is a natural image that we know has curvature in it. We can repeat this experiment for high-low
-      frequency detectors: since their response is also specific to an angle, we expect to see a similar pattern of
-      angle-specific activation. To measure this, we create artificial stimuli: images that contain a high-low frequency
-      edge at a known orientation:
+      frequency detectors. Since their response is also specific to an angle, we should expect to see a similar pattern of
+      angle-specific activation. To measure this, we create <i>synthetic stimuli</i>, in this case images with a high-low frequency
+      edge at a known orientation.
     </p>
 
     <figure id="1.4-tuning-curves-space-axis-1">
@@ -140,7 +140,7 @@
 
     <p>
       The curve detector tuning curve also varied a second parameter, arc length. For
-      high-low frequency detectors, we will instead vary the ratio between the two frequencies:
+      high-low frequency detectors, we will instead vary the ratio between the two frequencies.
     </p>
 
     <figure id="1.4-tuning-curves-space-axis-2">
@@ -152,25 +152,10 @@
       </figcaption>
     </figure>
 
-    <p>These two axes define a space from which we can sample image stimuli: every 2D point corresponds to a combination
+    <p>These two axes then define a space from which we can sample synthetic stimuli. Every 2-D point corresponds to a combination
       of
-      the two varied attributes. In the tuning curve diagram below, each unit is associated with a 60 by 360 plot of
-      activation strength. In those plots, each pixel corresponds to one of the artificial stimuli.</p>
-
-    <!-- <figure id="1.4-tuning-curves-samples">
-      <img src="diagrams/1.4-tuning-curves/samples.png"
-        style="width: 100%; max-width: 636px; image-rendering: pixelated;" />
-      <figcaption class="figcaption">
-        TODO:
-      </figcaption>
-    </figure> -->
-
-    <!-- <p>
-      But high-low frequency detectors seem to have more knobs to turn than just angle: the frequencies of the two
-      gratings that make up the frequency edge should also affect the filters' responses. Let's measure activations over
-      a space that varies both of those, as well as orientation: Angle by frequency 1 by frequency 2. We will then have
-      to visualize this volume in various ways to show it on this 2D screen.
-    </p> -->
+      the two varied attributes. In the tuning curve diagram below, each high-low frequency detector is associated with a 60 pixel by 360 pixel heatmap of
+      activation strength, with each pixel in the heatmap corresponding to the detector's response to one of the synthetic stimuli.</p>
 
     <d-figure id="1.4-tuning-curves">
       <figure></figure>
