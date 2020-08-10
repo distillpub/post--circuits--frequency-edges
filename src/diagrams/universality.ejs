@@ -149,12 +149,8 @@
             <% } %>
         </div>
     </div>
-    <figcaption><p>NMF of high-low frequency detectors in <a href="<%= units[network_name].layer_link %>"><%= units[network_name].layer %></a> with respect to <a href="<%= units[network_name].prev_layer_link %>"><%= units[network_name].prev_layer %></a>.</p></figcaption>
+    <figcaption><p>NMF of high-low frequency detectors in <a href="<%= units[network_name].layer_link %>"><%= units[network_name].layer %></a> with respect to <a href="<%= units[network_name].prev_layer_link %>"><%= units[network_name].prev_layer %></a>, with <span class="legend-label support">activations</span> and <span
+    class="legend-label inhibit">inhibitions</span>.</p></figcaption>
     <br />
     <% } %>
-    <figcaption>
-      <p>Each model's factorization reveals two factors: one HF-factor and one LF-factor.</p>
-      <p>As with InceptionV1, the <span class="legend-label support">activations</span> and <span
-      class="legend-label inhibit">inhibitions</span> of the two factors
-          are very close to symmetric.</p>
 </figure>

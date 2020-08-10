@@ -354,55 +354,48 @@
       </figcaption>
     </figure>
 
+    <p>We have investigated the function of high-low frequency detectors, their construction from neurons in <code>conv2d2</code>, and their applications in <code>mixed3b</code> and beyond.
+
+    So far, however, the scope of our investigation has been limited to InceptionV1.
+
+    How common are high-low frequency detectors in convolutional neural networks generally?</p>
+
     <!--Universality-->
     <h2>Universality</h2>
-    <p>How common are high-low frequency detectors in convolutional neural networks?</p>
 
-    <p>It's always good to ask if what you see is the rule or an interesting exception, and high-low frequency detectors seem to be the rule.
-          High-low frequency detectors similar to ones in InceptionV1 can be found in a variety of architectures; those in AlexNet, InceptionV4, and ResnetV2-50 are shown below.
+    <h4>High-Low Frequency Detectors in Other Networks</h4>
+
+    <p>It's always good to ask if what you see is the rule or an interesting exception&mdash;and high-low frequency detectors seem to be the rule.
+          High-low frequency detectors similar to ones in InceptionV1 can be found in a variety of architectures. Below, we show four columns of high-low frequency detectors that we've found in AlexNet, InceptionV4, and ResnetV2-50, and compare them to their most similar counterpart from InceptionV1.
       </p>
 
-    <h4>High-Low Frequency Detectors in Other Models</h4>
 
     <%= require('./diagrams/similar-directions.ejs')() %>
 
+      <p>Notice that these detectors are found at very similar depths within the different networks, between 29% and 33% network depth!</p>
+
+    <p>Having located candidate high-low frequency detectors in these three other networks, we can also ask ourselves whether the same conclusions hold about how these detectors are built up from underlying neurons.</p>
+
+    <h4>HF-factor and LF-factor in Other networks</h4>
+
     <p>
-      As with InceptionV1, we can perform NMF on the weights of these neurons and find that we recover two clusters that each contribute to the construction of the model's high-low frequency detector.
+      As with InceptionV1, we perform NMF on the weights of the high-low frequency detectors in each network.
     </p>
 
     <%= require('./diagrams/universality.ejs')() %>
 
 
-    <!-- Moved to earlier 'tuning curves' section. -->
-    <!-- <h4>Tuning curves in other models</h4>
-    <p>Show tuning curves!</p>
-
-    <figure id="4.2-similar-detectors">
-      <img src="diagrams/4.2-similar-detectors/placeholder-1.jpg" />
-      <figcaption class="figcaption">
-        Top k filters responding to stimuli from earlier section
-      </figcaption>
-    </figure>
-    -->
-
-    <!-- Postponed! TODO(csvoss). Perhaps discuss after 'Downstream Circuits'? -->
-    <!-- <h4>Re-occurence at deeper layers at different scale</h4>
-    <p>Show re-occurence at higher layers at different scales?</p>
-
-    <figure id="4.3-higher-layers">
-      <img src="diagrams/4.3-higher-layers/placeholder.png" />
-      <figcaption class="figcaption">
-        Top k filters responding to stimuli from earlier section. Compare their response to earlier layer hilo
-        detectors; ideally show frequency gap / non-huge-overlap in response 2D tuning curve.
-      </figcaption>
-    </figure> -->
-
+    <p>As we found before, the feature visualizations of the two factors reveal one clear HF-factor and one clear LF-factor. Furthermore, the weights of the two factors are again very close to symmetric.</p>
+    <p>While the small details&mdash;which angles each network's high-low frequency detectors respond to, which colors appear in each network's feature visualizations&mdash;may vary, the overall thrust of the story is still the same: high-low frequency detectors are built up by placing high frequency detection and low frequency detection in a specific spatial arrangement.</p>
 
     <h2>Conclusion</h2>
-    <p>?</p>
-    <p class="todo">Maybe devote a paragraph to concretizing the "their existence feels natural in retrospect" aspect of high-low frequency detectors – in particular, pointing out that high-low frequency is one way to infer the distance of objects? IIRC @colah has described this to me as such before.</p>
 
-    Rephrase "Still, they have many of the hallmarks of important features: their existence feels natural in retrospect, they're an important part of later, higher-level features, and they're common across network architectures."
+    <p>As we've seen, high-low frequency detectors are an important part of later, higher-level features, are built up from comprehensible lower-level parts, and are common across multiple network architectures.</p>
+
+    <p>We wonder whether their existence isn't so unnatural after all: as seen previously in <a href="#dataset-examples">the dataset examples</a>, a high-low frequency change can indicate the border between an in-focus foreground object and its more blurry background (or between an in-focus background and the more blurry foreground, or even between two objects at different focuses).</a> Changes such as these are something of a natural concept: the aesthetic quality imparted by the blurriness of an out-of-focus region of an image is known as <a href="https://en.wikipedia.org/wiki/Bokeh"><i>bokeh</i></a> in photography, and getting it right as a depth cue is one of the notable challenges explored by developers of immersive VR.</p>
+
+    <p>Depth perception is simply one of the challenges that's endemic to vision, and frequency change is one cue that a vision system can use for getting it right. Just as neuroscientists have already uncovered and characterized curve detectors, the authors therefore wonder whether high-low frequency detectors might also be lurking in that original neural network vision system, the animal visual cortex.</p>
+
 
 
 
@@ -419,7 +412,7 @@
     </p>
 
     <!--Potential Limitations-->
-    <h3>Limitations</h3>
+    <!-- <h3>Limitations</h3>
     <h4>How bad is the linearization?</h4>
     <p class="todo">Maybe we can measure and put up some <em>summary statistics</em> on how bad our linear approximation
       really is.
@@ -430,7 +423,7 @@
       <figcaption class="figcaption">
         Maybe show % of variance explained over distance between layers or sth; if so likely move to appendix.
       </figcaption>
-    </figure>
+    </figure> -->
 
 
     <d-footnote-list></d-footnote-list>
