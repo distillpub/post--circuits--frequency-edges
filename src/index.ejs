@@ -126,7 +126,7 @@
       In the <a href="https://distill.pub/2020/circuits/curve-detectors">Curve Detectors</a> we give an example of a <a href="https://distill.pub/2020/circuits/curve-detectors/#radial-tuning-curve">tuning curve</a>, plotting filter response over rotation angle,
       where the input is a natural image that we know has curvature in it. We can repeat this experiment for high-low
       frequency detectors. Since their response is also specific to an angle, we should expect to see a similar pattern of
-      angle-specific activation. To measure this, we create <i>synthetic stimuli</i>, in this case images with a high-low frequency
+      angle-specific activation. To construct a curve and measure activations, we create <i>synthetic stimuli</i>, in this case images with a high-low frequency
       edge at a known orientation.
     </p>
 
@@ -139,8 +139,8 @@
     </figure>
 
     <p>
-      The curve detector tuning curve also varied a second parameter, arc length. For
-      high-low frequency detectors, we will instead vary the ratio between the two frequencies.
+      The curve detector tuning curve also varies a second parameter, arc length. For
+      high-low frequency detectors, we instead vary the ratio between the two frequencies.
     </p>
 
     <figure id="1.4-tuning-curves-space-axis-2">
@@ -154,14 +154,14 @@
 
     <p>These two axes then define a space from which we can sample synthetic stimuli. Every 2-D point corresponds to a combination
       of
-      the two varied attributes. In the diagram below, each high-low frequency detector is associated with a 60px by 360px heatmap of
-      activation strength, with each pixel in the heatmap corresponding to the detector's response to one of the synthetic stimuli.</p>
+      the two varied attributes. In the diagram below, we give a 60px by 360px heatmap of
+      activation strength for each high-low frequency detector, where each pixel in the heatmap corresponds to the detector's response to one of the synthetic stimuli.</p>
 
     <d-figure id="1.4-tuning-curves">
       <figure></figure>
     </d-figure>
     <p>
-      Each high-low frequency detector exhibits a clear sensitivity to a limited range of orientations. Within those orientations, the detector is excited by a wide range of frequency ratios, some more strongly than others.
+      As demonstrated above, each high-low frequency detector exhibits a clear sensitivity to a limited range of orientations. Within those orientations, the detector is excited by a wide range of frequency ratios, some more strongly than others.
     </p>
     <p>
       Just as we saw <a href="https://distill.pub/2020/circuits/curve-detectors/#synthetic-curves">when investigating curve detectors</a>, the synthetic stimuli that cause the strongest activations are the ones that are most similar to the feature visualization – in this case, the ones that are similar along our two axes of orientation and ratio between frequencies!
