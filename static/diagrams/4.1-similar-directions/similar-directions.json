@@ -4,7 +4,7 @@
 			"name": "AlexNet",
 			"folderName": "alexnet",
 			"layerName": "Conv2D_2",
-			"url": "/diagrams/4.1-similar-directions/alexnet/Conv2D_2-{}.png",
+			"url": "diagrams/4.1-similar-directions/alexnet/Conv2D_2-{}.png",
 			"depthRatio": [2, 7],
 			"units": [183, 175, 215, 230, 161, 205]
 		},
@@ -12,7 +12,7 @@
 			"name": "InceptionV1",
 			"folderName": "inceptionv1",
 			"layerName": "mixed3a",
-			"url": "/diagrams/1.1-feature-vis/neuron-{}.png",
+			"url": "diagrams/1.1-feature-vis/neuron-{}.png",
 			"depthRatio": [4, 12],
 			"un": [136, 108, 132, 88, 110, 180, 153, 186, 86, 117, 112, 70, 106, 113],
 			"units": [106, 110, 180, 132, 112, 108]
