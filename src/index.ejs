@@ -113,21 +113,31 @@
       </figcaption>
     </figure>
 
-    <h4>What high-low frequency detectors are</h4>
+    <p>Feature visualizations are constructed starting from random noise. Each and every pixel in a feature visualization that's changed from random noise is there because it caused the neuron to activate more strongly. This establishes a causal link between the function of the high-low frequency detector and its feature visualization!
+    </p>
 
-    <p>Feature visualizations are constructed starting from random noise, and optimizing from there in order to produce Every pixel in a feature visualization is
+    <p>
+      The feature visualizations show the same two claims we gave earlier: high-low frequency detectors are sensitive to changes from low frequency to high frequency, and are sensitive to a particular angle.
+    </p>
 
-    <h4>What high-low frequency detectors are not</h4>
+
+
+    <h4>What high-low frequency detectors are <i>not</i></h4>
 
     <p>Certain mathematics proofs have the concept of <i>completeness</i> and <i>soundness</i>. Soundness is when you cannot prove anything that's wrong. Completeness is when you can prove everything that's right.</p>
 
-    <p>Soundness is when you cannot prove anything that's wrong.</p>
+    <p>These concepts are useful because they allow you to draw a box exactly around those statements which are true&mdash;no more, no less.</p>
 
-    <p>Completeness, on the other hand, is when you can prove everything that's right.</p>
+    <p>In our case, we want to be certain that we've explored the full scope of meaningful features that high-low frequency detectors detect (completeness), but without being so broad as to include features that they don't detect (soundness).</p>
 
-    <p>
+    <p>Because of that causal link we mentioned, feature visualizations give us the soundness side. Everything that a feature visualization produces is certain to be a downstream consequence of a high-low frequency detector, guaranteed.
+    </p>
 
-    <p>Because feature visualizations use a <a href="https://distill.pub/2017/feature-visualization/#diversity">diversity term</a>, we can be reasonably confident that if high-low frequency detectors were also sensitive to some other pattern, we would see signs of it in their feature visualizations. Regardless,
+    <p>However, we haven't yet shown completeness! What if these neurons respond to more phenomena than just high-low frequency?</p>
+
+    <p>One argument for completeness is that because feature visualizations use a <a href="https://distill.pub/2017/feature-visualization/#diversity">diversity term</a>, we can be reasonably confident that if high-low frequency detectors were also sensitive to some other pattern, we would see signs of it in their feature visualizations.</p>
+
+    <p>[[End of current refactor; below stuff remains to be refactored]]</p>
 
     <p>
       Based on these feature visualizations, we first hypothesize that high-low frequency detectors appear to sense where and how an image has changed from a high-frequency regime to a lower-frequency regime. While feature visualization does directly establish a <a href="https://distill.pub/2020/circuits/zoom-in#claim-1">causal link</a> with the stimuli that most activate a neuron, we also have a <a href="https://distill.pub/2020/circuits/zoom-in#claim-1">few other tools</a> in our toolkit in order to investigate the purpose of these neurons more thoroughly, including analyzing <a href="#dataset-examples">dataset examples</a>, <a href="#tuning-curves">tuning curves</a>, <a href="feature-implementation">feature implementation</a>, and <a href="feature-use">feature use</a>.
