@@ -19,38 +19,58 @@
 
   <d-title>
     <h1><span style="display: inline; color: gray; margin-right: 0.25em">2.4</span>High-Low Frequency Detectors</h1>
-    <p>A family of early-vision filters reacting to contrasts between spatial gratings of different frequency</p>
-    <!-- <figure id="hero" class="l-body todo">I'm just a figure who's a hero for fun.</figure> -->
+    <p>A family of early-vision neurons reacting to contrasts between spatial gratings of different frequency</p>
+    <figure id="hero" class="l-body">
+      <img src="images/high-low-hero.png"/>
+    </figure>
   </d-title>
 
   <d-article>
 
     <h2 style="display: none;">Introduction</h2>
+
+    <p>Some of the neurons in <a href="https://distill.pub/2020/circuits/early-vision/">early vision</a> are neurons that we have a clear story for. <a href="https://distill.pub/2020/circuits/curve-detectors/">Curve detectors</a>, for example, are common enough that neuroscientists have characterized them in the animal visual cortex<d-cite bibtex-key="tang2018complex"></d-cite>. It's easy to imagine how curve detectors are built up from earlier edge detectors, and it's easy to guess why curve detection might be useful to the rest of the neural network.</p>
+
+    <p>High-low frequency detectors, on the other hand, seem less intuitive. They are not a feature that we would have expected <i>a priori</i> to find. Yet, when systematically categorizing the first five layers of InceptionV1, we found a full <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3a_high_low_frequency">15 neurons</a> of <code>mixed3a</code> that share the same characteristics:</p>
+
+    <aside style="grid-column-start: page-start; grid-column-end: text-start;">
+      <p>By &ldquo;high frequency&rdquo; and &ldquo;low frequency&rdquo; here, we mean <a href="https://en.wikipedia.org/wiki/Spatial_frequency">spatial frequency</a> – what you get when you take the Fourier transform of an image.</p>
+    </aside>
+
+    <ul>
+      <li>
+        <b>Detection of high and low frequency.</b> The detectors look for <i>high frequency</i> on one side, and <i>low frequency</i> on the other side.
+      </li>
+      <li>
+        <b>Directionality.</b> The detectors only detect a high-low frequency change along a particular angle.
+      </li>
+    </ul>
+
     <p>
-      Why should we study the awkwardly-named &ldquo;high-low frequency detectors&rdquo; when we've just walked you through <a href="https://distill.pub/2020/circuits/curve-detectors/">curve
-      detectors</a> in detail? There's a strategic argument from the author's side: anyone would guess that vision
-      networks contain curve detectors. It's easy to imagine how curve detectors are built up from earlier edge detectors, and
-      they're common enough that neuroscientists routinely find them in animal visual cortices. High-low frequency
-      detectors, on the other hand, form a family of features we did not expect to find. Still, they have many of the
-      hallmarks of important features: their existence feels natural in retrospect, they're an important part of later,
-      higher-level features, and they're common across network architectures.
+      High-low frequency detectors are not quite as natural as curve detectors.
+
+      However, we've claimed that features and circuits can be rigorously studied and understood – and that should include the unnatural ones!
+
+       Using the same tools we've built up for exploring <a href="https://distill.pub/2020/circuits/zoom-in/">circuits</a>, we find that we can study and understand them.
     </p>
 
+    <h2>What do high-low frequency detectors actually detect?</h2>
 
-    <!--Empirical observation-->
-    <h2>Empirical Observation</h2>
+    <p>
+      It's there in the name, but how sure can we be that &ldquo;high-low frequency detectors&rdquo; are actually detecting a directional change from high frequency to low frequency?
+    </p>
 
-    <h4>Feature Visualization</h4>
-    <p>We originally find high-low frequency detectors by studying <a
-        href="//distill.pub/2017/feature-visualization">feature visualizations</a>: synthetic inputs
+    <p>
+      We have three tools that we can apply in order to argue that this is an accurate story of these detectors' function: feature visualization, dataset examples, and synthetic examples.
+    </p>
+
+    <h3>Feature Visualization</h3>
+
+    <p>
+      A <a href="//distill.pub/2017/feature-visualization">feature visualization</a> is a synthetic input
       optimized to elicit maximal activation of a single, specific neuron.
     </p>
-    <p>
-      Having <a href="https://distill.pub/2020/circuits/early-vision/">systematically grouped</a> the neurons in the first five layers of InceptionV1, we discover <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3a_high_low_frequency">a group of 15 similar neurons</a> in <code>mixed3a</code> whose feature visualizations all show a clear separation between a <i>high-frequency</i> region and a <i>low-frequency</i> region.
-    </p>
-    <p>
-      We have dubbed this group the <i>high-low frequency detectors</i>.
-    </p>
+
     <style>
       .gallery {
         display: grid;
@@ -79,7 +99,7 @@
         }
       }
     </style>
-    <figure class="l-screen base-grid" id="1.1-feature-vis">
+    <figure id="1.1-feature-vis">
       <ul class="gallery l-page">
         <% for (const unit of require("../static/diagrams/1.1-feature-vis/units.json").units) {%>
         <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_${unit}.html" style="border-bottom: none; display: flex;">
@@ -89,12 +109,25 @@
       </ul>
       <figcaption class="figcaption l-body">
         <a href="#1.1-feature-vis" class="figure-number">1</a>:
-        A variety of high-low frequency detectors from InceptionV1's <a href="https://microscope.openai.com/models/inceptionv1/mixed3a_0?models.op.feature_vis.type=neuron&models.op.technique=feature_vis"><code>mixed3a</code></a> layer.
+        Feature visualizations of a variety of high-low frequency detectors from InceptionV1's <a href="https://microscope.openai.com/models/inceptionv1/mixed3a_0?models.op.feature_vis.type=neuron&models.op.technique=feature_vis"><code>mixed3a</code></a> layer.
       </figcaption>
     </figure>
 
-    <p>By &ldquo;high frequency&rdquo; and &ldquo;low frequency&rdquo; here, we mean &ldquo;frequency&rdquo; in the same way as is used when discussing Fourier transforms of images.
-    </p>
+    <h4>What high-low frequency detectors are</h4>
+
+    <p>Feature visualizations are constructed starting from random noise, and optimizing from there in order to produce Every pixel in a feature visualization is
+
+    <h4>What high-low frequency detectors are not</h4>
+
+    <p>Certain mathematics proofs have the concept of <i>completeness</i> and <i>soundness</i>. Soundness is when you cannot prove anything that's wrong. Completeness is when you can prove everything that's right.</p>
+
+    <p>Soundness is when you cannot prove anything that's wrong.</p>
+
+    <p>Completeness, on the other hand, is when you can prove everything that's right.</p>
+
+    <p>
+
+    <p>Because feature visualizations use a <a href="https://distill.pub/2017/feature-visualization/#diversity">diversity term</a>, we can be reasonably confident that if high-low frequency detectors were also sensitive to some other pattern, we would see signs of it in their feature visualizations. Regardless,
 
     <p>
       Based on these feature visualizations, we first hypothesize that high-low frequency detectors appear to sense where and how an image has changed from a high-frequency regime to a lower-frequency regime. While feature visualization does directly establish a <a href="https://distill.pub/2020/circuits/zoom-in#claim-1">causal link</a> with the stimuli that most activate a neuron, we also have a <a href="https://distill.pub/2020/circuits/zoom-in#claim-1">few other tools</a> in our toolkit in order to investigate the purpose of these neurons more thoroughly, including analyzing <a href="#dataset-examples">dataset examples</a>, <a href="#tuning-curves">tuning curves</a>, <a href="feature-implementation">feature implementation</a>, and <a href="feature-use">feature use</a>.
