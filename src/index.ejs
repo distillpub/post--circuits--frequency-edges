@@ -369,12 +369,12 @@
       and at least one each of <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_281.html">center-surrounds</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_372.html">patterns</a>, and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_276.html">textures</a>.
     </p>
 
-    <d-figure>
+    <d-figure style="grid-column-end: page-end">
       <figure>
         <img src="diagrams/downstream-circuits.svg" style="margin-bottom: 20px"/>
-      <figcaption>
+      <figcaption style="grid-column-end: text-end">
           <p>
-            Examples of neurons that high-low frequency detectors contribute to: <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_365.html"><code>mixed3b</code> 365</a> (an hourglass shape detector), <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_276.html"><code>mixed3b</code> 276</a> (a center-surround texture detector), and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a> (a double boundary detector).
+            Examples of neurons that high-low frequency detectors contribute to.
           </p>
       </figcaption>
       </figure>
@@ -386,7 +386,7 @@
 
     <!-- <%= require('./diagrams/downstream-neurons.ejs')() %> -->
 
-    <d-figure>
+    <!-- <d-figure>
       <figure>
         <img src="diagrams/downstream-interpretation.svg" style="margin-bottom: 20px; display: block;"/>
       <figcaption>
@@ -395,7 +395,7 @@
           </p>
       </figcaption>
       </figure>
-    </d-figure>
+    </d-figure> -->
 
     <p>Given their usefulness for detecting continuity and discontinuity, by far the primary downstream contribution of high-low frequency detectors is to <i>boundary detectors</i>. Of the top 20 neurons in <code>mixed3b</code> with the highest L2-norm of weights across all high-low frequency detectors, eight of those 20 neurons participate in boundary detection of some sort: <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_double_boundary">double boundary detectors</a>, <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_boundary_misc">miscellaneous boundary detectors</a>, and especially <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_boundary">object boundary detectors</a>. </p>
 
@@ -441,9 +441,8 @@
       </figcaption>
     </figure>
 
-    <p>We have investigated the function of high-low frequency detectors, their construction from neurons in <code>conv2d2</code>, and their applications in <code>mixed3b</code> and beyond.
-
-    So far, however, the scope of our investigation has been limited to InceptionV1.
+    <p>
+    So far, the scope of our investigation has been limited to InceptionV1.
 
     How common are high-low frequency detectors in convolutional neural networks generally?</p>
 
