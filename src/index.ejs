@@ -26,9 +26,9 @@
   </style>
 
   <d-title>
-    <h1><span style="display: inline; color: gray; margin-right: 0.25em">2.4</span>High-Low Frequency Detectors</h1>
-    <p>A family of early-vision neurons reacting to contrasts between spatial gratings of different frequency</p>
-    <figure id="hero" class="l-body">
+    <h1 style="grid-column-end: page-end;">High-Low Frequency Detectors</h1>
+    <p style="grid-column-end: page-end;">A family of early-vision neurons reacting to contrasts between spatial gratings of different frequency</p>
+    <figure id="hero" class="l-body" style="grid-column-end: page-end;">
       <img src="images/high-low-hero.png"/>
     </figure>
   </d-title>
@@ -37,7 +37,7 @@
 
     <h2 style="display: none;">Introduction</h2>
 
-    <p>Some of the neurons in <a href="https://distill.pub/2020/circuits/early-vision/">early vision</a> are neurons that we aren't particularly surprised to find. <a href="https://distill.pub/2020/circuits/curve-detectors/">Curve detectors</a>, for example, had already been discovered in the animal visual cortex<d-cite bibtex-key="tang2018complex"></d-cite>. It's easy to imagine how curve detectors are built up from earlier edge detectors, and it's easy to guess why curve detection might be useful to the rest of the neural network.</p>
+    <p>Some of the neurons in <a href="https://distill.pub/2020/circuits/early-vision/">early vision</a> are features that we aren't particularly surprised to find. <a href="https://distill.pub/2020/circuits/curve-detectors/">Curve detectors</a>, for example, had already been discovered in the animal visual cortex<d-cite bibtex-key="tang2018complex"></d-cite>. It's easy to imagine how curve detectors are built up from earlier edge detectors, and it's easy to guess why curve detection might be useful to the rest of the neural network.</p>
 
     <p>High-low frequency detectors, on the other hand, seem more surprising. They are not a feature that we would have expected <i>a priori</i> to find. Yet, when systematically characterizing the first five layers of InceptionV1, we found a full <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3a_high_low_frequency">15 neurons</a> of <code>mixed3a</code> that appear to detect a high frequency pattern on one side, and a low frequency pattern on the other.</p>
 
@@ -88,7 +88,7 @@
     <style>
       .gallery {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(28px, 65px));
+        grid-template-columns: repeat(auto-fit, minmax(28px, 70px));
         grid-gap: 0.5rem;
         justify-content: start;
       }
@@ -102,14 +102,14 @@
         width: unset;
         object-fit: none;
         object-position: center;
-        border-radius: 0.25rem;
+        border-radius: 10px;
       }
 
       @media screen and (min-width: 768px) {
         .gallery {
-          grid-template-columns: repeat(7, minmax(28px, 65px));
+          grid-template-columns: repeat(7, minmax(28px, 70px));
           grid-gap: 1rem;
-          justify-content: center;
+          justify-content: left;
         }
       }
     </style>
@@ -373,10 +373,7 @@
       <figure>
         <img src="diagrams/downstream-circuits.svg" style="margin-bottom: 20px"/>
       <figcaption style="grid-column-end: text-end">
-          <p>
-            Examples of neurons that high-low frequency detectors contribute to.
-          </p>
-      </figcaption>
+            Examples of neurons that high-low frequency detectors contribute to: <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_365.html"><code>mixed3b</code> 365</a> (an hourglass shape detector), <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_276.html"><code>mixed3b</code> 276</a> (a center-surround texture detector), and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a> (a double boundary detector).      </figcaption>
       </figure>
     </d-figure>
 
