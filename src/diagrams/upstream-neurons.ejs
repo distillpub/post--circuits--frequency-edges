@@ -102,7 +102,7 @@
 <figure>
     <% for (const fv_layer of ["conv2d2", "conv2d1"]) {%>
     <div class="upstream-neurons">
-      <h5> <%= fv_layer %> </h5>
+      <h4> <%= fv_layer %> </h4>
         <% for (const [factor, hilo] of [[0, "hi"], [1, "lo"]]) {%>
         <div class="row">
             <div class="unit factor">
@@ -127,8 +127,8 @@
 
     <figcaption>
         <p><a href="#figure-6" class="figure-number">6</a>:
-        For each of the underlying layers <code>conv2d2</code> and, more deeply, <code>conv2d1</code>, NMF recovers the neurons that contribute to the two NMF factors and the weighted amount they contribute to each factor, shown above.
+        NMF recovers the neurons that contribute to the two NMF factors plus the weighted amount they contribute to each factor. Here shown: NMF against both <code>conv2d2</code> and a deeper layer, <code>conv2d1</code>.
         </p>
-        <p>Left column: Feature visualization of the NMF factors.</p>
+        <p>Left column: Feature visualization of each NMF factor.</p>
     </figcaption>
 </figure>

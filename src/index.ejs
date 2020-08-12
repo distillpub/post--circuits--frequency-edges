@@ -254,14 +254,12 @@
     </d-figure>
 
     <p>
-      The same holds for the other high-low frequency detectors, but with different spatial patterns on the weights because they each have different orientations.
+      The same holds for the other high-low frequency detectors&mdash;but with different spatial patterns on the weights, because they each have different orientations.
     </p>
 
     <p>
       Surprisingly, across all high-low frequency detectors, the two clusters of neurons that we get for each are actually the <i>same</i> two clusters! One cluster appears to detect textures with a generally high frequency, and one cluster appears to detect textures with a generally low frequency.
     </p>
-
-
     <d-figure id="figure-5">
       <figure style=''>
         <img src="images/Underlying-Weights.svg" />
@@ -277,14 +275,12 @@
       </figure>
     </d-figure>
 
-    <p>This is evidence that a small number of lower-level features are being arranged in a spatially-specific way (arguably, a circuit) in order to produce these detectors – support for Hypothesis 1!
-    </p>
+    <p>
+      This is evidence for Hypothesis 1 over Hypothesis 2! Let's investigate both parts of Hypothesis 1 in more detail: first, the claim that high-low frequency detectors are built from high frequency detection and low frequency detection, and second, that those two features combine together in a spatially-specific way (arguably, a circuit) in order produce high-low frequency detectors.</p>
 
-    <p>Let's investigate both parts of Hypothesis 1 in more detail: first, the claim that high-low frequency detectors are built from high frequency detection and low frequency detection, and second, that those two features combine together in a circuit in order produce high-low frequency detectors.</p>
+    <h3>High and Low Frequency Factors</h3>
 
-    <h4>High-Frequency Factor and Low-Frequency Factor</h4>
-
-    <p>It would be nice if we could confirm that these two clusters are real. It would also be nice if we could create a simpler way to represent them for circuit analysis later.</p>
+    <p>It would be nice if we could confirm that these two clusters of neurons are real. It would also be nice if we could create a simpler way to represent them for circuit analysis later.</p>
 
     <p>Factorizing the connections<d-footnote>Between two adjacent layers, "connections" reduces to the weights
         between the two layers. Sometimes we are interested in observing connectivity between layers that may not be
@@ -299,9 +295,7 @@
       <%= require('./diagrams/upstream-neurons.ejs')() %>
     </d-figure>
 
-    <p>Those vectors, in turn, can themselves be fed into feature visualization!</p>
-
-    <p>Strikingly, the feature visualizations for each factor confirm the first half of Hypothesis 1: one clearly displays a generic high-frequency image, whereas the other does the same with a low-frequency image. We'll call these the <i>HF-factor</i> and the <i>LF-factor</i>.</p>
+    <p>Those vectors, in turn, can themselves be fed into feature visualization! Strikingly, the feature visualizations for each factor confirm the first half of Hypothesis 1: one clearly displays a generic high-frequency image, whereas the other does the same with a low-frequency image. We'll call these the <i>HF-factor</i> and the <i>LF-factor</i>.</p>
 
     <p>How can we be more sure that we are interpreting these clusters right? One thing we can do is to create synthetic stimuli again, but targeted at those two NMF factors. This time, we construct a grid that varies both frequency and angle of orientation.</p>
 
@@ -311,7 +305,7 @@
       <figcaption>
           <p>
             <a href="#figure-7" class="figure-number">7</a>:
-            Responses to a grid of synthetic stimuli varying frequency and angle of orientation, against HF-factor and LF-factor from <code>conv2d2</code>. Activation values are normalized across all units shown, ranging from 0 to 1. <span class="viridis" style="display: inline; margin-left: 5px; padding-right: 64px;" />
+            Responses to a grid of synthetic stimuli varying frequency and angle of orientation, against HF-factor and LF-factor from <code>conv2d2</code>. Orientation ranges from 0 to π/4. Wavelength as a proportion of the full input image ranges from 1:1 to 1:10. Activation values are normalized across all units shown, ranging from 0 to 1. <span class="viridis" style="display: inline; margin-left: 5px; padding-right: 64px;" />
           </p>
       </figcaption>
       </figure>
