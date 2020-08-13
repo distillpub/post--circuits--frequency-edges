@@ -311,7 +311,7 @@
       </figure>
     </d-figure>
 
-    <p>Unlike last time, these activations now mostly ignore the image's orientation, but are sensitive to its frequency. We can average these results over all orientations in order to produce a simple tuning curve of how each factor responds to frequency.</p>
+    <p>Unlike last time, these activations now mostly ignore the image's orientation, but are sensitive to its frequency. We can average these results over all orientations in order to produce a simple tuning curve of how each factor responds to frequency. As predicted, the HF-factor responds to high frequency and the LF-factor responds to low frequency.</p>
 
     <d-figure id="figure-8">
       <figure>
@@ -319,19 +319,18 @@
       <figcaption>
           <p>
             <a href="#figure-8" class="figure-number">8</a>:
-            Tuning curve for HF-factor and LF-factor from <code>conv2d2</code> against images with synthetic frequency, averaged across orientation.
+            Tuning curve for HF-factor and LF-factor from <code>conv2d2</code> against images with synthetic frequency, averaged across orientation. Wavelength as a proportion of the full input image ranges from 1:1 to 1:10.
           </p>
       </figcaption>
       </figure>
     </d-figure>
 
-    <p>As predicted, the HF-factor responds to high frequency and the LF-factor responds to low frequency.</p>
 
     <p>Next, let's finish off the second half of Hypothesis 1: how are these two factors used to construct high-low frequency detectors?</p>
 
-    <h4>Construction of high-low frequency detectors</h4>
+    <h3>Construction of High-Low Frequency Detectors</h3>
 
-    <p>NMF also recovers for us the weights between each of the two factors and the high-low frequency detectors. Unsurprisingly, these weights basically reproduce the same behavior that we'd previously been seeing in <a href="#figure-5">Figure 5</a> from the two different clusters of neurons: where the HF-factor inhibits, the LF-factor activates&mdash;and vice versa.</p>
+    <p>NMF also recovers the weights between each of the two factors and the high-low frequency detectors. Unsurprisingly, these weights basically reproduce the same behavior that we'd previously been seeing in <a href="#figure-5">Figure 5</a> from the two different clusters of neurons: where the HF-factor inhibits, the LF-factor activates&mdash;and vice versa.</p>
 
     <%= require('./diagrams/upstream-nmf.ejs')() %>
 
@@ -355,11 +354,11 @@
     <!-- Alternate title: Downstream Circuits -->
     <!-- Alternate alternate title: Feature Usage -->
     <a class="header-self-link" href="#usage">
-      <h3 id="usage">Usage</h3>
+      <h2 id="usage">Usage</h2>
     </a>
 
     <p>
-      In <a href="https://distill.pub/2020/circuits/early-vision/#mixed3b">mixed3b</a>, high-low frequency detectors contribute to a variety of features: <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_bumps">bumps</a> and <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_divots">divots</a>, <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_bar_line_like">line-like</a> and <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_curves_misc.">curve-like</a> shapes,
+      In the next level, <a href="https://distill.pub/2020/circuits/early-vision/#mixed3b">mixed3b</a>, high-low frequency detectors contribute to a variety of features: <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_bumps">bumps</a> and <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_divots">divots</a>, <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_bar_line_like">line-like</a> and <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_curves_misc.">curve-like</a> shapes, boundary detectors,
       and at least one each of <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_281.html">center-surrounds</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_372.html">patterns</a>, and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_276.html">textures</a>.
     </p>
 
@@ -372,8 +371,9 @@
     </d-figure>
 
     <p>
-      In those examples, notice how the weights are used. Oftentimes, downstream features also ignore the &ldquo;sidedness&rdquo; of a high-low frequency detector, responding roughly the same way to both possible polarities of a given direction. This can then used to detect the presence or absence of boundaries or discontinuities along the direction the two detectors share.
+      Oftentimes, downstream features appear to ignore the &ldquo;sidedness&rdquo; of a high-low frequency detector, responding roughly the same way to <i>both</i> possible polarities of a given direction. These features use high-low frequency detectors to detect the presence or absence of boundaries or discontinuities along a particular direction, with no regard for which end is high frequency or which end is low frequency.
     </p>
+
 
     <!-- <%= require('./diagrams/downstream-neurons.ejs')() %> -->
 
