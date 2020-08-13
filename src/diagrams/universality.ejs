@@ -116,6 +116,9 @@
     .legend-label.inhibit {
         background-color: #0088EE88;
     }
+    d-figure {
+      padding-bottom: 2rem;
+    }
 </style>
 
 <d-figure id="figure-14">
@@ -150,9 +153,19 @@
             <% } %>
         </div>
     </div>
-    <figcaption><p><a href="#figure-14" class="figure-number">14</a>: NMF of high-low frequency detectors in <a href="<%= units[network_name].layer_link %>"><%= units[network_name].layer %></a> with respect to <a href="<%= units[network_name].prev_layer_link %>"><%= units[network_name].prev_layer %></a>, with <span class="legend-label support">activations</span> and <span
-    class="legend-label inhibit">inhibitions</span>.</p></figcaption>
-    <br />
     <% } %>
+    <figcaption>
+      <p>
+        <a href="#figure-14" class="figure-number">14</a>:
+        NMF of high-low frequency detectors in
+
+    <% for (const network_name of ["AlexNet", "InceptionV3_slim", "ResnetV2_50_slim"]) {%>
+        <%= network_name=='ResnetV2_50_slim' ? ' and ' : '' %>
+        <%= network_name %>'s
+        <a href="<%= units[network_name].layer_link %>"><%= units[network_name].layer %></a> with respect to <a href="<%= units[network_name].prev_layer_link %>"><%= units[network_name].prev_layer %></a>,
+    <% } %>
+        showing <span class="legend-label support">activations</span> and <span
+        class="legend-label inhibit">inhibitions</span>.
+      </p><br/><br/></figcaption>
 </figure>
 </d-figure>
