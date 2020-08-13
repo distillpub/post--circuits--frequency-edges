@@ -357,38 +357,55 @@
       <h2 id="usage">Usage</h2>
     </a>
 
-    <p>
-      In the next level, <a href="https://distill.pub/2020/circuits/early-vision/#mixed3b">mixed3b</a>, high-low frequency detectors contribute to a variety of features: <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_bumps">bumps</a> and <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_divots">divots</a>, <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_bar_line_like">line-like</a> and <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_curves_misc.">curve-like</a> shapes, boundary detectors,
-      and at least one each of <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_281.html">center-surrounds</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_372.html">patterns</a>, and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_276.html">textures</a>.
-    </p>
-
-    <d-figure style="grid-column-end: page-end">
-      <figure>
-        <img src="diagrams/downstream-circuits.svg" style="margin-bottom: 20px"/>
-      <figcaption style="grid-column-end: text-end">
-            Examples of neurons that high-low frequency detectors contribute to: <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_365.html"><code>mixed3b</code> 365</a> (an hourglass shape detector), <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_276.html"><code>mixed3b</code> 276</a> (a center-surround texture detector), and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a> (a double boundary detector).      </figcaption>
-      </figure>
-    </d-figure>
-
-    <p>
-      Oftentimes, downstream features appear to ignore the &ldquo;sidedness&rdquo; of a high-low frequency detector, responding roughly the same way to <i>both</i> possible polarities of a given direction. These features use high-low frequency detectors to detect the presence or absence of boundaries or discontinuities along a particular direction, with no regard for which end is high frequency or which end is low frequency.
-    </p>
-
-
-    <!-- <%= require('./diagrams/downstream-neurons.ejs')() %> -->
+    <!-- <h3>In mixed3b</h3> -->
 
     <!-- <d-figure>
       <figure>
         <img src="diagrams/downstream-interpretation.svg" style="margin-bottom: 20px; display: block;"/>
       <figcaption>
-          <p>Some of <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a>'s high-low frequency detector weights in more explicit detail.</p>
+          <p>(TODO fix this diagram still!!) Some of <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a>'s high-low frequency detector weights in more explicit detail.</p>
           <p>One of the functions of high-low frequency detectors appears to be to indicate discontinuities between different objects or regions, as well as an object's continuity with itself.
           </p>
       </figcaption>
       </figure>
     </d-figure> -->
 
-    <p>Given their usefulness for detecting continuity and discontinuity, by far the primary downstream contribution of high-low frequency detectors is to <i>boundary detectors</i>. Of the top 20 neurons in <code>mixed3b</code> with the highest L2-norm of weights across all high-low frequency detectors, eight of those 20 neurons participate in boundary detection of some sort: <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_double_boundary">double boundary detectors</a>, <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_boundary_misc">miscellaneous boundary detectors</a>, and especially <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_boundary">object boundary detectors</a>. </p>
+    <p>
+      <a href="https://distill.pub/2020/circuits/early-vision/#mixed3b">mixed3b</a> is the next layer immediately after where we see high-low frequency detectors appear. Here, high-low frequency detectors contribute to a variety of features: <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_bumps">bumps</a> and <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_divots">divots</a>, <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_bar_line_like">line-like</a> and <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_curves_misc.">curve-like</a> shapes, boundary detectors,
+      and at least one each of <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_281.html">center-surrounds</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_372.html">patterns</a>, and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_276.html">textures</a>.
+    </p>
+
+    <d-figure style="grid-column-end: page-end" id="figure-10">
+      <figure>
+        <img src="diagrams/downstream-circuits.svg" style="margin-bottom: 20px"/>
+      <figcaption style="grid-column-end: text-end">
+        <p>
+            <a href="#figure-10" class="figure-number">10</a>:
+            Examples of neurons that high-low frequency detectors contribute to: <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_365.html"><code>mixed3b</code> 365</a> (an hourglass shape detector), <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_276.html"><code>mixed3b</code> 276</a> (a center-surround texture detector), and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a> (a double boundary detector).
+        </p>
+      </figcaption>
+      </figure>
+    </d-figure>
+
+    <p>
+      Oftentimes, downstream features appear to ignore the &ldquo;sidedness&rdquo; of a high-low frequency detector, responding roughly the same way to <i>both</i> possible polarities of a given direction&mdash;regardless of which side is high frequency. Consider how <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_345.html"><code>mixed3b</code> 345</a>, the top example above, has its strongest activations from high-low frequency detectors that detect change across a vertically-oriented line. By responding to both, high-low frequency detectors appear to help detect boundaries between different objects or regions, as well as an object's continuity with itself.
+    </p>
+
+    <d-figure id="figure-11">
+      <figure>
+        <img src="diagrams/downstream-interpretation.svg" style="margin-bottom: 20px; display: block;"/>
+      <figcaption>
+        <p>
+          <a href="#figure-11" class="figure-number">11</a>:
+          Some of <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a>'s weights, extracted for emphasis. &ldquo;Sidedness&rdquo; doesn't matter so much for how these weights are used by <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a>, but their 180º-invariant orientation does!</p>
+        <p>Strong <b>activation</b> (left) indicates the presence of a <b>boundary</b> at a particular angle, whereas strong <b>inhibition</b> (right) indicates <b>object continuity</b> where a boundary might otherwise have been.</p>
+      </figcaption>
+      </figure>
+    </d-figure>
+
+    <!-- <%= require('./diagrams/downstream-neurons.ejs')() %> -->
+
+    <p>Given their usefulness for detecting continuities and discontinuities, by far the primary downstream contribution of high-low frequency detectors is to <i>boundary detectors</i>. Of the top 20 neurons in <code>mixed3b</code> with the highest L2-norm of weights across all high-low frequency detectors, eight of those 20 neurons participate in boundary detection of some sort: <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_double_boundary">double boundary detectors</a>, <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_boundary_misc">miscellaneous boundary detectors</a>, and especially <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_boundary">object boundary detectors</a>. </p>
 
     <h4>Role in object boundary detection</h4>
 
@@ -399,38 +416,34 @@
       <img src="images/Boundary.svg" />
     </figure>
 
-    <p> High-low frequency detectors contribute to these object boundary detectors by providing one type of cue that an object has ended and something else has begun. An additional three examples of object boundary detectors are given below; notice how both the shape of the weights and the orientation of the high-low frequency detector each contribute to the object boundary detector's shape.</p>
+    <p> High-low frequency detectors contribute to these object boundary detectors by providing one type of cue that an object has ended and something else has begun. Some examples of object boundary detectors are given below, along with their weights to certain high-low frequency detectors.</p>
 
-    <d-figure>
+    <d-figure id="figure-12">
       <figure>
         <img src="diagrams/downstream-boundary-detectors.svg" style="margin-bottom: 20px;"/>
       <figcaption>
-        <p>Four examples of object boundary detectors that high-low frequency detectors contribute to: <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_345.html"><code>mixed3b</code> 345</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_376.html"><code>mixed3b</code> 376</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_368.html"><code>mixed3b</code> 368</a>, and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_151.html"><code>mixed3b</code> 151</a>.
+        <p><a href="#figure-12" class="figure-number">12</a>: Four examples of object boundary detectors that high-low frequency detectors contribute to: <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_345.html"><code>mixed3b</code> 345</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_376.html"><code>mixed3b</code> 376</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_368.html"><code>mixed3b</code> 368</a>, and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_151.html"><code>mixed3b</code> 151</a>.
       </figcaption>
       </figure>
     </d-figure>
 
-    <p>Object boundary detectors are sensitive to the rotation of the high-low frequency detectors that activate them. Consider how <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_345.html"><code>mixed3b</code> 345</a>, the top example above, has its strongest activations from high-low frequency detectors that detect change across a vertically-oriented line.</p>
-
-    <p>However, much the other examples we've seen, object boundary detectors are also invariant to the &ldquo;sidedness&rdquo; of the high-low frequency detectors that activate them. Among the high-low frequency detectors that activate <code>mixed3b</code> 345, the high-frequency side may either be on the left (as with <code>mixed3a</code> <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_110.html">110</a>) or on the right (as with <code>mixed3a</code> <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_112.html">112</a>); in each case, the weights are approximately the same.</p>
+    <p>Notice how similar the weights are within each of the 180º-invariant orientation groupings! The orientation of the high-low frequency detector and the spatial arrangement of its weights each contribute to the object boundary detector's overall shape.</p>
 
     <!-- <p class="todo">Show cosine similarity of forward weights as compared to incoming weights; expect -1 incoming; 1 outgoing. Can put this in a table?</p> -->
 
-    <h3>In mixed4a</h3>
+    <!-- <h3>In mixed4a</h3> -->
 
     <p>
-      High-low frequency detectors ultimately play a role in detecting more sophisticated object shapes in <code>mixed4a</code> and beyond by contributing to the detection of boundaries and contiguity.
+      Beyond <code>mixed3b</code>, high-low frequency detectors ultimately play a role in detecting more sophisticated object shapes in <code>mixed4a</code> and beyond by continuing to contribute to the detection of boundaries and contiguity.
     </p>
 
-    <figure id="3.2-downstream-nmf">
+    <!-- <figure id="3.2-downstream-nmf">
       <img src="diagrams/3.2-downstream-nmf/placeholder.png" />
       <figcaption class="figcaption">
-        <p>8 neurons from <code>mixed4a</code> (top row) with the highest L2 norm of weights on the given 9 boundary detectors (left column) from <code>mixed3a</code>.</p>
-        <p>Where a neuron is <span class="legend-label support">activated</span> by a high-low frequency detector in some direction, the object typically has a <i>boundary</i> along the same line.</p>
-        <p>Where a neuron is <span
-        class="legend-label inhibit">inhibited</span> by a high-low frequency detector in some direction, the object typically has <i>contiguity</i> orthogonal to the line of high-low frequency change.</p>
+        <p>8 neurons from <code>mixed4a</code> (top row) with the highest L2-norm of weights on the given 9 boundary detectors (left column) from <code>mixed3a</code>, along with weights: <span class="legend-label support">activation</span> and <span
+        class="legend-label inhibit">inhibition</span>.</p>
       </figcaption>
-    </figure>
+    </figure> -->
 
     <p>
     So far, the scope of our investigation has been limited to InceptionV1.
@@ -440,36 +453,39 @@
     <!--Universality-->
     <h2>Universality</h2>
 
-    <h4>High-Low Frequency Detectors in Other Networks</h4>
+    <h3>High-Low Frequency Detectors in Other Networks</h3>
 
     <p>It's always good to ask if what we see is the rule or an interesting exception&mdash;and high-low frequency detectors seem to be the rule.
-          High-low frequency detectors similar to ones in InceptionV1 can be found in a variety of architectures. Below, we show four columns of high-low frequency detectors that we've found in AlexNet, InceptionV4, and ResnetV2-50, and compare them to their most similar counterpart from InceptionV1.
-      </p>
+    High-low frequency detectors similar to ones in InceptionV1 can be found in a variety of architectures.
+    </p>
 
 
     <%= require('./diagrams/similar-directions.ejs')() %>
 
-      <p>Notice that these detectors are found at very similar depths within the different networks, between 29% and 33% network depth!</p>
+    <p>Notice that these detectors are found at very similar depths within the different networks, between 29% and 33% network depth! While the particular orientations each network's high-low frequency detectors respond to may vary slightly, each network has its own family of detectors that together cover the full 360º range of orientations.</p>
 
-    <p>Having located candidate high-low frequency detectors in these three other networks, we can also ask ourselves whether the same conclusions hold about how these detectors are built up from underlying neurons.</p>
+    <p>Will we also discover that these detectors are built up from high frequency detection and low frequency detection, even though they're from three completely different networks?</p>
 
-    <h4>HF-factor and LF-factor in Other networks</h4>
+    <h3>HF-factor and LF-factor in Other Networks</h3>
 
     <p>
-      As with InceptionV1, we perform NMF on the weights of the high-low frequency detectors in each network.
+      As we did with InceptionV1, we can again perform NMF on the weights of the high-low frequency detectors in each network in order to extract the strongest two factors.
     </p>
 
     <%= require('./diagrams/universality.ejs')() %>
 
 
-    <p>As we found before, the feature visualizations of the two factors reveal one clear HF-factor and one clear LF-factor. Furthermore, the weights of the two factors are again very close to symmetric.</p>
-    <p>While the small details&mdash;which angles each network's high-low frequency detectors respond to, which colors appear in each network's feature visualizations&mdash;may vary, the overall thrust of the story is still the same: high-low frequency detectors are built up by placing high frequency detection and low frequency detection in a specific spatial arrangement.</p>
+    <p>The feature visualizations of the two factors reveal one clear HF-factor and one clear LF-factor, just like what we found in InceptionV1. Furthermore, the weights on the two factors are again very close to symmetric.</p>
+    <p>Our earlier conclusions about Hypothesis 1 therefore also hold across these different networks: high-low frequency detectors are built up from placing high frequency detection and low frequency detection in a specific spatial arrangement.</p>
 
     <h2>Conclusion</h2>
 
-    <p>As we've seen, high-low frequency detectors are an important part of later, higher-level features, are built up from comprehensible lower-level parts, and are common across multiple network architectures.</p>
+    <p>Although high-low frequency detectors represent a feature that we didn't necessarily expect to find in a neural network, we find that we can still explore and understand them using the interpretability tools we've built up for exploring <a href="https://distill.pub/2020/circuits/zoom-in/">circuits</a>: NMF, feature visualization, synthetic stimuli, and more.
 
-    <p>We wonder whether their existence isn't so unnatural after all: as seen previously in <a href="#dataset-examples">the dataset examples</a>, a high-low frequency change can indicate the border between an in-focus foreground object and its more blurry background (or between an in-focus background and the more blurry foreground, or even between two objects at different focuses).</a> Changes such as these are something of a natural concept: the aesthetic quality imparted by the blurriness of an out-of-focus region of an image is known as <a href="https://en.wikipedia.org/wiki/Bokeh"><i>bokeh</i></a> in photography, and getting it right as a depth cue is one of the notable challenges explored by developers of immersive VR.</p>
+    <p>We've also learned that high-low frequency detectors are an important part of later, higher-level features, are built up from comprehensible lower-level parts, and are common across multiple network architectures.
+    </p>
+
+    <p>Despite their surprisingness, we wonder whether their existence isn't so unnatural after all: as seen previously in <a href="#dataset-examples">the dataset examples</a>, a high-low frequency change can indicate the border between an in-focus foreground object and its more blurry background (or between an in-focus background and the more blurry foreground, or even between two objects at different focuses).</a> Changes such as these are something of a natural concept: the aesthetic quality imparted by the blurriness of an out-of-focus region of an image is known as <a href="https://en.wikipedia.org/wiki/Bokeh"><i>bokeh</i></a> in photography, and getting it right as a depth cue is one of the notable challenges explored by developers of immersive VR.</p>
 
     <p>Depth perception is simply one of the challenges that's endemic to vision, and frequency change is one cue that a vision system can use for getting it right. Just as neuroscientists have already uncovered and characterized curve detectors, the authors therefore wonder whether high-low frequency detectors might also be lurking in that original neural network vision system, the animal visual cortex.</p>
 

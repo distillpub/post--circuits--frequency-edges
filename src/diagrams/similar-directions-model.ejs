@@ -2,8 +2,8 @@
 <div class="model">
     <figcaption>
         <strong class="name"><%=model.name%></strong>
-    <span>Layer <code class="layer-name"><%=model.layerName%></code> </span>
-    <span class="depth-ratio">At ~<%= (depth*100).toFixed(0) %>% network depth</span>
+    <span style="font-size: 95%">Layer <code class="layer-name"><%=model.layerName%></code> </span>
+    <span style="font-size: 95%" class="depth-ratio">At ~<%= (depth*100).toFixed(0) %>% network depth</span>
     </figcaption>
     <% for (const unit of model.units.slice(0,40)) { %>
     <picture>

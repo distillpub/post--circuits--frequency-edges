@@ -56,11 +56,13 @@
     }
 </style>
 
+<d-figure id="figure-13">
 <figure id="4.1-similar-directions" class="columns">
     <% for (const model of models) { %>
     <%= require('./similar-directions-model.ejs')({model}) %>
     <%}%>
     <figcaption>
-      <p>These are actual channels, not linear combinations approximating the detectors in InceptionV1.</p>
+      <p><a href="#figure-13" class="figure-number">13</a>. High-low frequency detectors that we've found in AlexNet, InceptionV4, and ResnetV2-50 (right), compared to their most similar counterpart from InceptionV1 (left).</p>
+      <p>These are actual neurons, not linear combinations approximating the detectors in InceptionV1.</p>
     </figcaption>
 </figure>
