@@ -111,3 +111,8 @@ a.section-number:hover {
 	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAA7ElEQVQ4T4WRi23EMAxDSXu1jtD9R4kPIiVbTosWh0Ci+PRJjl/8XuAAB9EjpAmOoYgdCXKg/MsLTmzGN9e8pRzm83nXulZO8yv7VuqoF1tceY7QTZW/vR9a82Nm7ssZd3/5uXvzvbczeUfjFn6p1b3/zDv3xZCzp9f3u3Ptd7/6tCu9vMU9K7913Wfdvfg7Lg5mmL0nmgvtv/lw/rzHGzs3W3rgpZML394Sez34q/aY3cyDubW9KS9zeVWv2qP+KebZfPXNxospFt5lP/pqd0TrYjVLfs13n3f4RudwBDCVM/OITE1Mho5f5M4+UeiJCh70oMIAAAAASUVORK5CYII=");
 	background-size: contain;
 }
+
+#figure-3 > figure {
+	display: grid;
+	grid-row-gap: 0.5em;
+}

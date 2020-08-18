@@ -1,37 +1,21 @@
 <script>
   import { units } from "../../static/diagrams/1.4-tuning-curves/units.json";
   const layer = "mixed3a";
-  // let count = 1;
-
-  // // the `$:` means 're-run whenever these values change'
-  // $: doubled = count * 2;
-  // $: quadrupled = doubled * 2;
-
-  // function handleClick() {
-  //   count += 1;
-  //   console.log("inc count");
-  // }
-
-  // function reset() {
-  //   count = 1;
-  // }
 </script>
 
 <style>
-  ul {
+  /* ul {
     padding: 0;
   }
   li {
     display: flex;
     margin: 0.5em 0;
     max-height: 80px;
-  }
+  } */
   div {
     display: grid;
     grid-template-columns: 1fr 8fr;
     grid-column-gap: 0.5em;
-    /* grid-row-gap: 0.5em; */
-    margin-bottom: 1em;
   }
   .legend {
     margin-bottom: 0;
@@ -42,9 +26,9 @@
     display: flex;
   }
 
-  img.response {
-    /* border-radius: 2px; */
-  }
+  /* img.response {
+    border-radius: 2px;
+  } */
   img.feature-vis {
     object-fit: none;
     object-position: center;
@@ -53,12 +37,11 @@
   img.response {
     width: 100%;
     height: 100%;
-    /* border: 1px solid #000; */
   }
 
-  .unit {
-    text-align: center;
-  }
+  /* .unit-row {
+    max-height: 64px;
+  } */
 
   svg {
     align-self: center;
@@ -73,8 +56,8 @@
   svg .axis-label {
     font-size: 75%;
     paint-order: stroke;
-    stroke: rgba(255, 255, 255, 0.8);
-    stroke-width: 5px;
+    stroke: white;
+    stroke-width: 6px;
     stroke-linecap: butt;
     stroke-linejoin: miter;
   }
@@ -109,7 +92,10 @@
       </text>
     </g>
   </svg>
-  <img src="diagrams/1.4-tuning-curves/samples-small.png" />
+  <img
+    src="diagrams/1.4-tuning-curves/samples-small.png"
+    alt="A sampled grid from the two axes of variation of our synthetic stimuli:
+    orientation and spatial frequency ratio." />
 </div>
 
 <div class="legend">
@@ -143,14 +129,11 @@
   </svg>
 </div>
 
-<div>
-  <b />
-  <b />
-</div>
-
 {#each units as unit, index}
-  <div>
-    <a class="feature-link" href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_{unit.index}.html">
+  <div class="unit-row">
+    <a
+      class="feature-link"
+      href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_{unit.index}.html">
       <img
         class="feature-vis"
         src={`diagrams/1.1-feature-vis/neuron-${unit.index}.png`}
@@ -177,8 +160,12 @@
 {/each}
 
 <figcaption class="figcaption">
-  <a href="#figure-3" class="figure-number">3</a>:
-  Responses of six high-low frequency detectors to artifical stimuli. The
-  stimuli vary over two axes: orientation, ranging from 0 to 2π, and frequency ratio, ranging from 1:1 to 1:10. Activation values are normalized across
-  all units shown, ranging from 0 to 1. <span class="viridis" style="display: inline; margin-left: 5px; padding-right: 64px;" />
+  <a href="#figure-3" class="figure-number">3</a>
+  : Responses of six high-low frequency detectors to artifical stimuli. The
+  stimuli vary over two axes: orientation, ranging from 0 to 2π, and frequency
+  ratio, ranging from 1:1 to 1:10. Activation values are normalized across all
+  units shown, ranging from 0 to 1.
+  <span
+    class="viridis"
+    style="display: inline; margin-left: 5px; padding-right: 64px;" />
 </figcaption>

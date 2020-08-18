@@ -88,7 +88,7 @@
     <style>
       .gallery {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(28px, 70px));
+        grid-template-columns: repeat(auto-fit, minmax(28px, 64px));
         grid-gap: 0.5rem;
         justify-content: start;
       }
@@ -97,19 +97,24 @@
         padding-left: 0;
       }
 
-      .gallery img {
+      .gallery img,
+      .gallery-img {
         max-width: 100%;
         width: unset;
         object-fit: none;
         object-position: center;
-        border-radius: 10px;
+        border-radius: 8px;
       }
 
       @media screen and (min-width: 768px) {
         .gallery {
-          grid-template-columns: repeat(7, minmax(28px, 70px));
-          grid-gap: 1rem;
+          grid-template-columns: repeat(7, minmax(28px, 96px));
           justify-content: left;
+        }
+      }
+      @media screen and (min-width: 1180px) {
+        .gallery {
+          grid-gap: 1rem;
         }
       }
     </style>
@@ -132,15 +137,13 @@
     </p>
 
     <p>
-      From their feature visualizations, we observe that all fifteen of these high-low frequency detectors share these same characteristics:
+      From their feature visualizations, we observe that all fifteen of these high-low frequency detectors share these same
+      characteristics:
     </p>
-    <aside style="grid-column-start: page-start; grid-column-end: text-start;">
-      <p>By &ldquo;high frequency&rdquo; and &ldquo;low frequency&rdquo; here, we mean <a href="https://en.wikipedia.org/wiki/Spatial_frequency">spatial frequency</a>&mdash;just like when we take the Fourier transform of an image.</p>
-    </aside>
 
     <ul>
       <li>
-        <b>Detection of high and low frequency.</b> The detectors look for <i>high frequency</i> on one side, and <i>low frequency</i> on the other side.
+        <b>Detection of adjacent high and low frequencies.</b> The detectors look for <i>high frequency</i> on one side, and <i>low frequency</i> on the other side.
       </li>
       <li>
         <b>Directionality.</b> The detectors only detect that high-low frequency change along a particular angle.
@@ -149,6 +152,11 @@
         <b>Together, they span the range of orientations.</b> Just as we observed by creating a <a href="https://distill.pub/2020/circuits/curve-detectors/#joint-tuning-curves">joint tuning curve</a> for curve detectors, the high-low frequency detectors span the full 360º of possible orientations.
       </li>
     </ul>
+    <aside>
+      <p>By &ldquo;high frequency&rdquo; and &ldquo;low frequency&rdquo; here, we mean <a
+          href="https://en.wikipedia.org/wiki/Spatial_frequency">spatial frequency</a>&mdash;just like when we take the
+        Fourier transform of an image.</p>
+    </aside>
 
     <p>Because feature visualizations use a <a href="https://distill.pub/2017/feature-visualization/#diversity">diversity term</a>, we can also be reasonably confident that if high-low frequency detectors were also sensitive to other patterns, we would see signs of it in their feature visualizations.</p>
 
@@ -161,7 +169,8 @@
     </p>
 
     <figure id="figure-2" style="grid-column-start: text-start; grid-column-end: page-start;">
-      <a href="https://microscope.openai.com/models/inceptionv1/mixed3a_0/136">      <img src="https://storage.googleapis.com/inceptionv1-weight-explorer/images/neuron/mixed3a_136.jpg" style="max-width: 65px; border-radius: 10px; float:right;" />
+      <a href="https://microscope.openai.com/models/inceptionv1/mixed3a_0/136">
+        <img src="diagrams/1.1-feature-vis/neuron-136.png" class="gallery-img" style="max-width: 65px; border-radius: 8px; float:right;" />
       </a>
     </figure>
 
@@ -214,9 +223,7 @@
 
     <p>These two axes then define a 2-D space from which we can sample synthetic stimuli and measure each neuron's responses to them:</p>
 
-    <d-figure id="figure-3">
-      <figure></figure>
-    </d-figure>
+    <d-figure id="figure-3"><figure></figure></d-figure>
     <p>
       Each high-low frequency detector exhibits a clear preference for a limited range of orientations. Furthermore, just as we previously found with curve detectors, the family of high-low frequency detectors (even just the six shown here) covers the full 360º space of orientations!
     </p>
