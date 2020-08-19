@@ -87,7 +87,14 @@
         y2="calc(100% - 1px)"
         marker-end="url(#t2)"
         marker-start="url(#t2)" />
-      <text transform="rotate(-90)" class="axis-label" x="-68" y="14">
+      <text
+        class="axis-label"
+        transform="rotate(-90)"
+        transform-origin="center"
+        x="50%"
+        y="50%"
+        dominant-baseline="middle"
+        text-anchor="middle">
         ƒ-ratio
       </text>
     </g>
@@ -124,7 +131,14 @@
         y2="50%"
         marker-end="url(#t)"
         marker-start="url(#t)" />
-      <text class="axis-label" x="44%" y="70%">Orientation</text>
+      <text
+        class="axis-label"
+        dominant-baseline="middle"
+        text-anchor="middle"
+        x="50%"
+        y="50%">
+        Orientation
+      </text>
     </g>
   </svg>
 </div>
