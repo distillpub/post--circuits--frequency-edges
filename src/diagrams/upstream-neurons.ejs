@@ -8,16 +8,15 @@
     }
 
     h5 {
-      margin-bottom: 0px;
+        margin-bottom: 0px;
     }
 
     .upstream-neurons .row {
         display: grid;
         grid-template-columns: 1fr min-content 1fr min-content 1fr min-content 1fr min-content 1fr min-content 1fr min-content min-content;
-        grid-column-gap: .5em;
-        column-gap: .5em;
+        grid-column-gap: .25em;
+        column-gap: .25em;
         align-items: center;
-        /* justify-items: start; */
     }
 
     .units,
@@ -78,15 +77,24 @@
         margin-bottom: 0.2em;
     }
 
-    /* .equal-sign {
-        padding: 0 0.5em;
-    } */
+    .equal-sign {
+        padding: 0 0.25em;
+    }
+
+    .ellipsis {
+        padding: 0 0.25em;
+        /* vertically align the ellipsis */
+        position: relative;
+        bottom: 0.5ex;
+    }
 
     .unit {
-      display: block;
-      min-width: 50px;
+        display: block;
+        min-width: 50px;
     }
-    .unit.factor {
+
+    .factor {
+        box-shadow: 0 0 8px #888;
     }
 
     .unit .bar {
@@ -104,29 +112,27 @@
 <figure>
     <% for (const fv_layer of ["conv2d2", "conv2d1"]) {%>
     <div class="upstream-neurons">
-      <h4> <%= fv_layer %> </h4>
+        <h4>mixed3a → <%= fv_layer %></h4>
         <% for (const [factor, hilo] of [[0, "hi"], [1, "lo"]]) {%>
         <% localUnits = units[fv_layer][factor].reverse() %>
         <div class="row">
-            <img class="unit factor fv full" src="<%= `diagrams/2.1-upstream-nmf/${fv_layer}-${hilo}.png` %>" />
+            <img class="factor fv full" src="<%= `diagrams/2.1-upstream-nmf/${fv_layer}-${hilo}.png` %>" />
             <span class="annotation equal-sign">=</span>
             <% for (const unit of localUnits) {%>
-            <div class="unit">
-                <img class="fv full"
-                    src="<%= `diagrams/2.2-upstream-neurons/layer_name=${fv_layer}-component=${factor}-channel_index=${unit.index}.png` %>" />
-            </div>
+            <img class="fv fv-neuron"
+                src="<%= `diagrams/2.2-upstream-neurons/layer_name=${fv_layer}-component=${factor}-channel_index=${unit.index}.png` %>" />
             <span class="annotation">+</span>
             <% } %>
-            <span class="annotation">…</span>
+            <span class="annotation ellipsis">…</span>
 
             <span class="figcaption"><%= factor == 0 ? "HF" : "LF" %>-factor</span>
             <span></span>
             <% for (const unit of localUnits) {%>
-                <div class="unit">
-                    <!-- <div class="bar" style="width: <%= (unit.coeff*100).toFixed(3) %>%"></div> -->
-                    <span class="magnitude figcaption"> × <%= unit.coeff.toFixed(2).toString() %></span>
-                </div>
-                <span></span>
+            <div class="unit">
+                <!-- <div class="bar" style="width: <%= (unit.coeff*100).toFixed(3) %>%"></div> -->
+                <span class="magnitude figcaption"> × <%= unit.coeff.toFixed(2).toString() %></span>
+            </div>
+            <span></span>
             <% } %>
         </div>
         <% } %>
@@ -134,9 +140,9 @@
     <% } %>
 
     <figcaption>
-        <p><a href="#figure-6" class="figure-number">6</a>:
-        NMF recovers the neurons that contribute to the two NMF factors plus the weighted amount they contribute to each factor. Here shown: NMF against both <code>conv2d2</code> and a deeper layer, <code>conv2d1</code>.
-        </p>
-        <p>Left column: Feature visualization of each NMF factor.</p>
+        <a href="#figure-6" class="figure-number">6</a>:
+        NMF recovers the neurons that contribute to the two NMF factors plus the weighted amount they contribute to
+        each factor. Here shown: NMF against both <code>conv2d2</code> and a deeper layer, <code>conv2d1</code>. The
+        left side of the equal sign shows feature visualizations of the NMF factors.
     </figcaption>
 </figure>
