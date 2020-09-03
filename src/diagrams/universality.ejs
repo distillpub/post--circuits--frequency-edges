@@ -51,12 +51,13 @@
 
     img.fv {
         max-width: 100%;
-        border-radius: 0.25rem;
+        border-radius: 8px;
     }
 
     div.units img.full {
         margin-left: 1px;
     }
+
     img.full {
         width: unset;
         object-fit: none;
@@ -78,6 +79,7 @@
     .annotated-image {
         display: grid;
         grid-auto-flow: column;
+        align-items: center;
     }
 
     .annotated-image span {
@@ -89,6 +91,7 @@
         border-right: 1px solid #aaa;
         text-align: end;
     }
+
     .layer-label label {
         display: inline-block;
         margin-right: .5em;
@@ -99,12 +102,13 @@
     .layer-label.hidden {
         border-color: transparent;
     }
+
     .layer-label.hidden label {
         visibility: hidden;
     }
 
     .legend-label {
-        padding: .125rem .25rem;
+        padding: 1px 4px;
         border-radius: 2px;
         color: rgba(0, 0, 0, 0.8);
     }
@@ -116,56 +120,61 @@
     .legend-label.inhibit {
         background-color: #0088EE88;
     }
+
     #figure-14 {
-      padding-bottom: 2rem;
+        padding-bottom: 2rem;
     }
 </style>
 
 <d-figure id="figure-14">
-<figure>
-    <% for (const network_name of ["AlexNet", "InceptionV3_slim", "ResnetV2_50_slim"]) {%>
-    <h4> <%= network_name %> </h4>
-    <div class="upstream-nmf">
-        <div class="row">
-            <div class="layer-label hidden"><label class="figcaption">layer</label></div>
-            <div class="units">
-                <% for (const index of [0, 1, 2, 3, 4, 5]) {%>
-                <a href="<%= units[network_name].neurons_link + units[network_name].units[index]%>">
-                <img class="fv full" src="<%= `diagrams/6.0-universality/${network_name}-${index}.png` %>"
-                    title="<%= "Unit " + units[network_name].units[index] %>" />
+    <figure>
+        <% for (const network_name of ["AlexNet", "InceptionV3_slim", "ResnetV2_50_slim"]) {%>
+        <h4> <%= network_name %> </h4>
+        <div class="upstream-nmf">
+            <div class="row">
+                <div class="layer-label hidden"><label class="figcaption">layer</label></div>
+                <div class="units">
+                    <% for (const index of [0, 1, 2, 3, 4, 5]) {%>
+                    <a href="<%= units[network_name].neurons_link + units[network_name].units[index]%>">
+                        <img class="fv full" src="<%= `diagrams/6.0-universality/${network_name}-${index}.png` %>"
+                            title="<%= "Unit " + units[network_name].units[index] %>" />
+                        <% } %>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="layer-label"><label
+                        class="figcaption"><%= units[network_name].layer + " &rightarrow; " + units[network_name].prev_layer %></label>
+                </div>
+                <% for (const hilo of ["hi", "lo"]) {%>
+                <div class="annotated-image">
+                    <span class="figcaption"><%= hilo == "hi" ? "HF-factor" : "LF-factor" %></span>
+                    <img class="fv full factor" src="<%= `diagrams/6.0-universality/${network_name}-${hilo}.png` %>" />
+                </div>
+                <div class="weights">
+                    <% for (const index of [0, 1, 2, 3, 4, 5]) {%>
+                    <img class="weight" src="<%= `diagrams/6.0-universality/${network_name}-${index}-${hilo}.png` %>"
+                        title="<%= "Unit " + units[network_name].units[index] %>" />
+                    <% } %>
+                </div>
                 <% } %>
-                </a>
             </div>
         </div>
-        <div class="row">
-            <div class="layer-label"><label class="figcaption"><%= units[network_name].layer + " &rightarrow; " + units[network_name].prev_layer %></label></div>
-            <% for (const hilo of ["hi", "lo"]) {%>
-            <div class="annotated-image">
-                <span class="figcaption"><%= hilo == "hi" ? "HF-factor" : "LF-factor" %></span>
-                <img class="fv full factor" src="<%= `diagrams/6.0-universality/${network_name}-${hilo}.png` %>" />
-            </div>
-            <div class="weights">
-                <% for (const index of [0, 1, 2, 3, 4, 5]) {%>
-                <img class="weight"
-                    src="<%= `diagrams/6.0-universality/${network_name}-${index}-${hilo}.png` %>" title="<%= "Unit " + units[network_name].units[index] %>" />
-                <% } %>
-            </div>
-            <% } %>
-        </div>
-    </div>
-    <% } %>
-    <figcaption>
-      <p>
-        <a href="#figure-14" class="figure-number">14</a>:
-        NMF of high-low frequency detectors in
+        <% } %>
+        <figcaption>
+            <p>
+                <a href="#figure-14" class="figure-number">14</a>:
+                NMF of high-low frequency detectors in
 
-    <% for (const network_name of ["AlexNet", "InceptionV3_slim", "ResnetV2_50_slim"]) {%>
-        <%= network_name=='ResnetV2_50_slim' ? ' and ' : '' %>
-        <%= network_name %>'s
-        <a href="<%= units[network_name].layer_link %>"><%= units[network_name].layer %></a> with respect to <a href="<%= units[network_name].prev_layer_link %>"><%= units[network_name].prev_layer %></a>,
-    <% } %>
-        showing <span class="legend-label support">activations</span> and <span
-        class="legend-label inhibit">inhibitions</span>.
-      </p><br/><br/></figcaption>
-</figure>
+                <% for (const network_name of ["AlexNet", "InceptionV3_slim", "ResnetV2_50_slim"]) {%>
+                <%= network_name=='ResnetV2_50_slim' ? ' and ' : '' %>
+                <%= network_name %>'s
+                <a href="<%= units[network_name].layer_link %>"><%= units[network_name].layer %></a> with respect to <a
+                    href="<%= units[network_name].prev_layer_link %>"><%= units[network_name].prev_layer %></a>,
+                <% } %>
+                showing <span class="legend-label support">activations</span> and <span
+                    class="legend-label inhibit">inhibitions</span>.
+            </p><br /><br />
+        </figcaption>
+    </figure>
 </d-figure>

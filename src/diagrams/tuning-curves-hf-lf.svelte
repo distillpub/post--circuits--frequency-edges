@@ -6,21 +6,17 @@
        This should keep feature vis images mostly square. */
     grid-template-columns: 1fr 6fr;
     grid-template-rows: min-content;
-    grid-column-gap: 0.5em;
-    grid-row-gap: 0.5em;
-    gap: 0.5em;
-  }
-  .legend {
-    margin-bottom: 0;
-    min-width: 0;
-    min-height: 0;
+    /* grid-gap was deprecated in favor of gap */
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
+    gap: 1em;
   }
 
   img.feature-vis {
     height: 100%;
     object-fit: none;
     object-position: center;
-    border-radius: 0.25rem;
+    border-radius: 8px;
   }
 
   svg {
@@ -134,7 +130,7 @@
   {#each ['hf', 'lf'] as factor, index}
     <div>
       <img
-        class="feature-vis"
+        class="feature-vis factor"
         src={`diagrams/7.0-hf-lf-tuning-curves/conv2d2-${factor}.png`}
         alt={`Feature visualization of ${factor} factor.`}
         title={`Feature visualization of ${factor} factor.`} />

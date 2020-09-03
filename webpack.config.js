@@ -62,6 +62,7 @@ module.exports = {
 				options: {
 					removeSVGTagAttrs: true,
 					removingTagAttrs: ["font-family"],
+					idPrefix: true
 				},
 			},
 			{

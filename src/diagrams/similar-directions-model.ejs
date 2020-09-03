@@ -2,12 +2,12 @@
 <div class="model">
     <figcaption>
         <strong class="name"><%=model.name%></strong>
-    <span style="font-size: 95%">Layer <code class="layer-name"><%=model.layerName%></code> </span>
-    <span style="font-size: 95%" class="depth-ratio">At ~<%= (depth*100).toFixed(0) %>% network depth</span>
+        <span style="font-size: 95%">Layer <code class="layer-name"><%=model.layerName%></code> </span>
+        <p style="font-size: 95%" class="depth-ratio">At ~<%= (depth*100).toFixed(0) %>% CNN depth</p>
     </figcaption>
     <% for (const unit of model.units.slice(0,40)) { %>
     <picture>
-        <img class="fv" width="96" height="96" src="<%= model.url.replace("{}", unit) %>"
+        <img width="96" height="96" src="<%= model.url.replace("{}", unit) %>"
             title="<%= model.name%>'s layer <%=model.layerName%>, Unit <%= unit %>">
     </picture>
     <%}%>

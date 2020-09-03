@@ -25,12 +25,13 @@
 
     img.fv {
         max-width: 100%;
-        border-radius: 0.25rem;
+        border-radius: 8px;
     }
 
     div.units img.full {
         margin-left: 1px;
     }
+
     img.full {
         width: unset;
         object-fit: none;
@@ -48,6 +49,7 @@
     .annotated-image {
         display: grid;
         grid-auto-flow: column;
+        align-items: center;
     }
 
     .annotated-image span {
@@ -59,6 +61,7 @@
         border-right: 1px solid #aaa;
         text-align: end;
     }
+
     .layer-label label {
         display: inline-block;
         margin-right: .5em;
@@ -68,65 +71,69 @@
     .layer-label.hidden {
         border-color: transparent;
     }
+
     .layer-label.hidden label {
         visibility: hidden;
     }
 
     .legend-label {
-        padding: .125rem .25rem;
+        padding: 1px 4px;
         border-radius: 2px;
         color: rgba(0, 0, 0, 0.8);
     }
 
     .legend-label.support {
-        background-color: #EE880088;
+        background-color: #EE8800FF;
     }
 
     .legend-label.inhibit {
-        background-color: #0088EE88;
+        background-color: #0088EEFF;
     }
 </style>
 
 <d-figure id="figure-9">
-<figure>
-    <div class="upstream-nmf">
+    <figure>
+        <div class="upstream-nmf">
 
-        <div class="row">
-            <div class="layer-label hidden"><label class="figcaption">mixed3a</label></div>
-            <div class="units">
-                <% for (const unit of units) {%>
-                <img class="fv full" src="<%= `diagrams/1.1-feature-vis/neuron-${unit.index}.png` %>"
-                    title="<%= "Unit " + unit.index %>" />
-                <% } %>
+            <div class="row">
+                <div class="layer-label hidden"><label class="figcaption">mixed3a</label></div>
+                <div class="units">
+                    <% for (const unit of units) {%>
+                    <img class="fv full" src="<%= `diagrams/1.1-feature-vis/neuron-${unit.index}.png` %>"
+                        title="<%= "Unit " + unit.index %>" />
+                    <% } %>
+                </div>
             </div>
-        </div>
 
-        <% for (const [factor_layer, fv_layer] of [["maxpool1", "conv2d2"], ["conv2d1", "conv2d1"]]) {%>
-        <div class="row">
-            <div class="layer-label"><label class="figcaption">mixed3a &rightarrow; <%= fv_layer %></label></div>
-            <% for (const [factor, hilo] of [[1, "hi"], [0, "lo"]]) {%>
-            <div class="annotated-image">
-                <span class="figcaption"><%= hilo == "hi" ? "HF-factor" : "LF-factor" %></span>
-                <img class="fv full factor" src="<%= `diagrams/2.1-upstream-nmf/${fv_layer}-${hilo}.png` %>" />
-            </div>
-            <div class="weights">
-                <% for (const unit of units) {%>
-                <img class="weight"
-                    src="<%= `diagrams/2.1-upstream-nmf/neuron=${unit.index}-layer=${factor_layer}-factor=${factor}.png` %>" />
+            <% for (const [factor_layer, fv_layer] of [["maxpool1", "conv2d2"], ["conv2d1", "conv2d1"]]) {%>
+            <div class="row">
+                <div class="layer-label"><label class="figcaption">mixed3a &rightarrow; <%= fv_layer %></label></div>
+                <% for (const [factor, hilo] of [[1, "hi"], [0, "lo"]]) {%>
+                <div class="annotated-image">
+                    <span class="figcaption"><%= hilo == "hi" ? "HF-factor" : "LF-factor" %></span>
+                    <img class="fv full factor" src="<%= `diagrams/2.1-upstream-nmf/${fv_layer}-${hilo}.png` %>" />
+                </div>
+                <div class="weights">
+                    <% for (const unit of units) {%>
+                    <img class="weight"
+                        src="<%= `diagrams/2.1-upstream-nmf/neuron=${unit.index}-layer=${factor_layer}-factor=${factor}.png` %>" />
+                    <% } %>
+                </div>
                 <% } %>
             </div>
             <% } %>
         </div>
-        <% } %>
-    </div>
-    <figcaption>
-        <p><a href="#figure-9" class="figure-number">9</a>:
-          Using NMF factorization on the weights connecting six high-low frequency detectors in InceptionV1 to the two directly
-            preceding convolutional layers, <code>conv2d2</code> and <code>conv2d1</code>.</p>
-        <p>Their spatial arrangement is very clear, with LF factors <span class="legend-label support">activating
-                areas</span> in which high-low frequency detectors expect low frequencies, and <span
-                class="legend-label inhibit">inhibiting areas</span> in which they expect high frequencies. The two factors
-            are very close to symmetric. Weight magnitudes normalized between -1 <span class="color-legend pn"></span> and 1.</p>
-    </figcaption>
-</figure>
+        <figcaption>
+            <p><a href="#figure-9" class="figure-number">9</a>:
+                Using NMF factorization on the weights connecting six high-low frequency detectors in InceptionV1 to the
+                two directly
+                preceding convolutional layers, <code>conv2d2</code> and <code>conv2d1</code>.</p>
+            <p>Their spatial arrangement is very clear, with LF factors <span class="legend-label support">activating
+                    areas</span> in which high-low frequency detectors expect low frequencies, and <span
+                    class="legend-label inhibit">inhibiting areas</span> in which they expect high frequencies. The two
+                factors
+                are very close to symmetric. Weight magnitudes normalized between -1 <span
+                    class="color-legend pn"></span> and 1.</p>
+        </figcaption>
+    </figure>
 </d-figure>

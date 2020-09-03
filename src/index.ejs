@@ -138,7 +138,7 @@
     </figure>
 
     <p>
-      From their feature visualizations, we observe that all fifteen of these high-low frequency detectors share these same
+      From their feature visualizations, we observe that all of these high-low frequency detectors share these same
       characteristics:
     </p>
 
@@ -159,9 +159,21 @@
         Fourier transform of an image.</p>
     </aside>
 
-    <p>Because feature visualizations use a <a href="https://distill.pub/2017/feature-visualization/#diversity">diversity term</a>, we can also be reasonably confident that if high-low frequency detectors were also sensitive to other patterns, we would see signs of it in their feature visualizations.</p>
+    <p>We can use a <a href="https://distill.pub/2017/feature-visualization/#diversity">diversity term</a> in our feature visualizations to jointly optimize for the activation of a neuron while encouraging different activation patterns in a batch of visualizations. We are thus reasonably confident that if high-low frequency detectors were also sensitive to other patterns, we would see signs of them in these feature visualizations. Instead, the frequency contrast remains an invariant aspect of all these visualizations:</p>
 
-    <p class="todo">Insert example of single feature vis with diversity term here!</p>
+    <figure id="figure-1-2">
+      <div class="gallery l-page">
+        <% for (const unit of [0,1,2,3,4,5,6]) {%>
+        <img src="<%= `diagrams/1.1-feature-vis/fv-mixed3a-136-diversity-${unit}.png` %>" title="<%= "Unit mixed3a:136 optimized with a diversity objective."%>" />
+        <% } %>
+        </div>
+      <figcaption class="figcaption l-body">
+        <a href="#figure-1-2" class="figure-number">1-2</a>:
+        Feature visualizations of high-low frequency detector mixed3a:136 from InceptionV1's <a
+          href="https://microscope.openai.com/models/inceptionv1/mixed3a_0?models.op.feature_vis.type=neuron&models.op.technique=feature_vis"><code>mixed3a</code></a>
+        layer, optimized with a diversity objective.
+      </figcaption>
+    </figure>
 
     <a href="#dataset-examples" class="header-self-link">
       <h3 id="dataset-examples">Dataset Examples</h3>
@@ -273,7 +285,8 @@
     <d-figure id="figure-5">
       <figure style=''>
         <!-- <%= require("../static/images/Underlying-Weights.svg") %> -->
-        <img src="images/Underlying-Weights.svg" />
+        <!-- <img src="images/Underlying-Weights.svg" /> -->
+        <%= require('../static/images/Underlying-Weights.svg') %>
         <figcaption>
           <p>
             <a href="#figure-5" class="figure-number">5</a>:
@@ -315,7 +328,8 @@
 
     <d-figure id="figure-8">
       <figure>
-        <img src="diagrams/hf-lf-responses.svg" style="margin-bottom: 20px;"/>
+        <%= require('../static/diagrams/hf-lf-responses.svg') %>
+        <!-- <img src="diagrams/hf-lf-responses.svg" style="margin-bottom: 20px;"/> -->
       <figcaption>
           <p>
             <a href="#figure-8" class="figure-number">8</a>:
@@ -377,7 +391,8 @@
 
     <d-figure style="grid-column-end: page-end" id="figure-10">
       <figure>
-        <img src="diagrams/downstream-circuits.svg" style="margin-bottom: 20px"/>
+        <%= require('../static/diagrams/downstream-circuits.svg') %>
+        <!-- <img src="diagrams/downstream-circuits.svg" style="margin-bottom: 20px"/> -->
       <figcaption style="grid-column-end: text-end">
         <p>
             <a href="#figure-10" class="figure-number">10</a>:
