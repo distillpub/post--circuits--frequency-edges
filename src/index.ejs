@@ -26,9 +26,9 @@
   </style>
 
   <d-title>
-    <h1 style="grid-column-end: page-end;">High-Low Frequency Detectors</h1>
-    <p style="grid-column-end: page-end;">A family of early-vision neurons reacting to contrasts between spatial gratings of different frequency</p>
-    <figure id="hero" class="l-body" style="grid-column-end: page-end;">
+    <h1>Spatial Frequency Contrast Detectors</h1>
+    <p>A family of early-vision neurons reacting to adjacent, sinusoidally-modulated gratings of different spatial frequencies.</p>
+    <figure id="hero" class="l-body">
       <img src="images/high-low-hero.png"/>
     </figure>
   </d-title>
@@ -83,6 +83,10 @@
     <p>
       A <a href="https://distill.pub/2017/feature-visualization">feature visualization</a> is a synthetic input
       optimized to elicit maximal activation of a single, specific neuron.
+      Feature visualizations are constructed starting from random noise, so each and every pixel in a feature visualization
+      that's <i>changed</i> from random noise is there because it caused the neuron to activate more strongly. This
+      establishes a <a href="https://distill.pub/2020/circuits/zoom-in#claim-1">causal link</a>! The behavior shown in the
+      feature visualization causes the neuron to fire:
     </p>
 
     <style>
@@ -121,8 +125,9 @@
     <figure id="figure-1">
       <ul class="gallery l-page">
         <% for (const unit of require("../static/diagrams/1.1-feature-vis/units.json").units) {%>
-        <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_${unit}.html" style="border-bottom: none; display: flex;">
+        <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_${unit}.html" style="border-bottom: none; display: flex; flex-direction: column;">
           <img src="<%= `diagrams/1.1-feature-vis/neuron-${unit}.png` %>" title="<%= "Unit " + unit %>" />
+          <span class="figcaption"><%= `3a:${unit}`%></span>
         </a>
         <% } %>
       </ul>
@@ -131,10 +136,6 @@
         Feature visualizations of a variety of high-low frequency detectors from InceptionV1's <a href="https://microscope.openai.com/models/inceptionv1/mixed3a_0?models.op.feature_vis.type=neuron&models.op.technique=feature_vis"><code>mixed3a</code></a> layer.
       </figcaption>
     </figure>
-
-    <p>
-      Feature visualizations are constructed starting from random noise, so each and every pixel in a feature visualization that's <i>changed</i> from random noise is there because it caused the neuron to activate more strongly. This establishes a <a href="https://distill.pub/2020/circuits/zoom-in#claim-1">causal link</a>! The behavior shown in the feature visualization causes the neuron to fire.
-    </p>
 
     <p>
       From their feature visualizations, we observe that all fifteen of these high-low frequency detectors share these same
@@ -146,7 +147,7 @@
         <b>Detection of adjacent high and low frequencies.</b> The detectors look for <i>high frequency</i> on one side, and <i>low frequency</i> on the other side.
       </li>
       <li>
-        <b>Directionality.</b> The detectors only detect that high-low frequency change along a particular angle.
+        <b>Orientedness.</b> The detectors only detect that high-low frequency change along a particular angle.
       </li>
       <li>
         <b>Together, they span the range of orientations.</b> Just as we observed by creating a <a href="https://distill.pub/2020/circuits/curve-detectors/#joint-tuning-curves">joint tuning curve</a> for curve detectors, the high-low frequency detectors span the full 360º of possible orientations.
@@ -160,6 +161,8 @@
 
     <p>Because feature visualizations use a <a href="https://distill.pub/2017/feature-visualization/#diversity">diversity term</a>, we can also be reasonably confident that if high-low frequency detectors were also sensitive to other patterns, we would see signs of it in their feature visualizations.</p>
 
+    <p class="todo">Insert example of single feature vis with diversity term here!</p>
+
     <a href="#dataset-examples" class="header-self-link">
       <h3 id="dataset-examples">Dataset Examples</h3>
     </a>
@@ -168,16 +171,16 @@
 
     </p>
 
-    <figure id="figure-2" style="grid-column-start: text-start; grid-column-end: page-start;">
-      <a href="https://microscope.openai.com/models/inceptionv1/mixed3a_0/136">
-        <img src="diagrams/1.1-feature-vis/neuron-136.png" class="gallery-img" style="max-width: 65px; border-radius: 8px; float:right;" />
-      </a>
-    </figure>
-
     <figure id="1.2.0-dataset-examples">
-      <img src="diagrams/1.2-dataset-examples/placeholder.png" />
+      <div style="display: grid; grid-template-columns: min-content 5fr 1fr; margin-bottom: 1em;">
+        <a class="undecorated" href="https://microscope.openai.com/models/inceptionv1/mixed3a_0/136" style="margin-right: 1em;">
+          <img src="diagrams/1.1-feature-vis/neuron-136.png" class="gallery-img"
+            style="max-width: 65px; border-radius: 8px;" />
+        </a>
+        <img src="diagrams/1.2-dataset-examples/placeholder.png"/>
+      </div>
       <figcaption class="figcaption">
-        <a href="#figure-2" class="figure-number">2</a>:
+        <a href="#1.2.0-dataset-examples" class="figure-number">2</a>:
         Crops taken from Imagenet where <a href="https://microscope.openai.com/models/inceptionv1/mixed3a_0/136"><code>mixed3a</code> 136</a> activated maximally,
         argmaxed over spatial locations.
       </figcaption>
@@ -196,7 +199,7 @@
     </p>
 
     <p>
-      To construct such a curve, we'll need a set of <i>synthetic stimuli</i> which we would expect to cause high-low frequency detectors to fire. In this case, we'll start with images that contain a high-low frequency edge at a known orientation.
+      To construct such a curve, we'll need a set of <i>synthetic stimuli</i> which we would expect to cause high-low frequency detectors to fire. In this case, we'll start with images that contain a high-low frequency edge at a known orientation:
     </p>
 
     <figure id="1.4-tuning-curves-space-axis-1">
@@ -208,8 +211,8 @@
     </figure>
 
     <p>
-      The curve detector tuning curve also varies a second parameter, arc length. For
-      high-low frequency detectors, we instead vary the ratio between the two frequencies.
+      For the curve detector tuning curve we also varied a second parameter, arc length. For
+      high-low frequency detectors, we instead vary the ratio between the two frequencies:
     </p>
 
     <figure id="1.4-tuning-curves-space-axis-2">
@@ -223,9 +226,9 @@
 
     <p>These two axes then define a 2-D space from which we can sample synthetic stimuli and measure each neuron's responses to them:</p>
 
-    <d-figure id="figure-3"><figure></figure></d-figure>
+    <d-figure id="figure-3"><figure style="display: grid;"></figure></d-figure>
     <p>
-      Each high-low frequency detector exhibits a clear preference for a limited range of orientations. Furthermore, just as we previously found with curve detectors, the family of high-low frequency detectors (even just the six shown here) covers the full 360º space of orientations!
+      Each high-low frequency detector exhibits a clear preference for a limited range of orientations. Furthermore, just as we previously found with curve detectors, the family of high-low frequency detectors — even just the six shown here — covers the full 360º space of orientations!
     </p>
 
     <!-- Alternate title: Upstream Circuits -->
@@ -249,8 +252,8 @@
     </p>
 
     <d-figure id="figure-4">
-      <figure style=''>
-        <img src="diagrams/mixed3a-110-top-6-weights.svg" />
+      <figure>
+        <%= require("../static/diagrams/mixed3a-110-top-6-weights.svg") %>
         <figcaption>
           <p>
             <a href="#figure-4" class="figure-number">4</a>:
@@ -269,6 +272,7 @@
     </p>
     <d-figure id="figure-5">
       <figure style=''>
+        <!-- <%= require("../static/images/Underlying-Weights.svg") %> -->
         <img src="images/Underlying-Weights.svg" />
         <figcaption>
           <p>
@@ -295,7 +299,7 @@
         connections. A simple approach that we take is to linearize the model by removing the non-linearities. While
         this is not a great approximation of the model's behavior, it does give a reasonable intuition for
         counterfactual influence: had the neurons in the intermediate layer fired, how it would have affected neurons in
-        the downstream layers. We treat positive and negative influences separately.</d-footnote> between lower layers and the high-low frequency detectors is one way that we can check whether these two clusters are meaningful and investigate their significance. Performing a non-negative matrix factorization (NMF) to separate the weights into two factors gives us two vectors over neurons, shown below.</p>
+        the downstream layers. We treat positive and negative influences separately.</d-footnote> between lower layers and the high-low frequency detectors is one way that we can check whether these two clusters are meaningful and investigate their significance. Performing a non-negative matrix factorization (NMF) to separate the connections into two factors gives us two vectors over neurons:</p>
 
 
     <d-figure id="figure-6">
@@ -312,7 +316,7 @@
       <figcaption>
           <p>
             <a href="#figure-7" class="figure-number">7</a>:
-            Responses to a grid of synthetic stimuli varying frequency and angle of orientation, against HF-factor and LF-factor from <code>conv2d2</code>. Orientation ranges from 0 to π/4. Wavelength as a proportion of the full input image ranges from 1:1 to 1:10. Activation values are normalized across all units shown, ranging from 0 to 1. <span class="viridis" style="display: inline; margin-left: 5px; padding-right: 64px;" />
+            Responses to a grid of synthetic stimuli varying frequency and angle of orientation, against HF-factor and LF-factor from <code>conv2d2</code>. Orientation ranges from 0 to π/4. Wavelength as a proportion of the full input image ranges from 1:1 to 1:10. Activation values are normalized across all units shown, ranging from 0 to 1. <span class="viridis color-legend" style="display: inline; margin-left: 5px; padding-right: 64px;" />
           </p>
       </figcaption>
       </figure>

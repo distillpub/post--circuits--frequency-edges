@@ -1,3 +1,7 @@
+d-article a.undecorated {
+	border-bottom: none;
+}
+
 .subgrid {
 	grid-column: screen;
 	display: grid;
@@ -24,6 +28,10 @@ d-figure {
 d-figure > figure {
 	margin-top: 0;
 	margin-bottom: 0;
+}
+
+d-title > figure:last-child {
+	margin-bottom: 1.5em;
 }
 
 a.section-number::before {
@@ -99,16 +107,19 @@ a.section-number:hover {
 .color-legend {
 	display: inline-block;
 	width: 64px;
-	height: 1ex;
+	width: 4em;
+	height: 8px;
+	height: calc(1ex + 1px);
+	position: relative;
+	bottom: 1px;
 	vertical-align: baseline;
 }
-.viridis {
-	display: inline-block;
-	width: 64px;
-	height: 1ex;
-	vertical-align: baseline;
-
+.color-legend.viridis {
 	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAA7ElEQVQ4T4WRi23EMAxDSXu1jtD9R4kPIiVbTosWh0Ci+PRJjl/8XuAAB9EjpAmOoYgdCXKg/MsLTmzGN9e8pRzm83nXulZO8yv7VuqoF1tceY7QTZW/vR9a82Nm7ssZd3/5uXvzvbczeUfjFn6p1b3/zDv3xZCzp9f3u3Ptd7/6tCu9vMU9K7913Wfdvfg7Lg5mmL0nmgvtv/lw/rzHGzs3W3rgpZML394Sez34q/aY3cyDubW9KS9zeVWv2qP+KebZfPXNxospFt5lP/pqd0TrYjVLfs13n3f4RudwBDCVM/OITE1Mho5f5M4+UeiJCh70oMIAAAAASUVORK5CYII=");
+	background-size: contain;
+}
+.color-legend.pn {
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAACCAIAAABnm03uAAAAL0lEQVR4nGNkqP/PwcKAB3Gy4pXFq5eDhYGV4TfDnx940Xd8sr/xyv75wcQwxAEA8tZAggq3EssAAAAASUVORK5CYII=");
 	background-size: contain;
 }
 
