@@ -104,6 +104,8 @@ a.section-number:hover {
 	text-decoration-color: hsla(45, 0%, 20%, 50%);
 }
 
+/* Color Legends */
+
 .color-legend {
 	display: inline-block;
 	width: 64px;
@@ -121,6 +123,30 @@ a.section-number:hover {
 .color-legend.pn {
 	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAACCAIAAABnm03uAAAAL0lEQVR4nGNkqP/PwcKAB3Gy4pXFq5eDhYGV4TfDnx940Xd8sr/xyv75wcQwxAEA8tZAggq3EssAAAAASUVORK5CYII=");
 	background-size: contain;
+}
+
+.legend-label {
+	padding: 1px 4px;
+	border-radius: 2px;
+	color: rgba(0, 0, 0, 0.8);
+}
+
+.legend-label.support {
+	background-color: #EE880088;
+}
+
+.legend-label.inhibit {
+	background-color: #0088EE88;
+}
+
+.legend-label.support-rb {
+	color: white;
+	background-color: #CE1E34CC;
+}
+
+.legend-label.inhibit-rb {
+	color: white;
+	background-color: #0571B0CC;
 }
 
 #figure-3 > figure {

@@ -45,7 +45,7 @@
   }
 </style>
 
-<div class="grid">
+<div class="grid" style="margin-bottom: 20px;">
   <!-- we'd like to set height=100% here, but Safari renders that wrongly -->
   <!-- 35px is roughly the smallest the synth stimuli image should get on mobile and looks ok-ish -->
   <svg id="tuning-curves-f-ratio" width="60px" height="35px">

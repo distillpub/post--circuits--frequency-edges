@@ -162,7 +162,7 @@
     <p>We can use a <a href="https://distill.pub/2017/feature-visualization/#diversity">diversity term</a> in our feature visualizations to jointly optimize for the activation of a neuron while encouraging different activation patterns in a batch of visualizations. We are thus reasonably confident that if high-low frequency detectors were also sensitive to other patterns, we would see signs of them in these feature visualizations. Instead, the frequency contrast remains an invariant aspect of all these visualizations:</p>
 
     <figure id="figure-1-2">
-      <div class="gallery l-page">
+      <div class="gallery l-page" style="margin-bottom: 1em;">
         <% for (const unit of [0,1,2,3,4,5,6]) {%>
         <img src="<%= `diagrams/1.1-feature-vis/fv-mixed3a-136-diversity-${unit}.png` %>" title="<%= "Unit mixed3a:136 optimized with a diversity objective."%>" />
         <% } %>
@@ -171,7 +171,7 @@
         <a href="#figure-1-2" class="figure-number">1-2</a>:
         Feature visualizations of high-low frequency detector mixed3a:136 from InceptionV1's <a
           href="https://microscope.openai.com/models/inceptionv1/mixed3a_0?models.op.feature_vis.type=neuron&models.op.technique=feature_vis"><code>mixed3a</code></a>
-        layer, optimized with a diversity objective.
+        layer, optimized with a diversity objective. You can learn more about feature visualization and the diversity objective <a href="https://distill.pub/2017/feature-visualization/#diversity">here</a>.
       </figcaption>
     </figure>
 
@@ -260,17 +260,15 @@
 
     <p>To resolve this question, we can look at the weights.</p>
 
-    <p>Glancing at the weights from <code>conv2d2</code> to <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_110.html"><code>mixed3a</code> 110</a>, most of them can be roughly divided into two categories: those that inhibit on the right and activate on the left, and those that do the opposite.
+    <p>Glancing at the weights from <code>conv2d2</code> to <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_110.html"><code>mixed3a</code> 110</a>, most of them can be roughly divided into two categories: those that activate on the left and inhibit on the right, and those that do the opposite.
     </p>
 
     <d-figure id="figure-4">
-      <figure>
-        <%= require("../static/diagrams/mixed3a-110-top-6-weights.svg") %>
-        <figcaption>
-          <p>
+      <figure >
+        <img src="diagrams/mixed3a-110-topk-weight-structure.png" style="width: 100%; max-width: 429px; margin-bottom: 20px;">
+        <figcaption id="figure-4-caption">
             <a href="#figure-4" class="figure-number">4</a>:
-            The top six neurons from conv2d2 contributing weights to mixed3a 110.
-          </p>
+            Eight neurons from conv2d2 contributing weights to mixed3a 110. Neurons in the top row <span class="legend-label support-rb">activate</span> on the left and <span class="legend-label inhibit-rb">inhibit</span> on the right; neurons in the bottom row <span class="legend-label inhibit-rb">inhibit</span> on the left and <span class="legend-label support-rb">activate</span> on the right.
         </figcaption>
       </figure>
     </d-figure>
@@ -286,7 +284,8 @@
       <figure style=''>
         <!-- <%= require("../static/images/Underlying-Weights.svg") %> -->
         <!-- <img src="images/Underlying-Weights.svg" /> -->
-        <%= require('../static/images/Underlying-Weights.svg') %>
+        <!-- <%= require('../static/images/Underlying-Weights.svg') %> -->
+        <img src="diagrams/HF-LF-clusters-amd-weight-structure.png" style="width: 100%; max-width: 549px;"/>
         <figcaption>
           <p>
             <a href="#figure-5" class="figure-number">5</a>:
@@ -354,11 +353,9 @@
 
     <d-figure>
       <figure>
-        <img src="images/texture-contrast-detector.svg" style="width: 40%; margin: auto; margin-bottom: 20px; display: block"/>
+        <img src="diagrams/2d2-181-3a-70-weight.png" style="width: 100%; max-width: 320px; margin: auto; margin-bottom: 20px; display: block; image-rendering: pixelated;"/>
       <figcaption>
-          <p>
-            The weights from <code>conv2d2</code> 181 to <code>mixed3a</code> 70 are consistent with <code>conv2d2</code> 181 contributing via the HF-factor, not via the existing spatial structure of its texture contrast detection.
-          </p>
+          The weights from <code>conv2d2</code> 181 to <code>mixed3a</code> 70 are consistent with <code>conv2d2</code> 181 contributing via the HF-factor, not via the existing spatial structure of its texture contrast detection.
       </figcaption>
       </figure>
     </d-figure>
@@ -391,7 +388,8 @@
 
     <d-figure style="grid-column-end: page-end" id="figure-10">
       <figure>
-        <%= require('../static/diagrams/downstream-circuits.svg') %>
+        <!-- <%= require('../static/diagrams/downstream-circuits.svg') %> -->
+        <img src="diagrams/usage-1.png" />
         <!-- <img src="diagrams/downstream-circuits.svg" style="margin-bottom: 20px"/> -->
       <figcaption style="grid-column-end: text-end">
         <p>
@@ -408,12 +406,12 @@
 
     <d-figure id="figure-11">
       <figure>
-        <img src="diagrams/downstream-interpretation.svg" style="margin-bottom: 20px; display: block;"/>
+        <img src="diagrams/usage-2.png" style="width: 100%; max-width: 394px; margin-bottom: 20px;"/>
       <figcaption>
         <p>
           <a href="#figure-11" class="figure-number">11</a>:
           Some of <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a>'s weights, extracted for emphasis. &ldquo;Sidedness&rdquo; doesn't matter so much for how these weights are used by <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a>, but their 180º-invariant orientation does!</p>
-        <p>Strong <b>activation</b> (left) indicates the presence of a <b>boundary</b> at a particular angle, whereas strong <b>inhibition</b> (right) indicates <b>object continuity</b> where a boundary might otherwise have been.</p>
+        <p>Strong <span class="legend-label support-rb">activation</span> (left) indicates the presence of a <b>boundary</b> at a particular angle, whereas strong <span class="legend-label inhibit-rb">inhibition</span> (right) indicates <b>object continuity</b> where a boundary might otherwise have been.</p>
       </figcaption>
       </figure>
     </d-figure>
@@ -427,18 +425,26 @@
     <p><a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_boundary">Object boundary detectors</a></i> are neurons which detect boundaries between objects, whether that means the boundary between one object and another or the transition from foreground to background. These detectors are not the same as edge detectors or curve detectors: although they are sensitive to edges (indeed, some of their strongest weights are from lower-level edge detectors!), object boundary detectors are also sensitive to other indicators such as color contrast or high-low frequency, combining together multiple such cues from lower layers.</p>
 
 
-    <figure style='image-rendering: pixelated;'>
-      <img src="images/Boundary.svg" />
+    <figure id="figure-12">
+      <img src="diagrams/usage-boundary.png" />
+      <figcaption style="width: 80%; position: absolute; left: 20%; top: 75%;">
+        <a href="#figure-12" class="figure-number">12</a>: <code>mixed3b</code> 345 is a boundary detector activated by high-low frequency detectors, edges, color contrasts, and end-of-line
+        detectors. It is specifically sensitive to vertically-oriented high-low frequency detectors, regardless of their
+        "sidedness," and along a vertical line of positive weights.
+      </figcaption>
     </figure>
 
     <p> High-low frequency detectors contribute to these object boundary detectors by providing one type of cue that an object has ended and something else has begun. Some examples of object boundary detectors are given below, along with their weights to certain high-low frequency detectors.</p>
 
-    <d-figure id="figure-12">
+    <d-figure id="figure-13">
       <figure>
-        <img src="diagrams/downstream-boundary-detectors.svg" style="margin-bottom: 20px;"/>
-      <figcaption>
-        <p><a href="#figure-12" class="figure-number">12</a>: Four examples of object boundary detectors that high-low frequency detectors contribute to: <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_345.html"><code>mixed3b</code> 345</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_376.html"><code>mixed3b</code> 376</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_368.html"><code>mixed3b</code> 368</a>, and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_151.html"><code>mixed3b</code> 151</a>.
-      </figcaption>
+        <style>
+          /* TODO: Optimize smaller breakpoints by hand */
+        </style>
+        <img src="diagrams/usage-boundaries.png" style="margin-bottom: 20px;"/>
+        <figcaption>
+          <a href="#figure-13" class="figure-number">13</a>: Four examples of object boundary detectors that high-low frequency detectors contribute to: <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_345.html"><code>mixed3b</code> 345</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_376.html"><code>mixed3b</code> 376</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_368.html"><code>mixed3b</code> 368</a>, and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_151.html"><code>mixed3b</code> 151</a>.
+        </figcaption>
       </figure>
     </d-figure>
 
