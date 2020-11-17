@@ -140,7 +140,7 @@
   {#each units as unit, index}
     <a
       class="feature-link"
-      href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_{unit.index}.html">
+      href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3a_{unit.index}.html">
       <img
         class="feature-vis"
         src={`diagrams/1.1-feature-vis/neuron-${unit.index}.png`}
