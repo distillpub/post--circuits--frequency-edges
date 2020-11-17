@@ -125,7 +125,7 @@
     <figure id="figure-1">
       <ul class="gallery l-page">
         <% for (const unit of require("../static/diagrams/1.1-feature-vis/units.json").units) {%>
-        <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_${unit}.html" style="border-bottom: none; display: flex; flex-direction: column;">
+        <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3a_${unit}.html" style="border-bottom: none; display: flex; flex-direction: column;">
           <img src="<%= `diagrams/1.1-feature-vis/neuron-${unit}.png` %>" title="<%= "Unit " + unit %>" />
           <span class="figcaption"><%= `3a:${unit}`%></span>
         </a>
@@ -260,7 +260,7 @@
 
     <p>To resolve this question, we can look at the weights.</p>
 
-    <p>Glancing at the weights from <code>conv2d2</code> to <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_110.html"><code>mixed3a</code> 110</a>, most of them can be roughly divided into two categories: those that activate on the left and inhibit on the right, and those that do the opposite.
+    <p>Glancing at the weights from <code>conv2d2</code> to <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3a_110.html"><code>mixed3a</code> 110</a>, most of them can be roughly divided into two categories: those that activate on the left and inhibit on the right, and those that do the opposite.
     </p>
 
     <d-figure id="figure-4">
@@ -289,10 +289,10 @@
         <figcaption>
           <p>
             <a href="#figure-5" class="figure-number">5</a>:
-            The strongest weights on any high-low frequency detector (here shown: <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_110.html"><code>mixed3a</code> 110</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_136.html"><code>mixed3a</code> 136</a>, and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_112.html"><code>mixed3a</code> 112</a>) can be divided into roughly two clusters. Each cluster contributes its weights in similar ways.
+            The strongest weights on any high-low frequency detector (here shown: <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3a_110.html"><code>mixed3a</code> 110</a>, <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3a_136.html"><code>mixed3a</code> 136</a>, and <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3a_112.html"><code>mixed3a</code> 112</a>) can be divided into roughly two clusters. Each cluster contributes its weights in similar ways.
           </p>
           <p>
-            Top row: underlying neurons <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_119.html"><code>conv2d2</code> 119</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_102.html"><code>conv2d2</code> 102</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_123.html"><code>conv2d2</code> 123</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_90.html"><code>conv2d2</code> 90</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_89.html"><code>conv2d2</code> 89</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_163.html"><code>conv2d2</code> 163</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_98.html"><code>conv2d2</code> 98</a>, and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_188.html"><code>conv2d2</code> 188</a>.
+            Top row: underlying neurons <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/conv2d2_119.html"><code>conv2d2</code> 119</a>, <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/conv2d2_102.html"><code>conv2d2</code> 102</a>, <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/conv2d2_123.html"><code>conv2d2</code> 123</a>, <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/conv2d2_90.html"><code>conv2d2</code> 90</a>, <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/conv2d2_89.html"><code>conv2d2</code> 89</a>, <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/conv2d2_163.html"><code>conv2d2</code> 163</a>, <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/conv2d2_98.html"><code>conv2d2</code> 98</a>, and <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/conv2d2_188.html"><code>conv2d2</code> 188</a>.
           </p>
         </figcaption>
       </figure>
@@ -349,7 +349,7 @@
 
     <p>High-low frequency detectors are therefore built up by circuits that arrange high frequency detection on one side and low frequency detection on the other, confirming the second half of Hypothesis 1.</p>
 
-    <p>Against Hypothesis 2, note that even texture contrast detectors such as <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/conv2d2_181.html"><code>conv2d2</code> 181</a> seem to fall on one side or the other of this dichotomy. Although <code>conv2d2</code> 181 is most strongly connected to the high-low frequency detector <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3a_70.html"><code>mixed3a</code> 70</a>, the structure of its weights indicates that it contributes more generically to high-frequency detection as a component of the HF-factor rather than contributing any of the existing spatial structure of its texture contrast detection directly.</p>
+    <p>Against Hypothesis 2, note that even texture contrast detectors such as <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/conv2d2_181.html"><code>conv2d2</code> 181</a> seem to fall on one side or the other of this dichotomy. Although <code>conv2d2</code> 181 is most strongly connected to the high-low frequency detector <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3a_70.html"><code>mixed3a</code> 70</a>, the structure of its weights indicates that it contributes more generically to high-frequency detection as a component of the HF-factor rather than contributing any of the existing spatial structure of its texture contrast detection directly.</p>
 
     <d-figure>
       <figure>
@@ -374,7 +374,7 @@
       <figure>
         <img src="diagrams/downstream-interpretation.svg" style="margin-bottom: 20px; display: block;"/>
       <figcaption>
-          <p>(TODO fix this diagram still!!) Some of <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a>'s high-low frequency detector weights in more explicit detail.</p>
+          <p>(TODO fix this diagram still!!) Some of <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a>'s high-low frequency detector weights in more explicit detail.</p>
           <p>One of the functions of high-low frequency detectors appears to be to indicate discontinuities between different objects or regions, as well as an object's continuity with itself.
           </p>
       </figcaption>
@@ -383,7 +383,7 @@
 
     <p>
       <a href="https://distill.pub/2020/circuits/early-vision/#mixed3b">mixed3b</a> is the next layer immediately after where we see high-low frequency detectors appear. Here, high-low frequency detectors contribute to a variety of features: <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_bumps">bumps</a> and <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_divots">divots</a>, <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_bar_line_like">line-like</a> and <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_curves_misc.">curve-like</a> shapes, boundary detectors,
-      and at least one each of <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_281.html">center-surrounds</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_372.html">patterns</a>, and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_276.html">textures</a>.
+      and at least one each of <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3b_281.html">center-surrounds</a>, <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3b_372.html">patterns</a>, and <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3b_276.html">textures</a>.
     </p>
 
     <d-figure style="grid-column-end: page-end" id="figure-10">
@@ -394,14 +394,14 @@
       <figcaption style="grid-column-end: text-end">
         <p>
             <a href="#figure-10" class="figure-number">10</a>:
-            Examples of neurons that high-low frequency detectors contribute to: <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_365.html"><code>mixed3b</code> 365</a> (an hourglass shape detector), <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_276.html"><code>mixed3b</code> 276</a> (a center-surround texture detector), and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a> (a double boundary detector).
+            Examples of neurons that high-low frequency detectors contribute to: <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3b_365.html"><code>mixed3b</code> 365</a> (an hourglass shape detector), <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3b_276.html"><code>mixed3b</code> 276</a> (a center-surround texture detector), and <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a> (a double boundary detector).
         </p>
       </figcaption>
       </figure>
     </d-figure>
 
     <p>
-      Oftentimes, downstream features appear to ignore the &ldquo;sidedness&rdquo; of a high-low frequency detector, responding roughly the same way to <i>both</i> possible polarities of a given direction&mdash;regardless of which side is high frequency. Consider how <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_345.html"><code>mixed3b</code> 345</a>, the top example above, has its strongest activations from high-low frequency detectors that detect change across a vertically-oriented line. By responding to both, high-low frequency detectors appear to help detect boundaries between different objects or regions, as well as an object's continuity with itself.
+      Oftentimes, downstream features appear to ignore the &ldquo;sidedness&rdquo; of a high-low frequency detector, responding roughly the same way to <i>both</i> possible polarities of a given direction&mdash;regardless of which side is high frequency. Consider how <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3b_345.html"><code>mixed3b</code> 345</a>, the top example above, has its strongest activations from high-low frequency detectors that detect change across a vertically-oriented line. By responding to both, high-low frequency detectors appear to help detect boundaries between different objects or regions, as well as an object's continuity with itself.
     </p>
 
     <d-figure id="figure-11">
@@ -410,7 +410,7 @@
       <figcaption>
         <p>
           <a href="#figure-11" class="figure-number">11</a>:
-          Some of <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a>'s weights, extracted for emphasis. &ldquo;Sidedness&rdquo; doesn't matter so much for how these weights are used by <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a>, but their 180º-invariant orientation does!</p>
+          Some of <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a>'s weights, extracted for emphasis. &ldquo;Sidedness&rdquo; doesn't matter so much for how these weights are used by <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a>, but their 180º-invariant orientation does!</p>
         <p>Strong <span class="legend-label support-rb">activation</span> (left) indicates the presence of a <b>boundary</b> at a particular angle, whereas strong <span class="legend-label inhibit-rb">inhibition</span> (right) indicates <b>object continuity</b> where a boundary might otherwise have been.</p>
       </figcaption>
       </figure>
@@ -443,7 +443,7 @@
         </style>
         <img src="diagrams/usage-boundaries.png" style="margin-bottom: 20px;"/>
         <figcaption>
-          <a href="#figure-13" class="figure-number">13</a>: Four examples of object boundary detectors that high-low frequency detectors contribute to: <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_345.html"><code>mixed3b</code> 345</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_376.html"><code>mixed3b</code> 376</a>, <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_368.html"><code>mixed3b</code> 368</a>, and <a href="https://storage.googleapis.com/inceptionv1-weight-explorer/mixed3b_151.html"><code>mixed3b</code> 151</a>.
+          <a href="#figure-13" class="figure-number">13</a>: Four examples of object boundary detectors that high-low frequency detectors contribute to: <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3b_345.html"><code>mixed3b</code> 345</a>, <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3b_376.html"><code>mixed3b</code> 376</a>, <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3b_368.html"><code>mixed3b</code> 368</a>, and <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3b_151.html"><code>mixed3b</code> 151</a>.
         </figcaption>
       </figure>
     </d-figure>
