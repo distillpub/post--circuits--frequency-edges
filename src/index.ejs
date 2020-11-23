@@ -252,9 +252,9 @@
 
     <ul>
       <li>
-        <b>Hypothesis 1.</b> The detectors combine together <i>low frequency detection</i> and <i>high frequency detection</i> in a specific spatial arrangement in order to produce high-low frequency detection. This would be like how InceptionV1 constructs a <a href="https://distill.pub/2020/circuits/zoom-in/#claim-2-superposition">car detector</a> by looking for windows on top, a car body in the middle, and wheels on the bottom.
+        <b>Invariant-to-Equivariant Hypothesis.</b> The detectors combine together <i>low frequency detection</i> and <i>high frequency detection</i> in a specific spatial arrangement in order to produce high-low frequency detection. This would be like how InceptionV1 constructs a <a href="https://distill.pub/2020/circuits/zoom-in/#claim-2-superposition">car detector</a> by looking for windows on top, a car body in the middle, and wheels on the bottom.
       </li>
-      <li><b>Hypothesis 2.</b> These detectors are built up from lower-level features which are roughly similar to high-low frequency detectors, but more primitive and less reliable. This would be like how edge detection is built up from simple <a href="https://distill.pub/2020/circuits/early-vision/#group_conv2d0_gabor_filters">Gabor filters</a>.
+      <li><b>Equivariant-to-Equivariant Hypothesis.</b> These detectors are built up from lower-level features which are roughly similar to high-low frequency detectors, but more primitive and less reliable. This would be like how edge detection is built up from simple <a href="https://distill.pub/2020/circuits/early-vision/#group_conv2d0_gabor_filters">Gabor filters</a>.
     </ul>
     </p>
 
@@ -299,7 +299,7 @@
     </d-figure>
 
     <p>
-      This is evidence for Hypothesis 1 over Hypothesis 2! Let's investigate both parts of Hypothesis 1 in more detail: first, the claim that high-low frequency detectors are built from high frequency detection and low frequency detection, and second, that those two features combine together in a spatially-specific way (arguably, a circuit) in order produce high-low frequency detectors.</p>
+      This is evidence for the Invariant-to-Equivariant hypothesis over the Equivariant-to-Equivariant hypothesis! Let's investigate both parts of that hypothesis in more detail: first, the claim that high-low frequency detectors are built from high frequency detection and low frequency detection, and second, that those two features combine together in a spatially-specific way (arguably, a circuit) in order produce high-low frequency detectors.</p>
 
     <h3>High and Low Frequency Factors</h3>
 
@@ -313,7 +313,7 @@
         counterfactual influence: had the neurons in the intermediate layer fired, how it would have affected neurons in
         the downstream layers. We treat positive and negative influences separately.</d-footnote> between lower layers and the high-low frequency detectors is one way that we can check whether these two clusters are meaningful and investigate their significance. Performing a non-negative matrix factorization (NMF) to separate the connections into two factors gives us two vectors over neurons.</p>
     <p>Those vectors, in turn, can themselves be fed into feature visualization. Strikingly, the feature visualizations for
-      each factor confirm the first half of Hypothesis 1: one clearly displays a generic high-frequency image, whereas the other does the same with a low-frequency image. We'll call these the <em>HF-factor</em> and the <em>LF-factor</em>:</p>
+      each factor confirm the first half of the Invariant-to-Equivariant hypothesis: one clearly displays a generic high-frequency image, whereas the other does the same with a low-frequency image. We'll call these the <em>HF-factor</em> and the <em>LF-factor</em>:</p>
 
     <d-figure id="figure-6">
       <%= require('./diagrams/upstream-neurons.ejs')() %>
@@ -339,7 +339,7 @@
     </d-figure>
 
 
-    <p>Next, let's finish off the second half of Hypothesis 1: how are these two factors used to construct high-low frequency detectors?</p>
+    <p>Next, let's finish off the second half of the Invariant-to-Equivariant hypothesis: how are these two factors used to construct high-low frequency detectors?</p>
 
     <h3>Construction of High-Low Frequency Detectors</h3>
 
@@ -347,9 +347,9 @@
 
     <%= require('./diagrams/upstream-nmf.ejs')() %>
 
-    <p>High-low frequency detectors are therefore built up by circuits that arrange high frequency detection on one side and low frequency detection on the other, confirming the second half of Hypothesis 1.</p>
+    <p>High-low frequency detectors are therefore built up by circuits that arrange high frequency detection on one side and low frequency detection on the other, confirming the second half of the Invariant-to-Equivariant hypothesis.</p>
 
-    <p>Against Hypothesis 2, note that even texture contrast detectors such as <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/conv2d2_181.html"><code>conv2d2</code> 181</a> seem to fall on one side or the other of this dichotomy. Although <code>conv2d2</code> 181 is most strongly connected to the high-low frequency detector <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3a_70.html"><code>mixed3a</code> 70</a>, the structure of its weights indicates that it contributes more generically to high-frequency detection as a component of the HF-factor rather than contributing any of the existing spatial structure of its texture contrast detection directly.</p>
+    <p>Against the Equivariant-to-Equivariant hypothesis, note that even texture contrast detectors such as <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/conv2d2_181.html"><code>conv2d2</code> 181</a> seem to fall on one side or the other of this dichotomy. Although <code>conv2d2</code> 181 is most strongly connected to the high-low frequency detector <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3a_70.html"><code>mixed3a</code> 70</a>, the structure of its weights indicates that it contributes more generically to high-frequency detection as a component of the HF-factor rather than contributing any of the existing spatial structure of its texture contrast detection directly.</p>
 
     <d-figure>
       <figure>
@@ -497,7 +497,7 @@
 
 
     <p>The feature visualizations of the two factors reveal one clear HF-factor and one clear LF-factor, just like what we found in InceptionV1. Furthermore, the weights on the two factors are again very close to symmetric.</p>
-    <p>Our earlier conclusions about Hypothesis 1 therefore also hold across these different networks: high-low frequency detectors are built up from placing high frequency detection and low frequency detection in a specific spatial arrangement.</p>
+    <p>Our earlier conclusions about the Invariant-to-Equivariant hypothesis therefore also hold across these different networks: high-low frequency detectors are built up from placing high frequency detection and low frequency detection in a specific spatial arrangement.</p>
 
     <h2>Conclusion</h2>
 
