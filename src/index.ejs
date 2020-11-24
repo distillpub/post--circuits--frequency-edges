@@ -401,7 +401,7 @@
     </d-figure>
 
     <p>
-      Oftentimes, downstream features appear to ignore the &ldquo;sidedness&rdquo; of a high-low frequency detector, responding roughly the same way to <i>both</i> possible polarities of a given direction&mdash;regardless of which side is high frequency. Consider how <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3b_345.html"><code>mixed3b</code> 345</a>, the top example above, has its strongest activations from high-low frequency detectors that detect change across a vertically-oriented line. By responding to both, high-low frequency detectors appear to help detect boundaries between different objects or regions, as well as an object's continuity with itself.
+      Oftentimes, downstream features appear to ignore the orientation of a high-low frequency detector, responding roughly the same way to <i>both</i> possible polarities of a given direction&mdash;regardless of which side is high frequency. Consider how <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3b_345.html"><code>mixed3b</code> 345</a>, the top example above, has its strongest activations from high-low frequency detectors that detect change across a vertically-oriented line. By responding to both, high-low frequency detectors appear to help detect boundaries between different objects or regions, as well as an object's continuity with itself.
     </p>
 
     <d-figure id="figure-11">
@@ -410,7 +410,7 @@
       <figcaption>
         <p>
           <a href="#figure-11" class="figure-number">11</a>:
-          Some of <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a>'s weights, extracted for emphasis. &ldquo;Sidedness&rdquo; doesn't matter so much for how these weights are used by <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a>, but their 180º-invariant orientation does!</p>
+          Some of <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a>'s weights, extracted for emphasis. Orientation doesn't matter so much for how these weights are used by <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/mixed3b_314.html"><code>mixed3b</code> 314</a>, but their 180º-invariant orientation does!</p>
         <p>Strong <span class="legend-label support-rb">activation</span> (left) indicates the presence of a <b>boundary</b> at a particular angle, whereas strong <span class="legend-label inhibit-rb">inhibition</span> (right) indicates <b>object continuity</b> where a boundary might otherwise have been.</p>
       </figcaption>
       </figure>
@@ -430,7 +430,7 @@
       <figcaption style="width: 80%; position: absolute; left: 20%; top: 75%;">
         <a href="#figure-12" class="figure-number">12</a>: <code>mixed3b</code> 345 is a boundary detector activated by high-low frequency detectors, edges, color contrasts, and end-of-line
         detectors. It is specifically sensitive to vertically-oriented high-low frequency detectors, regardless of their
-        "sidedness," and along a vertical line of positive weights.
+        orientation, and along a vertical line of positive weights.
       </figcaption>
     </figure>
 
