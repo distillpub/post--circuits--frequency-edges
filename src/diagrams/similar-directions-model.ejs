@@ -1,7 +1,7 @@
 <% let depth = model.depthRatio[0]/model.depthRatio[1] %>
 <div class="model">
     <figcaption>
-        <strong class="name"><%=model.name%></strong>
+        <strong class="name"><%=model.name%><d-cite bibtex-key="<%=model.bibtexCitation%>"></d-cite></strong>
         <span style="font-size: 95%">Layer <code class="layer-name"><%=model.layerName%></code> </span>
         <p style="font-size: 95%" class="depth-ratio">At ~<%= (depth*100).toFixed(0) %>% CNN depth</p>
     </figcaption>
