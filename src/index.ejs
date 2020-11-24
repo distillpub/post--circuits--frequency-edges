@@ -39,12 +39,12 @@
 
     <p>Some of the neurons in <a href="https://distill.pub/2020/circuits/early-vision/">early vision</a> are features that we aren't particularly surprised to find. <a href="https://distill.pub/2020/circuits/curve-detectors/">Curve detectors</a>, for example, had already been discovered in the animal visual cortex<d-cite bibtex-key="tang2018complex"></d-cite>. It's easy to imagine how curve detectors are built up from earlier edge detectors, and it's easy to guess why curve detection might be useful to the rest of the neural network.</p>
 
-    <p>High-low frequency detectors, on the other hand, seem more surprising. They are not a feature that we would have expected <i>a priori</i> to find. Yet, when systematically characterizing the first five layers of InceptionV1<d-cite bibtex-key="szegedy2015going"></d-cite>, we found a full <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3a_high_low_frequency">15 neurons</a> of <code>mixed3a</code> that appear to detect a high frequency pattern on one side, and a low frequency pattern on the other.</p>
+    <p>High-low frequency detectors, on the other hand, seem more surprising. They are not a feature that we would have expected <i>a priori</i> to find. Yet, when systematically characterizing<d-cite bibtex-key="olah2020an"></d-cite> the first five layers of InceptionV1<d-cite bibtex-key="szegedy2015going"></d-cite>, we found a full <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3a_high_low_frequency">15 neurons</a> of <code>mixed3a</code> that appear to detect a high frequency pattern on one side, and a low frequency pattern on the other.</p>
 
     <p>
       These detectors are not quite as intuitive as curve detectors.
 
-      However, <a href="https://distill.pub/2020/circuits/zoom-in/">we've claimed</a> that features and circuits can be rigorously studied and understood – and that should include the unintuitive ones! We could have discovered that only intuitive features are interpretable, but instead, here we find the opposite: using the same tools we've built up for exploring circuits, we find that we can also study and understand high-low frequency detectors.
+      However, <a href="https://distill.pub/2020/circuits/zoom-in/">we've claimed</a> that features and circuits can be rigorously studied and understood<d-cite bibtex-key="olah2020zoom"></d-cite> – and that should include the unintuitive ones! We could have discovered that only intuitive features are interpretable, but instead, here we find the opposite: using the same tools we've built up for exploring circuits, we find that we can also study and understand high-low frequency detectors.
     </p>
 
     <a class="header-self-link" href="#function">
@@ -150,7 +150,7 @@
         <b>Orientedness.</b> The detectors only detect that high-low frequency change along a particular angle.
       </li>
       <li>
-        <b>Together, they span the range of orientations.</b> Just as we observed by creating a <a href="https://distill.pub/2020/circuits/curve-detectors/#joint-tuning-curves">joint tuning curve</a> for curve detectors, the high-low frequency detectors span the full 360º of possible orientations.
+        <b>Together, they span the range of orientations.</b> Just as we observed by creating a <a href="https://distill.pub/2020/circuits/curve-detectors/#joint-tuning-curves">joint tuning curve</a> for curve detectors<d-cite bibtex-key="cammarata2020curve"></d-cite>, the high-low frequency detectors span the full 360º of possible orientations.
       </li>
     </ul>
     <aside>
