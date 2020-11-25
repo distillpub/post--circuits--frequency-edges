@@ -252,12 +252,12 @@
 
     <ul>
       <li>
-        <b>Equivariant-to-Equivariant Hypothesis.</b> The first possibility is that the previous layer already has precursor features which detect oriented transitions from high frequency to low frequency. The extreme version of this hypothesis would be that the high-low frequency detector is just an identity passthrough of some lower layer neuron. A more moderate version would be something like curve detectors, which refine early curve detectors into larger and more sophisticated later curve detectors. Another example would be how edge detection is built up from simple <a href="https://distill.pub/2020/circuits/early-vision/#group_conv2d0_gabor_filters">Gabor filters</a> which were already oriented.
+        <b>Equivariant-to-Equivariant Hypothesis.</b> The first possibility is that the previous layer already has precursor features which detect oriented transitions from high frequency to low frequency. The extreme version of this hypothesis would be that the high-low frequency detector is just an identity passthrough of some lower layer neuron. A more moderate version would be something like what we see with curve detectors, where <a href="https://distill.pub/2020/circuits/early-vision/#group_conv2d2_tiny_curves">early curve detectors</a> become refined into the larger and more sophisticated <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3a_curves">late curve detectors</a>. Another example would be how edge detection is built up from simple <a href="https://distill.pub/2020/circuits/early-vision/#group_conv2d0_gabor_filters">Gabor filters</a> which were already oriented.
 
         We call this Equivariant-to-Equivariant because the equivariance over orientation was already there in the previous layer.
       </li>
       <li>
-        <b>Invariant-to-Equivariant Hypothesis.</b> Alternatively, previous layers might not have anything like high-low frequency detectors. Instead, the orientation comes from spatial arrangements in the neuron's weights that govern where it is excited by low-frequency features and where it is excited by high-frequency features.
+        <b>Invariant-to-Equivariant Hypothesis.</b> Alternatively, previous layers might not have anything like high-low frequency detectors. Instead, the orientation comes from spatial arrangements in the neuron's weights that govern where it is excited by low-frequency and high-frequency features.
       </li>
     </ul>
 
