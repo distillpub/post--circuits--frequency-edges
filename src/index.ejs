@@ -319,7 +319,7 @@
         counterfactual influence: had the neurons in the intermediate layer fired, how it would have affected neurons in
         the downstream layers. We treat positive and negative influences separately.</d-footnote> between lower layers and the high-low frequency detectors is one way that we can check whether these two clusters are meaningful and investigate their significance. Performing a non-negative matrix factorization (NMF) to separate the connections into two factors gives us two vectors over neurons.</p>
     <p>Those vectors, in turn, can themselves be fed into feature visualization. Strikingly, the feature visualizations for
-      each factor confirm the first half of the Invariant-to-Equivariant hypothesis: one clearly displays a generic high-frequency image, whereas the other does the same with a low-frequency image. We'll call these the <em>HF-factor</em> and the <em>LF-factor</em>:</p>
+      each factor confirm the first half of the Invariant-to-Equivariant hypothesis: one clearly displays a generic high-frequency image, whereas the other does the same with a low-frequency image.<d-footnote>In InceptionV1 in particular, it's possible that we recover these two factors so crisply in part due to the <i><a href="https://microscope.openai.com/models/inceptionv1/mixed3a_3x3_bottleneck_0?models.op.feature_vis.type=neuron&models.op.technique=feature_vis">3x3 bottleneck</a></i> between conv2d2 and mixed3a. However, as we see later in <a href="#universality">Universality</a>, we recover similar factors for other models where this structure doesn’t exist. NMF is convenient for seeing this abstract structure across many models.</d-footnote> We'll call these the <em>HF-factor</em> and the <em>LF-factor</em>:</p>
 
     <d-figure id="figure-6">
       <%= require('./diagrams/upstream-neurons.ejs')() %>
@@ -482,7 +482,7 @@
     How common are high-low frequency detectors in convolutional neural networks generally?</p>
 
     <!--Universality-->
-    <h2>Universality</h2>
+    <h2 id="universality">Universality</h2>
 
     <h3>High-Low Frequency Detectors in Other Networks</h3>
 
