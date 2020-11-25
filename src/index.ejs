@@ -349,7 +349,11 @@
 
     <h3>Construction of High-Low Frequency Detectors</h3>
 
-    <p>NMF also recovers the weights between each of the two factors and the high-low frequency detectors. Unsurprisingly, these weights basically reproduce the same behavior that we'd previously been seeing in <a href="#figure-5">Figure 5</a> from the two different clusters of neurons: where the HF-factor inhibits, the LF-factor activates&mdash;and vice versa.</p>
+    <p>NMF also recovers the weights between each of the two factors and the high-low frequency detectors. Unsurprisingly, these weights basically reproduce the same behavior that we'd previously been seeing in <a href="#figure-5">Figure 5</a> from the two different clusters of neurons: where the HF-factor inhibits, the LF-factor activates&mdash;and vice versa.
+      <d-footnote>
+        As an aside, the HF-factor here for InceptionV1 (as well as some of its NMF components, like <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/conv2d2_123.html"><code>conv2d2</code> 123</a>) also appears to be lightly activated by bright greens and magentas. This is likely responsible for the feature visualizations of these high-low frequency detectors showing only greens and magentas on the high-frequency side.
+      </d-footnote>
+    </p>
 
     <%= require('./diagrams/upstream-nmf.ejs')() %>
 
