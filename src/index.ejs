@@ -37,7 +37,7 @@
 
     <h2 style="display: none;">Introduction</h2>
 
-    <p>Some of the neurons in <a href="https://distill.pub/2020/circuits/early-vision/">early vision</a> are features that we aren't particularly surprised to find. <a href="https://distill.pub/2020/circuits/curve-detectors/">Curve detectors</a>, for example, had already been discovered in the animal visual cortex<d-cite bibtex-key="tang2018complex"></d-cite>. It's easy to imagine how curve detectors are built up from earlier edge detectors, and it's easy to guess why curve detection might be useful to the rest of the neural network.</p>
+    <p>Some of the neurons in <a href="https://distill.pub/2020/circuits/early-vision/">early vision</a> are features that we aren't particularly surprised to find. <a href="https://distill.pub/2020/circuits/curve-detectors/">Curve detectors</a>, for example, had already been discovered in the animal visual cortex<d-cite bibtex-key="tang2018complex,pasupathy2001shape,jiang2019discrete"></d-cite>. It's easy to imagine how curve detectors are built up from earlier edge detectors, and it's easy to guess why curve detection might be useful to the rest of the neural network.</p>
 
     <p>High-low frequency detectors, on the other hand, seem more surprising. They are not a feature that we would have expected <i>a priori</i> to find. Yet, when systematically characterizing<d-cite bibtex-key="olah2020an"></d-cite> the first five layers of InceptionV1<d-cite bibtex-key="szegedy2015going"></d-cite>, we found a full <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3a_high_low_frequency">15 neurons</a> of <code>mixed3a</code> that appear to detect a high frequency pattern on one side, and a low frequency pattern on the other.</p>
 
@@ -62,13 +62,13 @@
     </p>
     <ul>
       <li>
-        <b>Feature visualization</b> allows us to establish a causal link between each neuron and its function.<d-cite bibtex-key="yosinski2015understanding"></d-cite><d-cite bibtex-key="nguyen2016multifaceted"></d-cite><d-cite bibtex-key="olah2017feature"></d-cite>
+        <b>Feature visualization</b> allows us to establish a causal link between each neuron and its function.<d-cite bibtex-key="yosinski2015understanding,nguyen2016multifaceted,olah2017feature"></d-cite>
       </li>
       <li>
         <b>Dataset examples</b> show us where the neuron fires in practice.
       </li>
       <li>
-        <b>Synthetic tuning curves</b> show us how variation affects the neuron's response.<d-cite bibtex-key="pasupathy2001shape"></d-cite><d-cite bibtex-key="jiang2019discrete"></d-cite>
+        <b>Synthetic tuning curves</b> show us how variation affects the neuron's response.
       </li>
     </ul>
 
@@ -248,15 +248,18 @@
     <a class="header-self-link" href="#implementation">
       <h2 id="implementation">Implementation</h2>
     </a>
-    <p>How are high-low frequency detectors built up from lower-level neurons? Here are two guesses.</p>
+    <p>How are high-low frequency detectors built up from lower-level neurons? In particular, where does their oriented nature come from? We see two possibilities, although some mixture is also possible.</p>
 
     <ul>
       <li>
-        <b>Invariant-to-Equivariant Hypothesis.</b> The detectors combine together <i>low frequency detection</i> and <i>high frequency detection</i> in a specific spatial arrangement in order to produce high-low frequency detection. This would be like how InceptionV1 constructs a <a href="https://distill.pub/2020/circuits/zoom-in/#claim-2-superposition">car detector</a> by looking for windows on top, a car body in the middle, and wheels on the bottom.
+        <b>Equivariant-to-Equivariant Hypothesis.</b> The first possibility is that the previous layer already has precursor features which detect oriented transitions from high frequency to low frequency. The extreme version of this hypothesis would be that the high-low frequency detector is just an identity passthrough of some lower layer neuron. A more moderate version would be something like curve detectors, which refine early curve detectors into larger and more sophisticated later curve detectors. Another example would be how edge detection is built up from simple <a href="https://distill.pub/2020/circuits/early-vision/#group_conv2d0_gabor_filters">Gabor filters</a> which were already oriented.
+
+        We call this Equivariant-to-Equivariant because the equivariance over orientation was already there in the previous layer.
       </li>
-      <li><b>Equivariant-to-Equivariant Hypothesis.</b> These detectors are built up from lower-level features which are roughly similar to high-low frequency detectors, but more primitive and less reliable. This would be like how edge detection is built up from simple <a href="https://distill.pub/2020/circuits/early-vision/#group_conv2d0_gabor_filters">Gabor filters</a>.
-    </ul>
-    </p>
+      <li>
+        <b>Invariant-to-Equivariant Hypothesis.</b> Alternatively, previous layers might not have anything like high-low frequency detectors. Instead, the orientation comes from spatial arrangements in the neuron's weights that govern where it is excited by low-frequency features and where it is excited by high-frequency features.
+      </li>
+    <ul>
 
     <p>To resolve this question, we can look at the weights.</p>
 
