@@ -62,7 +62,7 @@
     </p>
     <ul>
       <li>
-        <b>Feature visualization</b> allows us to establish a causal link between each neuron and its function.<d-cite bibtex-key="yosinski2015understanding,nguyen2016multifaceted,olah2017feature"></d-cite>
+        <b>Feature visualization</b> allows us to establish a causal link between each neuron and its function.<d-cite bibtex-key="erhan2009visualizing,yosinski2015understanding,olah2017feature"></d-cite>
       </li>
       <li>
         <b>Dataset examples</b> show us where the neuron fires in practice.
@@ -207,7 +207,8 @@
     </a>
 
     <p>
-      If high-low frequency detectors are sensitive to orientation, we should expect to be able to reproduce the feat that we performed for <a href="https://distill.pub/2020/circuits/curve-detectors">Curve Detectors</a> by generating a <a href="https://distill.pub/2020/circuits/curve-detectors/#radial-tuning-curve">tuning curve</a> for each one.
+      Originally a technique of neuroscience research<d-cite bibtex-key="pmid16993807"></d-cite>, <b>tuning curves</b> measure neural response to a continuous stimulus parameter.
+      If high-low frequency detectors are sensitive to orientation, we should expect to be able to demonstrate this via a tuning curve over different orientations, similar to what we showed for <a href="https://distill.pub/2020/circuits/curve-detectors/#radial-tuning-curve">curve detectors</a>.
     </p>
 
     <p>
@@ -481,7 +482,7 @@
 
     <h3>High-Low Frequency Detectors in Other Networks</h3>
 
-    <p>It's always good to ask if what we see is the rule or an interesting exception&mdash;and high-low frequency detectors seem to be the rule.
+    <p>It's always good to ask if what we see is the rule or an interesting exception<d-cite bibtex-key="li2015convergent"></d-cite>&mdash;and high-low frequency detectors seem to be the rule.
     High-low frequency detectors similar to ones in InceptionV1 can be found in a variety of architectures.
     </p>
 
@@ -490,7 +491,7 @@
 
     <p>Notice that these detectors are found at very similar depths within the different networks, between 29% and 33% network depth! While the particular orientations each network's high-low frequency detectors respond to may vary slightly, each network has its own family of detectors that together cover the full 360º range of orientations.</p>
 
-    <p>Will we also discover that these detectors are built up from high frequency detection and low frequency detection, even though they're from three completely different networks?</p>
+    <p>Will we also discover that these detectors are built up from high and low frequency detection, even though they're from three completely different networks?</p>
 
     <h3>HF-factor and LF-factor in Other Networks</h3>
 
