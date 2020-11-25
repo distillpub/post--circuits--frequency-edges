@@ -486,10 +486,11 @@
     High-low frequency detectors similar to ones in InceptionV1 can be found in a variety of architectures.
     </p>
 
-
     <%= require('./diagrams/similar-directions.ejs')() %>
 
-    <p>Notice that these detectors are found at very similar depths within the different networks, between 29% and 33% network depth! While the particular orientations each network's high-low frequency detectors respond to may vary slightly, each network has its own family of detectors that together cover the full 360º range of orientations.</p>
+    <p>Notice that these detectors are found at very similar depths within the different networks, between 29% and 33% network depth! While the particular orientations each network's high-low frequency detectors respond to may vary slightly, each network has its own family of detectors that together cover the full 360º range of orientations.
+      <d-footnote>Architecture aside – what about networks trained on substantially different <i>datasets</i>? In the extreme case, one could imagine a synthetic dataset where high-low frequency detectors don't arise. For most practical datasets, however, we expect to find them. For example, we even find some candidate high-low frequency detectors in AlexNet (Places): <a href="https://microscope.openai.com/models/alexnet_caffe_places365/conv2_Conv2D_0/37">down-up</a>, <a href="https://microscope.openai.com/models/alexnet_caffe_places365/conv2_Conv2D_0/91">left-right</a>, and <a href="https://microscope.openai.com/models/alexnet_caffe_places365/conv2_Conv2D_0/104">up-down</a>.</d-footnote>
+    </p>
 
     <p>Will we also discover that these detectors are built up from high and low frequency detection, even though they're from three completely different networks?</p>
 
