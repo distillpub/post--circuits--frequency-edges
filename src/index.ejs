@@ -272,7 +272,7 @@
         <%= require('../static/diagrams/figure-4.svg') %>
         <figcaption id="figure-4-caption">
             <a href="#figure-4" class="figure-number">4</a>:
-            Six neurons from conv2d2 contributing weights<d-footnote>As an aside: The 1-2-1 pattern on each column of weights is curiously reminiscent of the structure of the <a href="https://en.wikipedia.org/wiki/Sobel_operator">Sobel filter</a>.</d-footnote> to mixed3a 110.
+            Six neurons from conv2d2 contributing weights to mixed3a 110.
 
             <!--Neurons in the top row <span class="legend-label support-rb">activate</span> on the left and <span class="legend-label inhibit-rb">inhibit</span> on the right; neurons in the bottom row <span class="legend-label inhibit-rb">inhibit</span> on the left and <span class="legend-label support-rb">activate</span> on the right.-->
         </figcaption>
@@ -280,7 +280,7 @@
     </d-figure>
 
     <p>
-      The same also holds for each of the other high-low frequency detectors&mdash;but with different spatial patterns on the weights, implementing the different orientations.
+      The same also holds for each of the other high-low frequency detectors&mdash;but with different spatial patterns<d-footnote>As an aside: The 1-2-1 pattern on each column of weights is curiously reminiscent of the structure of the <a href="https://en.wikipedia.org/wiki/Sobel_operator">Sobel filter</a>.</d-footnote> on the weights, implementing the different orientations.
     </p>
 
     <p>
@@ -351,7 +351,7 @@
 
     <p>NMF also recovers the weights between each of the two factors and the high-low frequency detectors. Unsurprisingly, these weights basically reproduce the same behavior that we'd previously been seeing in <a href="#figure-5">Figure 5</a> from the two different clusters of neurons: where the HF-factor inhibits, the LF-factor activates&mdash;and vice versa.
       <d-footnote>
-        As an aside, the HF-factor here for InceptionV1 (as well as some of its NMF components, like <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/conv2d2_123.html"><code>conv2d2</code> 123</a>) also appears to be lightly activated by bright greens and magentas. This is likely responsible for the feature visualizations of these high-low frequency detectors showing only greens and magentas on the high-frequency side.
+        As an aside, the HF-factor here for InceptionV1 (as well as some of its NMF components, like <a href="https://storage.googleapis.com/distill-circuits/inceptionv1-weight-explorer/conv2d2_123.html"><code>conv2d2</code> 123</a>) also appears to be lightly activated by bright greens and magentas. This might be responsible for the feature visualizations of these high-low frequency detectors showing only greens and magentas on the high-frequency side.
       </d-footnote>
     </p>
 
