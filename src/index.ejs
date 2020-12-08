@@ -27,7 +27,7 @@
 
   <d-title>
     <h1>High-Low Frequency Detectors</h1>
-    <p>A family of early-vision neurons reacting to adjacent, sinusoidally-modulated gratings of different spatial frequencies.</p>
+    <p>A family of early-vision neurons reacting to directional transitions from high to low spatial frequency.</p>
     <figure id="hero" class="l-body">
       <img src="images/high-low-hero.png"/>
     </figure>
@@ -37,14 +37,12 @@
 
     <h2 style="display: none;">Introduction</h2>
 
-    <p>Some of the neurons in <a href="https://distill.pub/2020/circuits/early-vision/">early vision</a> are features that we aren't particularly surprised to find. <a href="https://distill.pub/2020/circuits/curve-detectors/">Curve detectors</a>, for example, had already been discovered in the animal visual cortex<d-cite bibtex-key="tang2018complex,pasupathy2001shape,jiang2019discrete"></d-cite>. It's easy to imagine how curve detectors are built up from earlier edge detectors, and it's easy to guess why curve detection might be useful to the rest of the neural network.</p>
+    <p>Some of the neurons in <a href="https://distill.pub/2020/circuits/early-vision/">early vision</a> are features that we aren't particularly surprised to find. <a href="https://distill.pub/2020/circuits/curve-detectors/">Curve detectors</a>, for example, had already been discovered in the animal visual cortex.<d-cite bibtex-key="tang2018complex,pasupathy2001shape,jiang2019discrete"></d-cite> It's easy to imagine how curve detectors are built up from earlier edge detectors, and it's easy to guess why curve detection might be useful to the rest of the neural network.</p>
 
     <p>High-low frequency detectors, on the other hand, seem more surprising. They are not a feature that we would have expected <i>a priori</i> to find. Yet, when systematically characterizing<d-cite bibtex-key="olah2020an"></d-cite> the first five layers of InceptionV1<d-cite bibtex-key="szegedy2015going"></d-cite>, we found a full <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3a_high_low_frequency">15 neurons</a> of <code>mixed3a</code> that appear to detect a high frequency pattern on one side, and a low frequency pattern on the other.</p>
 
     <p>
-      These detectors are not quite as intuitive as curve detectors.
-
-      However, <a href="https://distill.pub/2020/circuits/zoom-in/">we've claimed</a> that features and circuits can be rigorously studied and understood<d-cite bibtex-key="olah2020zoom"></d-cite> – and that should include the unintuitive ones! We could have discovered that only intuitive features are interpretable, but instead, here we find the opposite: using the same tools we've built up for exploring circuits, we find that we can also study and understand high-low frequency detectors.
+      These detectors are not quite as intuitive as curve detectors. However, if we want to rigorously study and fully understand neural networks, then we should also be able to understand the unintuitive ones!<d-cite bibtex-key="olah2020zoom"></d-cite> We could have discovered that only intuitive features are interpretable, but instead, here we find the opposite: using the same tools we've built up for exploring circuits, we can study and understand high-low frequency detectors.
     </p>
 
     <a class="header-self-link" href="#function">
@@ -54,21 +52,21 @@
     </a>
 
     <p>
-      It's there in the name, but how sure can we be that &ldquo;high-low frequency detectors&rdquo; are actually detecting what we think they're detecting?
+      How sure can we be that &ldquo;high-low frequency detectors&rdquo; are actually detecting directional transitions from low to high spatial frequency?
     </p>
 
     <p>
-      Three tools that we can use to investigate their function include <a href="#feature-visualization">feature visualization</a>, <a href="#dataset-examples">dataset examples</a>, and <a href="#tuning-curves">synthetic tuning curves</a>.
+      We will investigate them in three ways.
     </p>
     <ul>
       <li>
-        <b>Feature visualization</b> allows us to establish a causal link between each neuron and its function.<d-cite bibtex-key="erhan2009visualizing,zeiler2014visualizing,yosinski2015understanding,olah2017feature"></d-cite>
+        <a href="#feature-visualization"><b>Feature visualization</b></a> allows us to establish a causal link between each neuron and its function.<d-cite bibtex-key="erhan2009visualizing,zeiler2014visualizing,yosinski2015understanding,olah2017feature"></d-cite>
       </li>
       <li>
-        <b>Dataset examples</b> show us where the neuron fires in practice.
+        <a href="#dataset-examples"><b>Dataset examples</b></a> show us where the neuron fires in practice.
       </li>
       <li>
-        <b>Synthetic tuning curves</b> show us how variation affects the neuron's response.
+        <a href="#tuning-curves"><b>Synthetic tuning curves</b></a> show us how variation affects the neuron's response.
       </li>
     </ul>
 
