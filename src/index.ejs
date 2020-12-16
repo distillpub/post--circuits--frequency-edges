@@ -549,7 +549,7 @@
 
     <%= require('./diagrams/similar-directions.ejs')() %>
 
-    <p>Notice that these detectors are found at very similar depths within the different networks, between 29% and 33% network depth! While the particular orientations each network's high-low frequency detectors respond to may vary slightly, each network has its own family of detectors that together cover the full 360º and comprise a rotationally <a href="https://distill.pub/2020/circuits/equivariance/">equivariant</a> family.
+    <p>Notice that these detectors are found at very similar depths within the different networks, between 29% and 33% network depth!<d-footnote>Network depth is here defined as the index of the layer divided by the total number of layers.</d-footnote> While the particular orientations each network's high-low frequency detectors respond to may vary slightly, each network has its own family of detectors that together cover the full 360º and comprise a rotationally <a href="https://distill.pub/2020/circuits/equivariance/">equivariant</a> family.
       <d-footnote>Architecture aside – what about networks trained on substantially different <i>datasets</i>? In the extreme case, one could imagine a synthetic dataset where high-low frequency detectors don't arise. For most practical datasets, however, we expect to find them. For example, we even find some candidate high-low frequency detectors in AlexNet (Places): <a href="https://microscope.openai.com/models/alexnet_caffe_places365/conv2_Conv2D_0/37">down-up</a>, <a href="https://microscope.openai.com/models/alexnet_caffe_places365/conv2_Conv2D_0/91">left-right</a>, and <a href="https://microscope.openai.com/models/alexnet_caffe_places365/conv2_Conv2D_0/104">up-down</a>.</d-footnote>
     </p>
 
