@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style id="distill-article-specific-styles">
     <%=require("../static/styles.css") %>
+    
+    .header-self-link {
+      border-bottom: none;
+    }
+
+    .header-self-link:hover {
+      border-bottom: none;
+    }
   </style>
   <script src="https://distill.pub/template.v2.js"></script>
 </head>
@@ -15,16 +23,6 @@
       <%= JSON.stringify(require("./frontmatter.json"), null, 4) %>
     </script>
   </d-front-matter>
-
-  <style>
-  .header-self-link {
-    border-bottom: none;
-  }
-
-  .header-self-link:hover {
-    border-bottom: none;
-  }
-  </style>
 
   <d-title>
     <h1>High-Low Frequency Detectors</h1>
