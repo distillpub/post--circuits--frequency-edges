@@ -168,7 +168,7 @@
 
 <figcaption class="figcaption">
   <a href="#figure-3" class="figure-number">3</a>
-  : Responses of six high-low frequency detectors to artifical stimuli. The
+  : Responses of six high-low frequency detectors to artificial stimuli. The
   stimuli vary over two axes: orientation, ranging from 0 to 2π, and frequency
   ratio ƒ, ranging from 1:1 to 1:10. Activation values are normalized across all
   units shown, ranging between 0
