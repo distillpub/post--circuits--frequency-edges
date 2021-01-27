@@ -159,6 +159,100 @@ a.section-number:hover {
 	display: grid;
 	grid-row-gap: 0.5em;
 }
+
+
+/* ************
+ * Thread Info
+ * ************/
+
+.thread-info {
+	background-color: hsl(54, 78%, 96%);
+	border-left: solid hsl(54, 33%, 67%) 1px;
+	padding: 1em;
+	color: hsla(0, 0%, 0%, 0.67);
+}
+
+#thread-nav {
+	margin-top: 20;
+	margin-bottom: 1.5rem;
+	display: grid;
+	grid-template-columns: 45px 2fr 3fr;
+	grid-template-areas:
+		"icon explanation explanation "
+		"icon prev next";
+	grid-column-gap: 1.5em;
+}
+
+@media (min-width: 768px){
+  #thread-nav {
+	grid-template-columns: 65px 2fr 3fr;
+  }
+}
+
+#thread-nav .icon {
+	grid-area: icon;
+	padding: 0.5em;
+	justify-self: center;
+}
+
+#thread-nav .explanation {
+	grid-area: explanation;
+	font-size: 85%;
+	color: hsl(0, 0%, 0.33);
+}
+
+#thread-nav .prev {
+	grid-area: prev;
+}
+
+#thread-nav .prev::before {
+	content: "← Previous Article";
+}
+
+#thread-nav .overview {
+	scroll-behavior: smooth;
+}
+
+#thread-nav .overview::before {
+	content: "↑";
+	white-space: nowrap;
+	margin-right: 0.5em;
+}
+
+#thread-nav .next {
+	grid-area: next;
+	scroll-behavior: smooth;
+}
+
+#thread-nav .next::before {
+	content: "Next Article →";
+}
+
+#thread-nav .next::before, #thread-nav .prev::before {
+  display: block;
+  white-space: nowrap;
+  padding: 0.5em 0;
+  font-size: 80%;
+  font-weight: bold;
+  margin-top: 0px;
+  margin-right: 0.5em;
+  text-transform: uppercase;
+}
+
+
+
+#thread-nav .prev,
+#thread-nav .next,
+#thread-nav .overview {
+	font-size: 80%;
+	line-height: 1.5em;
+	font-weight: 600;
+	border-bottom: none;
+	color: #2e6db7;
+	/* margin-top: 0.25em; */
+	letter-spacing: 0.25px;
+}
+
   </style>
   <script src="https://distill.pub/template.v2.js"></script>
 </head>
@@ -167,7 +261,7 @@ a.section-number:hover {
   <d-front-matter>
     <script type="text/json">
       {
-    "title": "High/Low frequency detectors",
+    "title": "High-Low Frequency Detectors",
     "description": "A family of early-vision filters reacting to contrasts between spatial gratings of different frequency",
     "authors": [
         {
@@ -193,6 +287,7 @@ a.section-number:hover {
   .header-self-link {
     border-bottom: none;
   }
+
   .header-self-link:hover {
     border-bottom: none;
   }
@@ -208,11 +303,25 @@ a.section-number:hover {
 
   <d-article>
 
+  <section id="thread-nav" class="thread-info" style="margin-top: 10px; margin-bottom: 40px;">
+    <img class="icon" src="images/multiple-pages.svg" width="43px" height="50px">
+    <p class="explanation">
+        This article is part of the <a href="/2020/circuits/">Circuits thread</a>, an experimental format collecting invited short articles and critical commentary delving into the inner workings of neural networks.
+    </p>
+    <a class="prev" href="/2020/circuits/equivariance/">Naturally Occurring Equivariance in Neural Networks</a>
+    <!-- <a class="next" href="/2020/circuits/frequency-edges/">High-Low Frequency Detectors</a> -->
+  </section>
+
     <h2 style="display: none;">Introduction</h2>
 
     <p>Some of the neurons in vision models are features that we aren't particularly surprised to find. <a href="https://distill.pub/2020/circuits/curve-detectors/">Curve detectors</a>, for example, are a pretty natural feature for a vision system to have. In fact, they had already been discovered in the animal visual cortex<d-cite bibtex-key="tang2018complex,pasupathy2001shape,jiang2019discrete"></d-cite>. It's easy to imagine how curve detectors are built up from earlier edge detectors, and it's easy to guess why curve detection might be useful to the rest of the neural network.</p>
 
-    <p>High-low frequency detectors, on the other hand, seem more surprising. They are not a feature that we would have expected <i>a priori</i> to find. Yet, when systematically characterizing<d-cite bibtex-key="olah2020an"></d-cite> the <a href="https://distill.pub/2020/circuits/early-vision/">early layers</a> of InceptionV1<d-cite bibtex-key="szegedy2015going"></d-cite>, we found a full <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3a_high_low_frequency">fifteen neurons</a> of <code>mixed3a</code> that appear to detect a high frequency pattern on one side, and a low frequency pattern on the other.</p>
+    <p>High-low frequency detectors, on the other hand, seem more surprising. They are not a feature that we would have expected <em>a priori</em> to find. Yet, when systematically characterizing<d-cite bibtex-key="olah2020an"></d-cite> the <a href="https://distill.pub/2020/circuits/early-vision/">early layers</a> of InceptionV1<d-cite bibtex-key="szegedy2015going"></d-cite>, we found a full <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3a_high_low_frequency">fifteen neurons</a> of <code>mixed3a</code> that appear to detect a high frequency pattern on one side, and a low frequency pattern on the other.</p>
+    <aside>
+      <p>By &ldquo;high frequency&rdquo; and &ldquo;low frequency&rdquo; here, we mean <a
+          href="https://en.wikipedia.org/wiki/Spatial_frequency">spatial frequency</a> &mdash; just like when we take the
+        Fourier transform of an image.</p>
+    </aside>
 
     <p>
       One worry we might have about the <a href="https://distill.pub/2020/circuits/zoom-in/">circuits</a> approach<d-cite bibtex-key="olah2020zoom"></d-cite> to studying neural networks is that we might only be able to understand a limited set of highly-intuitive features.
@@ -254,7 +363,7 @@ a.section-number:hover {
       A <a href="https://distill.pub/2017/feature-visualization">feature visualization</a><d-cite bibtex-key="erhan2009visualizing,zeiler2014visualizing,yosinski2015understanding,olah2017feature"></d-cite> is a synthetic input
       optimized to elicit maximal activation of a single, specific neuron.
       Feature visualizations are constructed starting from random noise, so each and every pixel in a feature visualization
-      that's <i>changed</i> from random noise is there because it caused the neuron to activate more strongly. This
+      that's <em>changed</em> from random noise is there because it caused the neuron to activate more strongly. This
       establishes a causal link! The behavior shown in the
       feature visualization is behavior that causes the neuron to fire:
     </p>
@@ -379,7 +488,7 @@ a.section-number:hover {
 
     <ul>
       <li>
-        <b>Detection of adjacent high and low frequencies.</b> The detectors respond to <i>high frequency</i> on one side, and <i>low frequency</i> on the other side.
+        <b>Detection of adjacent high and low frequencies.</b> The detectors respond to <em>high frequency</em> on one side, and <em>low frequency</em> on the other side.
       </li>
       <!-- <li>
         <b>Orientedness.</b> The detectors detect their high-low frequency change along a particular angle.
@@ -390,11 +499,6 @@ a.section-number:hover {
         We will see this in more detail when we <a href="#tuning-curves">construct a tuning curve</a> with synthetic examples, and also when we look at the weights <a href="#implementation">implementing</a> these detectors.
       </li>
     </ul>
-    <aside>
-      <p>By &ldquo;high frequency&rdquo; and &ldquo;low frequency&rdquo; here, we mean <a
-          href="https://en.wikipedia.org/wiki/Spatial_frequency">spatial frequency</a> &mdash; just like when we take the
-        Fourier transform of an image.</p>
-    </aside>
 
     <p>We can use a <a href="https://distill.pub/2017/feature-visualization/#diversity">diversity term</a> in our feature visualizations to jointly optimize for the activation of a neuron while encouraging different activation patterns in a batch of visualizations.
 
@@ -473,7 +577,7 @@ a.section-number:hover {
     </p>
 
     <p>
-      To construct such a curve, we'll need a set of <i>synthetic stimuli</i> which cause high-low frequency detectors to fire.
+      To construct such a curve, we'll need a set of <em>synthetic stimuli</em> which cause high-low frequency detectors to fire.
 
       We generate images with a high-frequency pattern on one side and a low-frequency pattern on the other. Since we're interested in orientation, we'll rotate this pattern to create a 1D family of stimuli:
     </p>
@@ -557,7 +661,7 @@ a.section-number:hover {
     </p>
 
     <p>
-      Surprisingly, across all high-low frequency detectors, the two clusters of neurons that we get for each are actually the <i>same</i> two clusters! One cluster appears to detect textures with a generally high frequency, and one cluster appears to detect textures with a generally low frequency.
+      Surprisingly, across all high-low frequency detectors, the two clusters of neurons that we get for each are actually the <em>same</em> two clusters! One cluster appears to detect textures with a generally high frequency, and one cluster appears to detect textures with a generally low frequency.
     </p>
     <d-figure id="figure-5">
       <figure style=''>
@@ -597,7 +701,7 @@ a.section-number:hover {
         this is not a great approximation of the model's behavior, it does give a reasonable intuition for
         counterfactual influence: had the neurons in the intermediate layer fired, how it would have affected neurons in
         the downstream layers. We treat positive and negative influences separately.</d-footnote> between lower layers and the high-low frequency detectors is one way that we can check whether these two clusters are meaningful, and investigate their significance. Performing a one-sided non-negative matrix factorization (NMF)</a><d-footnote>We require that the channel factor be positive, but allow the spatial factor to have both positive and negative values.</d-footnote> separates the connections into two factors.</p>
-    <p>Each factor corresponds to a vector over neurons. Feature visualization can also be used to visualize these linear combinations of neurons. Strikingly, one clearly displays a generic high-frequency image, whereas the other does the same with a low-frequency image.<d-footnote>In InceptionV1 in particular, it's possible that we recover these two factors so crisply in part due to the <i><a href="https://microscope.openai.com/models/inceptionv1/mixed3a_3x3_bottleneck_0?models.op.feature_vis.type=neuron&models.op.technique=feature_vis">3x3 bottleneck</a></i> between conv2d2 and mixed3a. Because of this, we're not here looking at direct weights between conv2d2 and mixed3a, but rather the "expanded weights," which are a product of a 1x1 convolution (which reduces down to a small number of neurons) combined with a 3x3 convolution. This structure is very similar to the factorization we apply. However, as we see later in <a href="#universality">Universality</a>, we recover similar factors for other models where this bottleneck doesn’t exist. NMF makes it easy to see this abstract circuit across many models which may not have an architecture that more explicitly reifies it.</d-footnote> We'll call these the <em>HF-factor</em> and the <em>LF-factor</em>:</p>
+    <p>Each factor corresponds to a vector over neurons. Feature visualization can also be used to visualize these linear combinations of neurons. Strikingly, one clearly displays a generic high-frequency image, whereas the other does the same with a low-frequency image.<d-footnote>In InceptionV1 in particular, it's possible that we recover these two factors so crisply in part due to the <em><a href="https://microscope.openai.com/models/inceptionv1/mixed3a_3x3_bottleneck_0?models.op.feature_vis.type=neuron&models.op.technique=feature_vis">3x3 bottleneck</a></em> between conv2d2 and mixed3a. Because of this, we're not here looking at direct weights between conv2d2 and mixed3a, but rather the "expanded weights," which are a product of a 1x1 convolution (which reduces down to a small number of neurons) combined with a 3x3 convolution. This structure is very similar to the factorization we apply. However, as we see later in <a href="#universality">Universality</a>, we recover similar factors for other models where this bottleneck doesn’t exist. NMF makes it easy to see this abstract circuit across many models which may not have an architecture that more explicitly reifies it.</d-footnote> We'll call these the <em>HF-factor</em> and the <em>LF-factor</em>:</p>
 
     <d-figure id="figure-6">
       
@@ -4029,7 +4133,7 @@ a.section-number:hover {
 </figure>
  -->
 
-    <p>As we've mentioned, by far the primary downstream contribution of high-low frequency detectors is to <i>boundary detectors</i>. Of the top 20 neurons in <code>mixed3b</code> with the highest L2-norm of weights across all high-low frequency detectors, eight of those 20 neurons participate in boundary detection of some sort: <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_double_boundary">double boundary detectors</a>, <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_boundary_misc">miscellaneous boundary detectors</a>, and especially <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_boundary">object boundary detectors</a>. </p>
+    <p>As we've mentioned, by far the primary downstream contribution of high-low frequency detectors is to <em>boundary detectors</em>. Of the top 20 neurons in <code>mixed3b</code> with the highest L2-norm of weights across all high-low frequency detectors, eight of those 20 neurons participate in boundary detection of some sort: <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_double_boundary">double boundary detectors</a>, <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_boundary_misc">miscellaneous boundary detectors</a>, and especially <a href="https://distill.pub/2020/circuits/early-vision/#group_mixed3b_boundary">object boundary detectors</a>. </p>
 
     <h4>Role in object boundary detection</h4>
 
@@ -4328,7 +4432,7 @@ a.section-number:hover {
 </d-figure>
 
     <p>Notice that these detectors are found at very similar depths within the different networks, between 29% and 33% network depth!<d-footnote>Network depth is here defined as the index of the layer divided by the total number of layers.</d-footnote> While the particular orientations each network's high-low frequency detectors respond to may vary slightly, each network has its own family of detectors that together cover the full 360º and comprise a rotationally <a href="https://distill.pub/2020/circuits/equivariance/">equivariant</a> family.
-      <d-footnote>Architecture aside – what about networks trained on substantially different <i>datasets</i>? In the extreme case, one could imagine a synthetic dataset where high-low frequency detectors don't arise. For most practical datasets, however, we expect to find them. For example, we even find some candidate high-low frequency detectors in AlexNet (Places): <a href="https://microscope.openai.com/models/alexnet_caffe_places365/conv2_Conv2D_0/37">down-up</a>, <a href="https://microscope.openai.com/models/alexnet_caffe_places365/conv2_Conv2D_0/91">left-right</a>, and <a href="https://microscope.openai.com/models/alexnet_caffe_places365/conv2_Conv2D_0/104">up-down</a>.</d-footnote>
+      <d-footnote>Architecture aside – what about networks trained on substantially different <em>datasets</em>? In the extreme case, one could imagine a synthetic dataset where high-low frequency detectors don't arise. For most practical datasets, however, we expect to find them. For example, we even find some candidate high-low frequency detectors in AlexNet (Places): <a href="https://microscope.openai.com/models/alexnet_caffe_places365/conv2_Conv2D_0/37">down-up</a>, <a href="https://microscope.openai.com/models/alexnet_caffe_places365/conv2_Conv2D_0/91">left-right</a>, and <a href="https://microscope.openai.com/models/alexnet_caffe_places365/conv2_Conv2D_0/104">up-down</a>.</d-footnote>
     </p>
 
     <p>Even though these families are from three completely different networks, we also discover that their high-low frequency detectors are built up from high and low frequency components.</p>
@@ -4746,9 +4850,20 @@ a.section-number:hover {
       Finally, we've seen that high-low frequency detectors are common across multiple network architectures.
     </p>
 
-    <p>Given the universality observations, we might wonder whether the existence of high-low frequency detectors isn't so unnatural after all. We even find <a href="https://microscope.openai.com/models/alexnet_caffe_places365/conv2_Conv2D_0/91">approximate</a> high-low frequency detectors in AlexNet Places, with its substantially different training data. Beyond neural networks, the aesthetic quality imparted by the blurriness of an out-of-focus region of an image is already known as to photographers <a href="https://en.wikipedia.org/wiki/Bokeh"><i>bokeh</i></a>. And in VR, visual blur can either provide an effective depth-of-field cue or, conversely, can induce nausea in the user when implemented in a dissonant way. Perhaps frequency detection might well be commonplace in both natural and artificial vision systems as yet another type of informational cue.</p>
+    <p>Given the universality observations, we might wonder whether the existence of high-low frequency detectors isn't so unnatural after all. We even find <a href="https://microscope.openai.com/models/alexnet_caffe_places365/conv2_Conv2D_0/91">approximate</a> high-low frequency detectors in AlexNet Places, with its substantially different training data. Beyond neural networks, the aesthetic quality imparted by the blurriness of an out-of-focus region of an image is already known as to photographers as <a href="https://en.wikipedia.org/wiki/Bokeh"><em>bokeh</em></a>. And in VR, visual blur can either provide an effective depth-of-field cue or, conversely, can induce nausea in the user when implemented in a dissonant way. Perhaps frequency detection might well be commonplace in both natural and artificial vision systems as yet another type of informational cue.</p>
 
     <p>Nevertheless, whether their existence is natural or not, we find that high-low frequency detectors are possible to characterize and understand.</p>
+
+
+    <section id="thread-nav" class="thread-info">
+      <img class="icon" src="images/multiple-pages.svg" width="43px" height="50px">
+      <p class="explanation">
+          This article is part of the Circuits thread, a collection of short articles and commentary by an open scientific collaboration delving into the inner workings of neural networks.<br>
+      </p>
+
+      <a class="prev" href="/2020/circuits/equivariance/">Naturally Occurring Equivariance in Neural Networks</a>
+      <!-- <a class="next" href="/2020/circuits/frequency-edges/">High-Low Frequency Detectors</a> -->
+  </section>
 
   </d-article>
 
