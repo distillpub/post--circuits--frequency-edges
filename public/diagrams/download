@@ -1,0 +1,1 @@
+gsutil -m rsync -R gs://fls/schubert/circuits--hilo/ .

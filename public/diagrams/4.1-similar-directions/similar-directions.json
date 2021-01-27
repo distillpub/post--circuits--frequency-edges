@@ -1,0 +1,43 @@
+{
+	"models": [
+		{
+			"name": "InceptionV1",
+			"folderName": "inceptionv1",
+			"layerName": "mixed3a",
+			"url": "diagrams/1.1-feature-vis/neuron-{}.png",
+			"depthRatio": [4, 12],
+			"un": [136, 108, 132, 88, 110, 180, 153, 186, 86, 117, 112, 70, 106, 113],
+			"units": [106, 110, 180, 132, 112, 108],
+			"bibtexCitation": "szegedy2015going"
+		},
+		{
+			"name": "AlexNet",
+			"folderName": "alexnet",
+			"layerName": "Conv2D_2",
+			"url": "diagrams/4.1-similar-directions/alexnet/Conv2D_2-{}.png",
+			"depthRatio": [2, 7],
+			"units": [183, 175, 215, 230, 161, 205],
+			"bibtexCitation": "krizhevsky2012alexnet"
+		},
+		{
+			"name": "InceptionV4",
+			"folderName": "inceptionv4",
+			"layerName": "Mixed_5a",
+			"url": "diagrams/4.1-similar-directions/inceptionv4/channel-{}.png",
+			"depthRatio": [5, 15],
+			"un": [52, 76, 77, 82],
+			"units": [82, 178, 77, 18, 52, 76],
+			"bibtexCitation": "szegedyIV16"
+		},
+		{
+			"name": "ResNetV2-50",
+			"folderName": "resnetv2-50",
+			"layerName": "B2_U1_conv2",
+			"url": "diagrams/4.1-similar-directions/resnetv2/channel-{}.png",
+			"depthRatio": [5, 17],
+			"un": [41, 45, 50, 51, 53, 58, 67, 95, 118],
+			"units": [118, 41, 58, 50, 45, 53],
+			"bibtexCitation": "kaiming2015resnet"
+		}
+	]
+}
