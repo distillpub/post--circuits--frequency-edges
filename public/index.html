@@ -5,230 +5,230 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style id="distill-article-specific-styles">
     d-article a.undecorated {
-	border-bottom: none;
+  border-bottom: none;
 }
 
 .subgrid {
-	grid-column: screen;
-	display: grid;
-	grid-template-columns: inherit;
-	grid-template-rows: inherit;
-	grid-column-gap: inherit;
-	grid-row-gap: inherit;
+  grid-column: screen;
+  display: grid;
+  grid-template-columns: inherit;
+  grid-template-rows: inherit;
+  grid-column-gap: inherit;
+  grid-row-gap: inherit;
 }
 
 d-figure.base-grid {
-	grid-column: screen;
-	background: hsl(0, 0%, 97%);
-	padding: 20px 0;
-	border-top: 1px solid rgba(0, 0, 0, 0.1);
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  grid-column: screen;
+  background: hsl(0, 0%, 97%);
+  padding: 20px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 d-figure {
-	margin-top: 1.5em;
-	margin-bottom: 2.5em;
-	position: relative;
+  margin-top: 1.5em;
+  margin-bottom: 2.5em;
+  position: relative;
 }
 
 d-figure > figure {
-	margin-top: 0;
-	margin-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 d-title > figure:last-child {
-	margin-bottom: 1.5em;
+  margin-bottom: 1.5em;
 }
 
 a.section-number::before {
-	content: "Section ";
+  content: 'Section ';
 }
 
 a.figure-number::before {
-	content: "Figure ";
+  content: 'Figure ';
 }
 
 a.figure-number,
 a.section-number {
-	border-bottom-color: hsla(206, 90%, 20%, 0.3);
-	text-transform: uppercase;
-	font-size: 0.85em;
-	color: hsla(206, 90%, 20%, 0.7);
+  border-bottom-color: hsla(206, 90%, 20%, 0.3);
+  text-transform: uppercase;
+  font-size: 0.85em;
+  color: hsla(206, 90%, 20%, 0.7);
 }
 
 a.figure-number:hover,
 a.section-number:hover {
-	border-bottom-width: 1px;
-	border-bottom-style: solid;
-	border-bottom-color: hsla(206, 90%, 20%, 0.7);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: hsla(206, 90%, 20%, 0.7);
 }
 
 .shaded-figure {
-	background-color: hsl(0, 0%, 97%);
-	border-top: 1px solid hsla(0, 0%, 0%, 0.1);
-	border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
-	padding: 30px 0;
+  background-color: hsl(0, 0%, 97%);
+  border-top: 1px solid hsla(0, 0%, 0%, 0.1);
+  border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
+  padding: 30px 0;
 }
 
 .pointer {
-	position: absolute;
-	width: 26px;
-	height: 26px;
-	top: 26px;
-	left: -48px;
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  top: 26px;
+  left: -48px;
 }
 
 .todo {
-	padding: 0.5em;
-	background-color: hsla(50, 100%, 50%, 0.25);
-	border: 1px solid hsla(50, 100%, 50%, 0.5);
-	border-radius: 4px;
-	color: hsl(45, 100%, 20%);
+  padding: 0.5em;
+  background-color: hsla(50, 100%, 50%, 0.25);
+  border: 1px solid hsla(50, 100%, 50%, 0.5);
+  border-radius: 4px;
+  color: hsl(45, 100%, 20%);
 }
 
 .todo::before {
-	display: inline-block;
-	content: "⚠️";
-	vertical-align: baseline;
-	position: relative;
-	font-size: 135%;
-	top: 4px;
-	margin: 0 0.25em;
+  display: inline-block;
+  content: '⚠️';
+  vertical-align: baseline;
+  position: relative;
+  font-size: 135%;
+  top: 4px;
+  margin: 0 0.25em;
 
-	text-decoration: none !important;
+  text-decoration: none !important;
 }
 
 .todo.done::before {
-	content: "✅";
+  content: '✅';
 }
 
 .todo.done {
-	background-color: hsla(120, 20%, 60%, 0.25);
-	border: 1px solid hsla(120, 20%, 60%, 0.5);
-	color: hsl(45, 0%, 20%);
-	text-decoration: line-through;
-	text-decoration-color: hsla(45, 0%, 20%, 50%);
+  background-color: hsla(120, 20%, 60%, 0.25);
+  border: 1px solid hsla(120, 20%, 60%, 0.5);
+  color: hsl(45, 0%, 20%);
+  text-decoration: line-through;
+  text-decoration-color: hsla(45, 0%, 20%, 50%);
 }
 
 /* Color Legends */
 
 .color-legend {
-	display: inline-block;
-	width: 64px;
-	width: 4em;
-	height: 8px;
-	height: calc(1ex + 1px);
-	position: relative;
-	bottom: 1px;
-	vertical-align: baseline;
+  display: inline-block;
+  width: 64px;
+  width: 4em;
+  height: 8px;
+  height: calc(1ex + 1px);
+  position: relative;
+  bottom: 1px;
+  vertical-align: baseline;
 }
 .color-legend.viridis {
-	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAA7ElEQVQ4T4WRi23EMAxDSXu1jtD9R4kPIiVbTosWh0Ci+PRJjl/8XuAAB9EjpAmOoYgdCXKg/MsLTmzGN9e8pRzm83nXulZO8yv7VuqoF1tceY7QTZW/vR9a82Nm7ssZd3/5uXvzvbczeUfjFn6p1b3/zDv3xZCzp9f3u3Ptd7/6tCu9vMU9K7913Wfdvfg7Lg5mmL0nmgvtv/lw/rzHGzs3W3rgpZML394Sez34q/aY3cyDubW9KS9zeVWv2qP+KebZfPXNxospFt5lP/pqd0TrYjVLfs13n3f4RudwBDCVM/OITE1Mho5f5M4+UeiJCh70oMIAAAAASUVORK5CYII=");
-	background-size: contain;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAA7ElEQVQ4T4WRi23EMAxDSXu1jtD9R4kPIiVbTosWh0Ci+PRJjl/8XuAAB9EjpAmOoYgdCXKg/MsLTmzGN9e8pRzm83nXulZO8yv7VuqoF1tceY7QTZW/vR9a82Nm7ssZd3/5uXvzvbczeUfjFn6p1b3/zDv3xZCzp9f3u3Ptd7/6tCu9vMU9K7913Wfdvfg7Lg5mmL0nmgvtv/lw/rzHGzs3W3rgpZML394Sez34q/aY3cyDubW9KS9zeVWv2qP+KebZfPXNxospFt5lP/pqd0TrYjVLfs13n3f4RudwBDCVM/OITE1Mho5f5M4+UeiJCh70oMIAAAAASUVORK5CYII=');
+  background-size: contain;
 }
 .color-legend.pn {
-	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAACCAIAAABnm03uAAAAL0lEQVR4nGNkqP/PwcKAB3Gy4pXFq5eDhYGV4TfDnx940Xd8sr/xyv75wcQwxAEA8tZAggq3EssAAAAASUVORK5CYII=");
-	background-size: contain;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAACCAIAAABnm03uAAAAL0lEQVR4nGNkqP/PwcKAB3Gy4pXFq5eDhYGV4TfDnx940Xd8sr/xyv75wcQwxAEA8tZAggq3EssAAAAASUVORK5CYII=');
+  background-size: contain;
 }
 
 .legend-label {
-	padding: 1px 4px;
-	border-radius: 2px;
-	color: rgba(0, 0, 0, 0.8);
+  padding: 1px 4px;
+  border-radius: 2px;
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .legend-label.support {
-	background-color: #EE880088;
+  background-color: #ee880088;
 }
 
 .legend-label.inhibit {
-	background-color: #0088EE88;
+  background-color: #0088ee88;
 }
 
 .legend-label.support-rb {
-	color: white;
-	background-color: #CE1E34CC;
+  color: white;
+  background-color: #ce1e34cc;
 }
 
 .legend-label.inhibit-rb {
-	color: white;
-	background-color: #0571B0CC;
+  color: white;
+  background-color: #0571b0cc;
 }
 
 #figure-3 > figure {
-	display: grid;
-	grid-row-gap: 0.5em;
+  display: grid;
+  grid-row-gap: 0.5em;
 }
-
 
 /* ************
  * Thread Info
  * ************/
 
 .thread-info {
-	background-color: hsl(54, 78%, 96%);
-	border-left: solid hsl(54, 33%, 67%) 1px;
-	padding: 1em;
-	color: hsla(0, 0%, 0%, 0.67);
+  background-color: hsl(54, 78%, 96%);
+  border-left: solid hsl(54, 33%, 67%) 1px;
+  padding: 1em;
+  color: hsla(0, 0%, 0%, 0.67);
 }
 
 #thread-nav {
-	margin-top: 20;
-	margin-bottom: 1.5rem;
-	display: grid;
-	grid-template-columns: 45px 2fr 3fr;
-	grid-template-areas:
-		"icon explanation explanation "
-		"icon prev next";
-	grid-column-gap: 1.5em;
+  margin-top: 20;
+  margin-bottom: 1.5rem;
+  display: grid;
+  grid-template-columns: 45px 3fr 2fr;
+  grid-template-areas:
+    'icon explanation explanation '
+    'icon prev next';
+  grid-column-gap: 1.5em;
 }
 
-@media (min-width: 768px){
+@media (min-width: 768px) {
   #thread-nav {
-	grid-template-columns: 65px 2fr 3fr;
+    grid-template-columns: 65px 3fr 2fr;
   }
 }
 
 #thread-nav .icon {
-	grid-area: icon;
-	padding: 0.5em;
-	justify-self: center;
+  grid-area: icon;
+  padding: 0.5em;
+  justify-self: center;
 }
 
 #thread-nav .explanation {
-	grid-area: explanation;
-	font-size: 85%;
-	color: hsl(0, 0%, 0.33);
+  grid-area: explanation;
+  font-size: 85%;
+  color: hsl(0, 0%, 0.33);
 }
 
 #thread-nav .prev {
-	grid-area: prev;
+  grid-area: prev;
 }
 
 #thread-nav .prev::before {
-	content: "← Previous Article";
+  content: '← Previous Article';
 }
 
 #thread-nav .overview {
-	scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 #thread-nav .overview::before {
-	content: "↑";
-	white-space: nowrap;
-	margin-right: 0.5em;
+  content: '↑';
+  white-space: nowrap;
+  margin-right: 0.5em;
 }
 
 #thread-nav .next {
-	grid-area: next;
-	scroll-behavior: smooth;
+  grid-area: next;
+  scroll-behavior: smooth;
 }
 
 #thread-nav .next::before {
-	content: "Next Article →";
+  content: 'Next Article →';
 }
 
-#thread-nav .next::before, #thread-nav .prev::before {
+#thread-nav .next::before,
+#thread-nav .prev::before {
   display: block;
   white-space: nowrap;
   padding: 0.5em 0;
@@ -239,20 +239,26 @@ a.section-number:hover {
   text-transform: uppercase;
 }
 
-
-
 #thread-nav .prev,
 #thread-nav .next,
 #thread-nav .overview {
-	font-size: 80%;
-	line-height: 1.5em;
-	font-weight: 600;
-	border-bottom: none;
-	color: #2e6db7;
-	/* margin-top: 0.25em; */
-	letter-spacing: 0.25px;
+  font-size: 80%;
+  line-height: 1.5em;
+  font-weight: 600;
+  border-bottom: none;
+  color: #2e6db7;
+  /* margin-top: 0.25em; */
+  letter-spacing: 0.25px;
 }
 
+
+    .header-self-link {
+      border-bottom: none;
+    }
+
+    .header-self-link:hover {
+      border-bottom: none;
+    }
   </style>
   <script src="https://distill.pub/template.v2.js"></script>
 </head>
@@ -275,6 +281,18 @@ a.section-number:hover {
             "affiliationURL": "https://openai.com"
         },
         {
+            "author": "Nick Cammarata",
+            "authorURL": "http://nickcammarata.com",
+            "affiliation": "OpenAI",
+            "affiliationURL": "https://openai.com"
+        },
+        {
+            "author": "Gabriel Goh",
+            "authorURL": "https://gabgoh.github.io",
+            "affiliation": "OpenAI",
+            "affiliationURL": "https://openai.com"
+        },
+        {
             "author": "Chris Olah",
             "authorURL": "https://colah.github.io"
         }
@@ -282,16 +300,6 @@ a.section-number:hover {
 }
     </script>
   </d-front-matter>
-
-  <style>
-  .header-self-link {
-    border-bottom: none;
-  }
-
-  .header-self-link:hover {
-    border-bottom: none;
-  }
-  </style>
 
   <d-title>
     <h1>High-Low Frequency Detectors</h1>
@@ -309,7 +317,7 @@ a.section-number:hover {
         This article is part of the <a href="/2020/circuits/">Circuits thread</a>, an experimental format collecting invited short articles and critical commentary delving into the inner workings of neural networks.
     </p>
     <a class="prev" href="/2020/circuits/equivariance/">Naturally Occurring Equivariance in Neural Networks</a>
-    <!-- <a class="next" href="/2020/circuits/frequency-edges/">High-Low Frequency Detectors</a> -->
+    <a class="next" href="/2020/circuits/curve-circuits/">Curve Circuits</a>
   </section>
 
     <h2 style="display: none;">Introduction</h2>
@@ -4862,7 +4870,7 @@ a.section-number:hover {
       </p>
 
       <a class="prev" href="/2020/circuits/equivariance/">Naturally Occurring Equivariance in Neural Networks</a>
-      <!-- <a class="next" href="/2020/circuits/frequency-edges/">High-Low Frequency Detectors</a> -->
+      <a class="next" href="/2020/circuits/curve-circuits/">Curve Circuits</a>
   </section>
 
   </d-article>
@@ -4874,7 +4882,7 @@ a.section-number:hover {
 
     <p><b>Conceptual Contributions.</b> Christopher Olah originally noted the high-low frequency directors as a research direction. </p>
 
-    <p><b>Experiments.</b> Ludwig Schubert wrote the code for generating and measuring synthetic tuning curves for the high-low frequency detectors, for performing NMF on the high-low frequency detectors to extract the HF-factor and the LF-factor, and for performing NMF on the high-low frequency detectors from other networks. Chelsea Voss wrote the code for generating and measuring synthetic stimuli for the HF-factor and LF-factor, with help from Chris for extracting and using the NMF components.</p>
+    <p><b>Experiments.</b> Ludwig Schubert wrote the code for generating and measuring synthetic tuning curves for the high-low frequency detectors, for performing NMF on the high-low frequency detectors to extract the HF-factor and the LF-factor, and for performing NMF on the high-low frequency detectors from other networks. Chelsea Voss wrote the code for generating and measuring synthetic stimuli for the HF-factor and LF-factor, with help from Chris for extracting and using the NMF components. This investigation was done in the context of and informed by collaborative research into circuits by Nick Cammarata, Gabe Goh, Chelsea, Ludwig, and Chris.</p>
 
     <p><b>Figures.</b> Ludwig designed the visualization of the high-low frequency detector synthetic tuning curves, the visualization of the HF-factor and LF-factor NMF vectors, the visualization of the HF-factor and LF-factor NMF weights from conv2d1 and conv2d2, and the figures demonstrating high-low frequency detectors from other networks shown in the Universality section. Chelsea designed the visualization of the HF-factor and LF-factor synthetic stimuli results and the figures articulating the downstream use of high-low frequency detectors, and edited some of the final figures. Two figures were borrowed from Zoom In and Early Vision.
 
